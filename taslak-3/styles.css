@@ -1,0 +1,651 @@
+/* 
+  MrML Lab - Taslak 3 (Alternative Layout)
+  Dramatic, Elegant, Sophisticated Red Theme
+*/
+
+:root {
+  /* Color Palette strictly adhered to */
+  --bg-primary: #1D1616;
+  --bg-section: #8E1616;
+  --accent-primary: #D84040;
+  --accent-hover: #ff4d4d;
+  --text-primary: #EEEEEE;
+  
+  /* Gradations & Opacities */
+  --bg-surface: #241A1A; /* Slightly lighter than primary for cards/surfaces */
+  --bg-deep: #140F0F;    /* Slightly darker than primary for contrast sections */
+  --text-secondary: rgba(238, 238, 238, 0.65);
+  --text-muted: rgba(238, 238, 238, 0.4);
+  --border-color: rgba(238, 238, 238, 0.08);
+  --border-accent: rgba(216, 64, 64, 0.3);
+
+  /* Typography */
+  --font-heading: 'Instrument Serif', serif;
+  --font-body: 'DM Mono', monospace;
+
+  /* Layout */
+  --container-max: 1320px;
+  --section-pad: clamp(80px, 10vw, 160px) 0;
+  
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+/* ==========================================
+   RESET & BASE SETUP
+   ========================================== */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+}
+
+html {
+  background-color: var(--bg-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Noise Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.25;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Canvas Background */
+#neural-flow {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Container & Sections */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+main {
+  position: relative;
+  z-index: 2; /* Above canvas */
+}
+
+.section-padding { padding: var(--section-pad); }
+.dark-section { background-color: var(--bg-deep); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+.full-height { min-height: 100vh; }
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+h1, h2, h3, h4, .logo {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+/* Accentuating italic serif feel */
+h1 i, h2 i, h3 i, .logo-accent {
+  font-style: italic;
+  color: var(--accent-primary);
+  font-weight: 400;
+}
+
+.section-title {
+  font-size: clamp(40px, 5vw, 64px);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+h3 { font-size: 32px; letter-spacing: -0.01em; margin-bottom: 12px; }
+h4 { font-size: 24px; }
+
+p { color: var(--text-secondary); max-width: 65ch; }
+.lead-text { font-size: clamp(20px, 2vw, 28px); color: var(--text-primary); margin-bottom: 24px; font-family: var(--font-heading); letter-spacing: 0.02em;}
+
+a { color: var(--text-primary); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--accent-primary); }
+
+/* ==========================================
+   COMMON UI ELEMENTS
+   ========================================== */
+.separator-line {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--accent-primary), transparent);
+  margin: 24px 0 40px;
+}
+
+/* Magnetic Button Effect (styling, JS handles logic) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 36px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 100px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  z-index: 1;
+  transition: transform 0.3s var(--ease-out-expo), color 0.3s ease;
+}
+
+.btn-text { position: relative; z-index: 2; }
+.btn-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  border-radius: 100px;
+  z-index: 0;
+  transition: transform 0.6s var(--ease-out-expo), background-color 0.3s ease;
+}
+
+.btn-primary { color: var(--text-primary); border: none; }
+.btn-primary .btn-bg { background-color: var(--accent-primary); }
+.btn-primary:hover .btn-bg { transform: scale(1.05); background-color: var(--accent-hover); }
+
+.btn-outline { color: var(--text-primary); border: 1px solid var(--border-accent); }
+.btn-outline .btn-bg { background-color: transparent; border-radius: 100px; }
+.btn-outline:hover .btn-bg { background-color: var(--bg-section); transform: scale(1.05); }
+
+/* Tag Styling */
+.tag {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tag.journal { border-color: var(--border-accent); color: var(--accent-primary); background: rgba(216,64,64,0.05); }
+
+/* ==========================================
+   HEADER / NAV
+   ========================================== */
+.header {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  padding: 30px 0;
+  z-index: 100;
+  mix-blend-mode: difference; /* Creates a high-end contrast effect over bright backgrounds */
+}
+
+.header-container { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-size: 32px; letter-spacing: -0.02em; }
+
+.nav-links { display: flex; gap: 40px; }
+.nav-item {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+.nav-item:hover { opacity: 1; }
+.nav-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background-color: var(--accent-primary);
+  opacity: 0; transform: scale(0);
+  transition: all 0.3s var(--ease-out-expo);
+}
+.nav-item:hover .nav-dot { opacity: 1; transform: scale(1); }
+
+/* ==========================================
+   1. HERO SECTION
+   ========================================== */
+.hero { display: flex; align-items: center; position: relative; }
+
+.hero-bg-glow {
+  position: absolute;
+  top: 20%; left: 10%;
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgba(142,22,22,0.3) 0%, transparent 60%);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(60px, 9vw, 120px);
+  line-height: 0.95;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+}
+.hero-title .indent { padding-left: 15vw; }
+
+.hero-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 40px;
+}
+
+.hero-bottom-grid .subtitle { font-size: 18px; line-height: 1.5; color: var(--text-primary); }
+.hero-actions { display: flex; gap: 24px; justify-content: flex-end; }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px; left: 5vw;
+  display: flex; align-items: center; gap: 16px;
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+.mouse {
+  width: 24px; height: 36px;
+  border: 1px solid var(--text-muted);
+  border-radius: 12px;
+  position: relative;
+}
+.mouse::after {
+  content: '';
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  width: 4px; height: 4px; border-radius: 50%;
+  background-color: var(--accent-primary);
+  animation: scroll 2s infinite cubic-bezier(0.15, 0.41, 0.69, 0.94);
+}
+@keyframes scroll { 0% { opacity: 1; top: 6px; } 100% { opacity: 0; top: 20px; } }
+
+/* ==========================================
+   2. LAB INTRODUCTION (Fluid Orbs)
+   ========================================== */
+.about-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text-content p:not(.lead-text) { font-size: 16px; opacity: 0.8; }
+
+.about-visual {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  display: flex; justify-content: center; align-items: center;
+}
+
+.fluid-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  mix-blend-mode: lighten;
+  animation: float-orb 15s infinite ease-in-out alternate;
+}
+.orb-1 {
+  width: 250px; height: 250px;
+  background: var(--bg-section);
+  top: 10%; left: 20%;
+  animation-delay: 0s;
+}
+.orb-2 {
+  width: 200px; height: 200px;
+  background: var(--accent-primary);
+  bottom: 20%; right: 20%;
+  animation-delay: -5s;
+}
+.orb-3 {
+  width: 150px; height: 150px;
+  background: #C43030;
+  top: 40%; left: 40%;
+  animation-delay: -10s;
+}
+@keyframes float-orb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.1); }
+  100% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.glass-panel {
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 80%; height: 80%;
+  background: rgba(29, 22, 22, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  z-index: 10;
+}
+
+/* ==========================================
+   3. RESEARCH AREAS (Floating Constellation)
+   ========================================== */
+.section-header.center { text-align: center; display: flex; flex-direction: column; align-items: center;}
+.section-desc { font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); margin-top: 16px;}
+
+.research-constellation {
+  position: relative;
+  height: 600px;
+  margin-top: 80px;
+}
+
+/* Base Spheres */
+.sphere-node {
+  position: absolute;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  width: 280px;
+  z-index: 2;
+}
+.sphere-body {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+  margin-bottom: 24px;
+  transition: all 0.5s var(--ease-out-expo);
+  cursor: pointer;
+}
+.node-icon { color: var(--text-primary); transition: color 0.3s ease; width: 32px; height: 32px; }
+.sphere-glow {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 40px var(--accent-primary);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+
+.sphere-node:hover .sphere-body { transform: scale(1.1); border-color: var(--accent-primary); background: var(--bg-primary); }
+.sphere-node:hover .node-icon { color: var(--accent-primary); }
+.sphere-node:hover .sphere-glow { opacity: 0.3; }
+
+.node-info h3 { font-size: 24px; }
+.node-info p { font-size: 14px; opacity: 0.7; }
+
+/* Positioning & Floating */
+.node-1 { top: 0; left: 10%; animation: float-y 5s ease-in-out infinite alternate; }
+.node-2 { top: 40%; right: 10%; animation: float-y 6s ease-in-out infinite alternate-reverse; }
+.node-3 { bottom: 0; left: 30%; animation: float-y 7s ease-in-out infinite alternate; }
+.node-4 { top: 10%; left: 55%; animation: float-y 5.5s ease-in-out infinite alternate-reverse; }
+
+@keyframes float-y {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-30px); }
+}
+
+/* ==========================================
+   4. FEATURED OUTPUTS (Card Flow)
+   ========================================== */
+.outputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+}
+
+.outputs-intro { position: sticky; top: 120px; align-self: start; }
+.abstract-shape {
+  width: 100px; height: 2px; background: var(--text-muted); margin-top: 40px;
+  position: relative;
+}
+.abstract-shape::after {
+  content:''; position: absolute; right: 0; top: -4px; width: 10px; height: 10px;
+  border-radius: 50%; background: var(--accent-primary);
+}
+
+.outputs-list { display: flex; flex-direction: column; gap: 32px; }
+
+.output-card {
+  display: block;
+  padding: 40px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s var(--ease-out-expo);
+}
+.card-glow {
+  position: absolute;
+  bottom: 0; right: 0; width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(216, 64, 64, 0.15) 0%, transparent 70%);
+  transform: translate(50%, 50%);
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.output-header { display: flex; gap: 12px; margin-bottom: 24px; }
+.output-card h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.2; margin-bottom: 32px; transition: color 0.3s ease; }
+
+.card-footer {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 24px;
+}
+.view-link {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+.view-link i { width: 16px; height: 16px; transition: transform 0.3s ease; }
+
+.output-card:hover { transform: translateY(-5px); border-color: var(--border-accent); }
+.output-card:hover h3 { color: var(--accent-primary); }
+.output-card:hover .card-glow { transform: translate(20%, 20%); }
+.output-card:hover .view-link { color: var(--text-primary); }
+.output-card:hover .view-link i { transform: translateX(5px); color: var(--accent-primary); }
+
+/* ==========================================
+   5. TEAM MEMBERS (Orbital Layout)
+   ========================================== */
+.team-layout {
+  position: relative;
+  height: 800px;
+  display: flex; justify-content: center; align-items: center;
+  margin-top: 40px;
+}
+
+.team-node {
+  position: absolute;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+
+.portrait-ring {
+  border-radius: 50%;
+  border: 1px dashed var(--border-color);
+  display: flex; justify-content: center; align-items: center;
+  position: relative;
+  margin-bottom: 24px;
+  transition: border-color 0.4s ease;
+}
+.portrait-inner {
+  border-radius: 50%;
+  background: var(--bg-primary); /* Will hold images normally */
+  background-image: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-section) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image overlay effect */
+.portrait-inner::after {
+    content:''; position: absolute; top:0;left:0;right:0;bottom:0;
+    background: rgba(216, 64, 64, 0.2); mix-blend-mode: multiply; transition: opacity 0.4s ease;
+}
+.team-node:hover .portrait-ring { border-color: var(--accent-primary); border-style: solid; }
+.team-node:hover .portrait-inner::after { opacity: 0; }
+
+.role { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-primary); margin-bottom: 4px; }
+.focus { font-size: 14px; color: var(--text-muted); }
+
+/* PI Specific */
+.pi-node { z-index: 10; }
+.pi-node .portrait-ring { width: 240px; height: 240px; }
+.pi-node .portrait-inner { width: 200px; height: 200px; }
+.pi-node h3 { font-size: 32px; }
+
+.orbiting-dot {
+  position: absolute;
+  width: 8px; height: 8px; border-radius: 50%;
+  background-color: var(--accent-primary);
+  top: -4px; left: 50%; margin-left: -4px;
+  transform-origin: 0 120px; /* half of ring width */
+  animation: orbit 10s linear infinite;
+}
+
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Children Nodes - placed circularly via CSS */
+.child-node .portrait-ring { width: 140px; height: 140px; }
+.child-node .portrait-inner { width: 120px; height: 120px; }
+.child-node h3 { font-size: 20px; }
+
+.cn-1 { top: 0; left: 20%; }
+.cn-2 { top: 50%; right: 10%; }
+.cn-3 { bottom: 10%; left: 30%; }
+
+
+/* ==========================================
+   6. NEWS TICKER
+   ========================================== */
+.news {
+  padding: 60px 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  position: relative;
+}
+
+.news-marquee { width: 100%; white-space: nowrap; }
+.marquee-content {
+  display: inline-block;
+  animation: marquee 40s linear infinite;
+}
+.news-marquee.reverse .marquee-content { animation-direction: reverse; animation-duration: 50s; margin-top: 16px; }
+
+.marquee-content span { font-size: 24px; text-transform: uppercase; letter-spacing: 0.05em; vertical-align: middle;}
+.marquee-content.highlight span { color: var(--text-primary); font-family: var(--font-heading); font-size: 36px;}
+.marquee-content.dull span { color: var(--text-muted); font-size: 14px;}
+
+.separator-icon { vertical-align: middle; margin: 0 32px; color: var(--accent-primary); width: 20px; height: 20px;}
+.separator-text { margin: 0 32px; color: var(--border-accent); }
+
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ==========================================
+   7. JOIN THE LAB (Organic shape container)
+   ========================================== */
+.join-organic-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 60px 200px 60px 200px;
+  padding: 120px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex; justify-content: center;
+}
+
+.join-content { position: relative; z-index: 10; max-width: 600px; margin: 0 auto;}
+.join-content h2 { font-size: clamp(48px, 6vw, 84px); margin-bottom: 24px; }
+.join-content p { font-size: 20px; margin-bottom: 40px; }
+
+.join-organic-container .blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 1;
+}
+.blob-1 { width: 500px; height: 500px; background: rgba(142,22,22,0.4); top: -200px; left: -200px; animation: pulse 8s infinite alternate;}
+.blob-2 { width: 400px; height: 400px; background: rgba(216,64,64,0.15); bottom: -150px; right: -100px; animation: pulse 12s infinite alternate-reverse;}
+
+@keyframes pulse { 0% { transform: scale(1); } 100% { transform: scale(1.2); } }
+
+/* ==========================================
+   8. FOOTER
+   ========================================== */
+.footer {
+  position: relative;
+  padding: 100px 0 40px;
+  background-color: var(--bg-deep);
+}
+.footer-gradient-top {
+  position: absolute; top: 0; left: 0; width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+  opacity: 0.5;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.footer-mission { font-size: 18px; margin-top: 16px; }
+.footer-heading { font-family: var(--font-body); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 24px; }
+
+.footer address { font-style: normal; font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+.footer-link { display: block; font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+.email-link { color: var(--text-primary); border-bottom: 1px solid var(--border-color); display: inline-block; padding-bottom: 4px; transition: border-color 0.3s ease; }
+.email-link:hover { border-color: var(--accent-primary); }
+
+.footer-bottom { 
+  display: flex; justify-content: space-between; align-items: center;
+  border-top: 1px solid var(--border-color); padding-top: 32px;
+}
+.footer-bottom p { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.dim { color: var(--text-muted); margin-left: 16px; }
+
+/* ==========================================
+   RESPONSIVE DESIGN
+   ========================================== */
+@media (max-width: 1024px) {
+  .hero-bottom-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-actions { justify-content: flex-start; }
+  .about-wrapper { grid-template-columns: 1fr; }
+  .fluid-orb { transform: scale(0.8); }
+  
+  .research-constellation { height: auto; display: flex; flex-direction: column; align-items: center; gap: 40px; margin-top: 40px;}
+  .sphere-node { position: relative; top: 0 !important; left: 0 !important; right: auto !important; bottom: auto !important; animation: none !important;}
+  
+  .outputs-grid { grid-template-columns: 1fr; gap: 40px; }
+  .outputs-intro { position: relative; top: 0; }
+  
+  .team-layout { height: auto; flex-direction: column; gap: 40px; }
+  .team-node { position: relative; top: 0 !important; left: 0 !important; right: auto !important; bottom: auto !important; }
+  .team-orbit { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-top: 40px;}
+  
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; } /* Hide on mobile for MVP, would normally have a burger menu */
+  .hero-title .indent { padding-left: 0; }
+  .hero-actions { flex-direction: column; }
+  
+  .join-organic-container { border-radius: 40px; padding: 60px 30px; }
+  
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .dim { display: block; margin: 8px 0 0 0; }
+}
