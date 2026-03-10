@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MrML Lab | Advancing Machine Learning for Biological Systems</title>
+    <meta name="description" content="MrML Lab develops advanced computational models to analyze complex biological data, neural systems, and genomic information.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Lucide via CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Canvas for Neural Pattern Effect -->
+    <canvas id="neural-bg"></canvas>
+
+    <div class="site-wrapper">
+        <header class="navbar">
+            <div class="container navbar-container">
+                <div class="logo">
+                    <span class="logo-accent">MrML</span> <span class="logo-text">Lab</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#research">Research</a>
+                    <a href="#publications">Publications</a>
+                    <a href="#team">Team</a>
+                    <a href="#join" class="btn btn-outline btn-sm">Join Us</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <!-- 1. HERO SECTION -->
+            <section class="hero">
+                <div class="container hero-container grid-2-col">
+                    <div class="hero-content">
+                        <div class="hero-label"><i data-lucide="microscope" class="icon-sm"></i> Research Laboratory</div>
+                        <h1>Advancing Machine Learning for Biological Systems</h1>
+                        <p class="subtitle">MrML Lab develops advanced computational models to analyze complex biological data, neural systems, and genomic information.</p>
+                        <div class="hero-actions">
+                            <a href="#research" class="btn btn-primary">Explore Research <i data-lucide="arrow-right" class="icon-sm"></i></a>
+                            <a href="#publications" class="btn btn-secondary">View Publications</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. LAB INTRODUCTION -->
+            <section id="about" class="about section-alt">
+                <div class="container grid-2-col align-center">
+                    <div class="about-content">
+                        <h2>About MrML Lab</h2>
+                        <div class="accent-line"></div>
+                        <p>MrML Lab is a multidisciplinary research group focused on developing machine learning methods for understanding complex biological systems. Our work bridges artificial intelligence, neuroscience, and computational biology.</p>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-number">15+</span>
+                                <span class="stat-label">Researchers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Publications</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Core Domains</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="data-node-viz">
+                            <div class="node-circle nc-1">AI</div>
+                            <div class="node-line nl-1"></div>
+                            <div class="node-circle nc-2">Bio</div>
+                            <div class="node-line nl-2"></div>
+                            <div class="node-circle nc-3">Neuro</div>
+                            <div class="pulse-ring"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. RESEARCH AREAS -->
+            <section id="research" class="research">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Research Areas</h2>
+                        <div class="header-line"></div>
+                    </div>
+                    
+                    <div class="grid-card-4">
+                        <div class="card research-card">
+                            <div class="card-icon"><i data-lucide="dna"></i></div>
+                            <h3>Computational Biology</h3>
+                            <p>Developing machine learning models to analyze biological networks and cellular systems.</p>
+                            <div class="card-glow"></div>
+                        </div>
+                        
+                        <div class="card research-card">
+                            <div class="card-icon"><i data-lucide="brain-circuit"></i></div>
+                            <h3>Neural Data Analysis</h3>
+                            <p>Understanding brain activity through large-scale neural recordings and AI methods.</p>
+                            <div class="card-glow"></div>
+                        </div>
+                        
+                        <div class="card research-card">
+                            <div class="card-icon"><i data-lucide="database"></i></div>
+                            <h3>Bioinformatics</h3>
+                            <p>Building algorithms for genomic and molecular data analysis.</p>
+                            <div class="card-glow"></div>
+                        </div>
+                        
+                        <div class="card research-card">
+                            <div class="card-icon"><i data-lucide="activity"></i></div>
+                            <h3>AI for Medicine</h3>
+                            <p>Designing predictive models for diagnostics, treatment planning, and personalized medicine.</p>
+                            <div class="card-glow"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. FEATURED PUBLICATIONS -->
+            <section id="publications" class="publications section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Featured Publications</h2>
+                        <a href="#" class="view-all">View all <i data-lucide="arrow-right" class="icon-sm"></i></a>
+                    </div>
+                    
+                    <div class="grid-card-3">
+                        <div class="card pub-card">
+                            <div class="pub-meta">
+                                <span class="pub-journal">Nature Communications</span>
+                                <span class="pub-year">2025</span>
+                            </div>
+                            <h3>Deep Learning Models for Neural Activity Prediction</h3>
+                            <p class="pub-authors">Dereli, M., Smith, J., Wang, L.</p>
+                            <a href="#" class="btn btn-outline btn-sm pub-link">Read Paper</a>
+                        </div>
+                        
+                        <div class="card pub-card">
+                            <div class="pub-meta">
+                                <span class="pub-journal">Bioinformatics</span>
+                                <span class="pub-year">2024</span>
+                            </div>
+                            <h3>Generative Models for Synthetic Cell Generation and Analysis</h3>
+                            <p class="pub-authors">Chen, A., Dereli, M., Garcia, E.</p>
+                            <a href="#" class="btn btn-outline btn-sm pub-link">Read Paper</a>
+                        </div>
+                        
+                        <div class="card pub-card">
+                            <div class="pub-meta">
+                                <span class="pub-journal">NeurIPS</span>
+                                <span class="pub-year">2024</span>
+                            </div>
+                            <h3>Transformer Architectures in High-Dimensional Genomic Space</h3>
+                            <p class="pub-authors">Dereli, M., et al.</p>
+                            <a href="#" class="btn btn-outline btn-sm pub-link">Read Paper</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. LAB MEMBERS -->
+            <section id="team" class="team">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Lab Members</h2>
+                        <div class="header-line"></div>
+                    </div>
+                    
+                    <div class="grid-card-4">
+                        <div class="card member-card pi-card">
+                            <div class="member-avatar">
+                                <div class="avatar-placeholder">MD</div>
+                            </div>
+                            <div class="member-info">
+                                <h3>Dr. Musa Dereli</h3>
+                                <p class="member-role">Principal Investigator</p>
+                                <p class="member-focus">Machine Learning • Bioengineering</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card member-card">
+                            <div class="member-avatar">
+                                <div class="avatar-placeholder">AS</div>
+                            </div>
+                            <div class="member-info">
+                                <h3>Alice Smith</h3>
+                                <p class="member-role">Postdoctoral Researcher</p>
+                                <p class="member-focus">Neural Networks • Systems Bio</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card member-card">
+                            <div class="member-avatar">
+                                <div class="avatar-placeholder">JW</div>
+                            </div>
+                            <div class="member-info">
+                                <h3>James Wang</h3>
+                                <p class="member-role">PhD Candidate</p>
+                                <p class="member-focus">Genomics • Transformer Models</p>
+                            </div>
+                        </div>
+                        
+                        <div class="card member-card">
+                            <div class="member-avatar">
+                                <div class="avatar-placeholder">EG</div>
+                            </div>
+                            <div class="member-info">
+                                <h3>Eva Garcia</h3>
+                                <p class="member-role">Research Assistant</p>
+                                <p class="member-focus">Data Engineering • MedAI</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. NEWS & UPDATES -->
+            <section class="news section-alt">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>News & Updates</h2>
+                    </div>
+                    
+                    <div class="news-list">
+                        <div class="news-item">
+                            <span class="news-date font-mono">2025-02-15</span>
+                            <div class="news-content">
+                                <h3>New grant awarded for AI in healthcare research</h3>
+                                <p>The lab has received a multi-year grant to investigate predictive modeling for personalized medicine.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <span class="news-date font-mono">2025-01-20</span>
+                            <div class="news-content">
+                                <h3>MrML Lab paper accepted in Nature Communications</h3>
+                                <p>Our latest work on neural activity prediction has been officially published.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="news-item">
+                            <span class="news-date font-mono">2024-11-05</span>
+                            <div class="news-content">
+                                <h3>New PhD positions open for 2026</h3>
+                                <p>We are looking for motivated students to join our computational biology subgroup.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 7. JOIN THE LAB -->
+            <section id="join" class="join-lab">
+                <div class="container">
+                    <div class="cta-box card">
+                        <div class="cta-content">
+                            <h2>Join Our Research</h2>
+                            <p>We are always looking for motivated students and researchers interested in machine learning, artificial intelligence, and biological systems. Whether you are a prospective PhD student, postdoc, or visiting scholar, we'd love to hear from you.</p>
+                        </div>
+                        <div class="cta-action">
+                            <a href="mailto:contact@mrmllab.edu" class="btn btn-primary btn-lg">Apply to the Lab</a>
+                            <p class="cta-note"><i data-lucide="info" class="icon-sm"></i> Please include your CV and research interests.</p>
+                        </div>
+                        <div class="bg-glow-1"></div>
+                        <div class="bg-glow-2"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <div class="logo">
+                            <span class="logo-accent">MrML</span> <span class="logo-text">Lab</span>
+                        </div>
+                        <p class="footer-desc">Advancing Machine Learning for Biological Systems.</p>
+                    </div>
+                    
+                    <div class="footer-contact">
+                        <h4>Contact</h4>
+                        <p>University Research Laboratory</p>
+                        <p>123 Science Drive, Bioscience Building</p>
+                        <p>Room 404</p>
+                        <a href="mailto:contact@mrmllab.edu">contact@mrmllab.edu</a>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <h4>Academic Links</h4>
+                        <ul>
+                            <li><a href="#">Google Scholar</a></li>
+                            <li><a href="#">ORCID</a></li>
+                            <li><a href="#">ResearchGate</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; 2026 MrML Lab. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script for Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    
+    <!-- Scripts for background effects -->
+    <script src="app.js"></script>
+</body>
+</html>
