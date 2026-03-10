@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="dark" lang="tr">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>MrML Lab | Bilgisayarlı Görü ve Tıbbi Yapay Zeka</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Source+Sans+3:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#2d6a4f", // Bio Emerald
+                "research-green": "#1b4332",
+                "dark-moss": "#344e41",
+                "bio-cyan": "#4cc9f0",
+                "scientific-lime": "#80ed99",
+                "background-light": "#f6f7f7",
+                "background-dark": "#0f172a", // Deep Graphite
+              },
+              fontFamily: {
+                "display": ["IBM Plex Sans", "sans-serif"],
+                "body": ["Source Sans 3", "sans-serif"],
+                "mono": ["IBM Plex Mono", "monospace"],
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            line-height: 1.7;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'IBM Plex Sans', sans-serif;
+        }
+        .tech-data {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 selection:bg-primary/30">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-background-dark/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div class="flex items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-scientific-lime">
+                    <span class="material-symbols-outlined text-3xl">science</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tight text-white">MrML <span class="text-primary">Lab</span></h2>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium text-slate-300 hover:text-scientific-lime transition-colors" href="#">Araştırmalar</a>
+                <a class="text-sm font-medium text-slate-300 hover:text-scientific-lime transition-colors" href="#">Ekip</a>
+                <a class="text-sm font-medium text-slate-300 hover:text-scientific-lime transition-colors" href="#">Yayınlar</a>
+                <a class="text-sm font-medium text-slate-300 hover:text-scientific-lime transition-colors" href="#">Bize Katılın</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="relative hidden sm:block">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                <input class="h-10 w-64 rounded-full border-none bg-white/5 pl-10 pr-4 text-sm text-white placeholder:text-slate-500 focus:ring-2 focus:ring-primary/50" placeholder="Araştırmalarda ara..." type="text"/>
+            </div>
+            <div class="h-10 w-10 overflow-hidden rounded-full border border-primary/30">
+                <img alt="Profile" class="h-full w-full object-cover" data-alt="Researcher profile avatar headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3g5sWIqfMyxDIi5-s_CoitKOkYxaleCXWaiXuCL0g2BkAMnLM7HmvTtLwvieAZNrpbGNx8F65ZjMejm6hYR6dyIy4ff_k7qHNJhFMNSFgueAyxOj3OaiOFs3ybtHE_szyUwoQi-Ae314qvV-q7IW6AIXuDxbHabKg74fnWr6UJJJG2TBDgvT_nJzaWrlTsGknt9SBjTfJcuueijyniIvZ6dBobcT-D9Khc6Ldld51zXxQnv8YSA8Q_kgPLeCiEE45b54YZuFO7eo"/>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] w-full overflow-hidden bg-background-dark">
+    <div class="absolute inset-0 opacity-40">
+        <img alt="Neural Visualization" class="h-full w-full object-cover" data-alt="High resolution microscopic visualization of neural network circuits" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs6RUmYA_j5i9IE45GGr9XlV_anrflzRhXw1R7S3xE1DQyTbdoIVpPeR8iX1HVhj0YbTOqYMCcXar1IGDvU-LHSGQVKdLC0fiayCFZkhxOlY0G_ZJ2Icvd6xIP7DZs7URkqCkmqXUan2F9_3mTOQk_LWEnqp9xxnDWqqJQXNWAbf3OlM4Qnn-rQbtynm7wB3ui2nGKqDeY63MFr99qFNuA33jzwrU2TFd-zEI44K7Q1ApFlcE59T4i1M90zybHTMtWPyNfjHu_ulE"/>
+        <div class="absolute inset-0 bg-gradient-to-r from-background-dark via-background-dark/80 to-transparent"></div>
+    </div>
+    <div class="relative mx-auto flex h-full max-w-7xl flex-col justify-center px-6 py-24 sm:py-32">
+        <div class="max-w-2xl">
+            <span class="inline-block rounded-full bg-primary/20 px-4 py-1 text-xs font-bold uppercase tracking-widest text-scientific-lime ring-1 ring-primary/50 mb-6">
+                İleri Teknoloji Araştırmalar
+            </span>
+            <h1 class="text-5xl font-bold leading-tight tracking-tight text-white sm:text-7xl">
+                Tıbbi Yapay Zeka ve <span class="text-primary">Makine Öğrenmesinin</span> Geleceği
+            </h1>
+            <p class="mt-6 text-lg text-slate-300 sm:text-xl max-w-xl">
+                Çok modlu veri analizleri, derin öğrenme mimarileri ve bilgisayarlı görü ile tıbbi tanı sistemlerini ileriye taşıyoruz.
+            </p>
+            <div class="mt-10 flex flex-wrap gap-4">
+                <button class="rounded-lg bg-primary px-8 py-4 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/20">
+                    Projelerimizi Keşfedin
+                </button>
+                <button class="rounded-lg border border-slate-700 bg-white/5 px-8 py-4 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10">
+                    Açık Pozisyonlar
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="border-y border-white/5 bg-research-green py-12">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+            <div class="flex flex-col gap-1">
+                <span class="tech-data text-4xl font-bold text-scientific-lime">12</span>
+                <span class="text-sm font-medium uppercase tracking-wider text-slate-400">Aktif Proje</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="tech-data text-4xl font-bold text-scientific-lime">45</span>
+                <span class="text-sm font-medium uppercase tracking-wider text-slate-400">Araştırmacı</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="tech-data text-4xl font-bold text-scientific-lime">150+</span>
+                <span class="text-sm font-medium uppercase tracking-wider text-slate-400">Bilimsel Yayın</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="tech-data text-4xl font-bold text-scientific-lime">3+</span>
+                <span class="text-sm font-medium uppercase tracking-wider text-slate-400">Kurumsal Ortak</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Areas -->
+<section class="py-24">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="mb-16 text-center">
+            <h2 class="text-3xl font-bold text-white sm:text-4xl">Temel Araştırma Alanları</h2>
+            <div class="mx-auto mt-4 h-1 w-20 bg-primary rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div class="group relative overflow-hidden rounded-xl bg-dark-moss p-8 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+                <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-bio-cyan">
+                    <span class="material-symbols-outlined text-3xl">psychiatry</span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-scientific-lime transition-colors">Tıbbi Görüntüleme</h3>
+                <p class="mt-4 text-slate-300">
+                    Hastalıkların daha erken ve daha isabetli tespit edilmesi için yapay zeka destekli radyolojik görüntü analizleri.
+                </p>
+                <a class="mt-6 flex items-center gap-2 text-sm font-bold text-primary hover:text-scientific-lime group-hover:translate-x-1 transition-all" href="#">
+                    Daha fazla bilgi <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+            <div class="group relative overflow-hidden rounded-xl bg-dark-moss p-8 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+                <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-bio-cyan">
+                    <span class="material-symbols-outlined text-3xl">memory</span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-scientific-lime transition-colors">Derin Öğrenme Mimarileri</h3>
+                <p class="mt-4 text-slate-300">
+                    Klinik verilerde öngörü analizleri yapabilen, yeni nesil ve çok modlu yapay zeka modellerinin tasarlanması.
+                </p>
+                <a class="mt-6 flex items-center gap-2 text-sm font-bold text-primary hover:text-scientific-lime group-hover:translate-x-1 transition-all" href="#">
+                    Daha fazla bilgi <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+            <div class="group relative overflow-hidden rounded-xl bg-dark-moss p-8 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20">
+                <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20 text-bio-cyan">
+                    <span class="material-symbols-outlined text-3xl">query_stats</span>
+                </div>
+                <h3 class="text-xl font-bold text-white group-hover:text-scientific-lime transition-colors">Biyoinformatik</h3>
+                <p class="mt-4 text-slate-300">
+                    Hesaplamalı biyoloji ve genetik verilerin, büyük veri analiz yöntemleriyle incelenerek tedavi stratejilerinin optimize edilmesi.
+                </p>
+                <a class="mt-6 flex items-center gap-2 text-sm font-bold text-primary hover:text-scientific-lime group-hover:translate-x-1 transition-all" href="#">
+                    Daha fazla bilgi <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Project Section -->
+<section class="bg-research-green py-24 relative overflow-hidden">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="inline-block rounded-full bg-scientific-lime/20 px-4 py-1 text-xs font-bold uppercase tracking-widest text-scientific-lime mb-6">
+                    Öne Çıkan Gelişme
+                </span>
+                <h2 class="text-3xl font-bold text-white sm:text-5xl mb-6">Çok Modlu Tümör Analizi</h2>
+                <p class="text-lg text-slate-300 mb-8">
+                    Geliştirdiğimiz yeni derin öğrenme mimarileri sayesinde, tümör hücrelerinin yapısı mikroskobik düzeyde çok daha yüksek bir doğrulukla analiz edilmekte ve tedavi süreçlerine ışık tutulmaktadır.
+                </p>
+                <button class="rounded-lg bg-primary px-8 py-4 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-lg hover:shadow-primary/20 flex items-center gap-2">
+                    Proje Detaylarını Görüntüle <span class="material-symbols-outlined text-base">arrow_forward</span>
+                </button>
+            </div>
+            <div class="order-1 lg:order-2">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10">
+                    <img alt="Neural Circuitry" class="w-full h-[400px] object-cover" data-alt="Microscopic view of fluorescently tagged neural circuits" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAs6RUmYA_j5i9IE45GGr9XlV_anrflzRhXw1R7S3xE1DQyTbdoIVpPeR8iX1HVhj0YbTOqYMCcXar1IGDvU-LHSGQVKdLC0fiayCFZkhxOlY0G_ZJ2Icvd6xIP7DZs7URkqCkmqXUan2F9_3mTOQk_LWEnqp9xxnDWqqJQXNWAbf3OlM4Qnn-rQbtynm7wB3ui2nGKqDeY63MFr99qFNuA33jzwrU2TFd-zEI44K7Q1ApFlcE59T4i1M90zybHTMtWPyNfjHu_ulE"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-research-green/80 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lab Team Preview -->
+<section class="py-24 bg-background-dark">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-white sm:text-4xl">Araştırmacılarımızla Tanışın</h2>
+            <div class="mx-auto mt-4 h-1 w-20 bg-primary rounded-full"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-dark-moss rounded-xl p-6 text-center transition-transform hover:-translate-y-2">
+                <div class="w-24 h-24 rounded-full border-2 border-primary/30 mx-auto mb-6 overflow-hidden">
+                    <img alt="Researcher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3g5sWIqfMyxDIi5-s_CoitKOkYxaleCXWaiXuCL0g2BkAMnLM7HmvTtLwvieAZNrpbGNx8F65ZjMejm6hYR6dyIy4ff_k7qHNJhFMNSFgueAyxOj3OaiOFs3ybtHE_szyUwoQi-Ae314qvV-q7IW6AIXuDxbHabKg74fnWr6UJJJG2TBDgvT_nJzaWrlTsGknt9SBjTfJcuueijyniIvZ6dBobcT-D9Khc6Ldld51zXxQnv8YSA8Q_kgPLeCiEE45b54YZuFO7eo"/>
+                </div>
+                <h3 class="text-lg font-bold text-white">Dr. Elena Vance</h3>
+                <p class="text-sm text-scientific-lime">Baş Araştırmacı (PI)</p>
+            </div>
+            <div class="bg-dark-moss rounded-xl p-6 text-center transition-transform hover:-translate-y-2">
+                <div class="w-24 h-24 rounded-full border-2 border-primary/30 mx-auto mb-6 overflow-hidden">
+                    <img alt="Researcher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3g5sWIqfMyxDIi5-s_CoitKOkYxaleCXWaiXuCL0g2BkAMnLM7HmvTtLwvieAZNrpbGNx8F65ZjMejm6hYR6dyIy4ff_k7qHNJhFMNSFgueAyxOj3OaiOFs3ybtHE_szyUwoQi-Ae314qvV-q7IW6AIXuDxbHabKg74fnWr6UJJJG2TBDgvT_nJzaWrlTsGknt9SBjTfJcuueijyniIvZ6dBobcT-D9Khc6Ldld51zXxQnv8YSA8Q_kgPLeCiEE45b54YZuFO7eo"/>
+                </div>
+                <h3 class="text-lg font-bold text-white">Marcus Thorne</h3>
+                <p class="text-sm text-scientific-lime">Doktora Sonrası Araştırmacı</p>
+            </div>
+            <div class="bg-dark-moss rounded-xl p-6 text-center transition-transform hover:-translate-y-2">
+                <div class="w-24 h-24 rounded-full border-2 border-primary/30 mx-auto mb-6 overflow-hidden">
+                    <img alt="Researcher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3g5sWIqfMyxDIi5-s_CoitKOkYxaleCXWaiXuCL0g2BkAMnLM7HmvTtLwvieAZNrpbGNx8F65ZjMejm6hYR6dyIy4ff_k7qHNJhFMNSFgueAyxOj3OaiOFs3ybtHE_szyUwoQi-Ae314qvV-q7IW6AIXuDxbHabKg74fnWr6UJJJG2TBDgvT_nJzaWrlTsGknt9SBjTfJcuueijyniIvZ6dBobcT-D9Khc6Ldld51zXxQnv8YSA8Q_kgPLeCiEE45b54YZuFO7eo"/>
+                </div>
+                <h3 class="text-lg font-bold text-white">Sarah Jenkins</h3>
+                <p class="text-sm text-scientific-lime">Kıdemli Bilim İnsanı</p>
+            </div>
+            <div class="bg-dark-moss rounded-xl p-6 text-center transition-transform hover:-translate-y-2">
+                <div class="w-24 h-24 rounded-full border-2 border-primary/30 mx-auto mb-6 overflow-hidden">
+                    <img alt="Researcher" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3g5sWIqfMyxDIi5-s_CoitKOkYxaleCXWaiXuCL0g2BkAMnLM7HmvTtLwvieAZNrpbGNx8F65ZjMejm6hYR6dyIy4ff_k7qHNJhFMNSFgueAyxOj3OaiOFs3ybtHE_szyUwoQi-Ae314qvV-q7IW6AIXuDxbHabKg74fnWr6UJJJG2TBDgvT_nJzaWrlTsGknt9SBjTfJcuueijyniIvZ6dBobcT-D9Khc6Ldld51zXxQnv8YSA8Q_kgPLeCiEE45b54YZuFO7eo"/>
+                </div>
+                <h3 class="text-lg font-bold text-white">David Liu</h3>
+                <p class="text-sm text-scientific-lime">Doktora Adayı</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Recent Publications -->
+<section class="bg-background-dark py-24 border-t border-white/5">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="flex items-end justify-between mb-12">
+            <div>
+                <h2 class="text-3xl font-bold text-white">Son Yayınlar</h2>
+                <p class="text-slate-400 mt-2">Bilim topluluğu ile paylaştığımız en güncel bulgularımız.</p>
+            </div>
+            <a class="text-sm font-bold text-scientific-lime hover:underline" href="#">Tüm makaleleri gör</a>
+        </div>
+        <div class="space-y-4">
+            <div class="group flex flex-col justify-between gap-4 rounded-lg bg-white/5 p-6 transition-colors hover:bg-white/10 md:flex-row md:items-center">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="rounded bg-scientific-lime px-2 py-0.5 text-[10px] font-bold uppercase text-background-dark">Yeni</span>
+                        <span class="tech-data text-xs text-slate-500">Nature Machine Intelligence (2024)</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors">Tıbbi Görüntülerde Lezyon Tespitinde Çok Modlu Öğrenme Yaklaşımları</h4>
+                    <p class="text-sm text-slate-400 italic">Vance, E., Thorne, M., et al.</p>
+                </div>
+                <button class="flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 transition-all hover:bg-primary/20 hover:border-primary/50">
+                    <span class="material-symbols-outlined text-sm">download</span> PDF İndir
+                </button>
+            </div>
+            <div class="group flex flex-col justify-between gap-4 rounded-lg bg-white/5 p-6 transition-colors hover:bg-white/10 md:flex-row md:items-center">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="tech-data text-xs text-slate-500">IEEE Transactions on Medical Imaging (2024)</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors">Yapay Sinir Ağlarında Sentezlenmiş Görüntü Mimarisinin Klinik Validasyonu</h4>
+                    <p class="text-sm text-slate-400 italic">Liu, D., Jenkins, S., et al.</p>
+                </div>
+                <button class="flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 transition-all hover:bg-primary/20 hover:border-primary/50">
+                    <span class="material-symbols-outlined text-sm">download</span> PDF İndir
+                </button>
+            </div>
+            <div class="group flex flex-col justify-between gap-4 rounded-lg bg-white/5 p-6 transition-colors hover:bg-white/10 md:flex-row md:items-center">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-3">
+                        <span class="tech-data text-xs text-slate-500">Journal of Biomedical Informatics (2023)</span>
+                    </div>
+                    <h4 class="text-lg font-semibold text-slate-200 group-hover:text-white transition-colors">Klinik Karar Destek Sistemleri için Derin Öğrenme Tabanlı Tahmin Modelleri</h4>
+                    <p class="text-sm text-slate-400 italic">Garcia, M., Thompson, S., et al.</p>
+                </div>
+                <button class="flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 transition-all hover:bg-primary/20 hover:border-primary/50">
+                    <span class="material-symbols-outlined text-sm">download</span> PDF İndir
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- University Affiliation / CTA -->
+<section class="py-24 bg-research-green relative overflow-hidden">
+    <div class="absolute right-0 bottom-0 opacity-10">
+        <span class="material-symbols-outlined text-[300px] leading-none">school</span>
+    </div>
+    <div class="mx-auto max-w-7xl px-6 relative z-10 text-center">
+        <h2 class="text-3xl font-bold text-white mb-6">Dünya Standartlarında Kurumlarla İşbirliği İçindeyiz</h2>
+        <div class="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-4xl text-white">architecture</span>
+                <span class="font-display font-bold text-xl text-white">TEKNOLOJİ ENSTİTÜSÜ</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-4xl text-white">biotech</span>
+                <span class="font-display font-bold text-xl text-white">BİLİM ÜNİVERSİTESİ</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-4xl text-white">labs</span>
+                <span class="font-display font-bold text-xl text-white">ULUSAL LABORATUVARLAR</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-white/5 py-16">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="flex h-8 w-8 items-center justify-center rounded bg-primary text-scientific-lime">
+                        <span class="material-symbols-outlined text-xl">science</span>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tight text-white">MrML Lab</h2>
+                </div>
+                <p class="text-slate-400 max-w-md mb-8">
+                    MrML Lab, biyoloji ve bilgisayar bilimlerinin kesişim noktasında sınırları zorlamaya adanmıştır. Multidisipliner ekibimiz, en karmaşık bilimsel sorunlara teknolojiyle çözüm üretir.
+                </p>
+                <div class="flex gap-4">
+                    <a class="text-slate-500 hover:text-scientific-lime transition-colors" href="#">
+                        <span class="material-symbols-outlined">share</span>
+                    </a>
+                    <a class="text-slate-500 hover:text-scientific-lime transition-colors" href="#">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                    <a class="text-slate-500 hover:text-scientific-lime transition-colors" href="#">
+                        <span class="material-symbols-outlined">rss_feed</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-6">Navigasyon</h3>
+                <ul class="space-y-4">
+                    <li><a class="text-slate-400 hover:text-primary transition-colors" href="#">Araştırma Projeleri</a></li>
+                    <li><a class="text-slate-400 hover:text-primary transition-colors" href="#">Ekip Üyeleri</a></li>
+                    <li><a class="text-slate-400 hover:text-primary transition-colors" href="#">Yayınlar</a></li>
+                    <li><a class="text-slate-400 hover:text-primary transition-colors" href="#">Laboratuvara Katılın</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-sm font-bold uppercase tracking-widest text-white mb-6">İletişim</h3>
+                <address class="not-italic text-slate-400 space-y-4">
+                    <p class="flex items-start gap-3">
+                        <span class="material-symbols-outlined text-primary">location_on</span>
+                        <span>1200 Araştırma Parkı<br/>Teknoloji Kampüsü, İSTANBUL</span>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">mail</span>
+                        <a class="hover:text-white" href="mailto:iletisim@mrml.lab">iletisim@mrml.lab</a>
+                    </p>
+                    <p class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">call</span>
+                        <span>+90 (212) 555 01 98</span>
+                    </p>
+                </address>
+            </div>
+        </div>
+        <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-slate-500">
+                © 2024 MrML Lab. Tüm hakları saklıdır.
+            </p>
+            <div class="flex gap-8">
+                <a class="text-xs text-slate-500 hover:text-white" href="#">Gizlilik Politikası</a>
+                <a class="text-xs text-slate-500 hover:text-white" href="#">Kullanım Koşulları</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
