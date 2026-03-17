@@ -1374,6 +1374,246 @@ a:hover {
 }
 
 /* =========================================
+   FOOTER V2 (New editorial design)
+========================================= */
+.footer-v2 {
+    padding-top: 0;
+}
+
+/* Top zone */
+.fv2-top {
+    padding: 64px 0 56px;
+    border-bottom: 1px solid rgba(198,151,73,0.15);
+}
+
+.fv2-top-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.fv2-logo {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.fv2-tagline {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin: 0;
+    letter-spacing: 0.3px;
+}
+
+.fv2-contact-block {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.fv2-email {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.fv2-email i {
+    color: var(--accent-primary);
+    font-size: 16px;
+}
+
+.fv2-email:hover {
+    color: var(--accent-primary);
+}
+
+.fv2-cta {
+    font-size: 14px;
+    padding: 11px 22px;
+    white-space: nowrap;
+}
+
+.fv2-social {
+    display: flex;
+    gap: 10px;
+}
+
+.fv2-social a {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 15px;
+    transition: var(--transition-fast);
+}
+
+.fv2-social a:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: translateY(-3px);
+}
+
+/* Nav strip */
+.fv2-nav-strip {
+    padding: 40px 0;
+    background: rgba(255,255,255,0.015);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.fv2-nav-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.fv2-nav-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0 32px;
+}
+
+.fv2-nav-group:first-child {
+    padding-left: 0;
+}
+
+.fv2-nav-group:last-child {
+    padding-right: 0;
+}
+
+.fv2-nav-label {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-primary);
+    margin-bottom: 6px;
+}
+
+.fv2-nav-group a {
+    font-size: 14px;
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.fv2-nav-group a:hover {
+    color: var(--text-primary);
+    padding-left: 4px;
+}
+
+.fv2-nav-sep {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.07), transparent);
+    align-self: stretch;
+    flex-shrink: 0;
+}
+
+/* Bottom bar */
+.fv2-bottom {
+    padding: 20px 0;
+}
+
+.fv2-bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.fv2-bottom p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.fv2-legal {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.fv2-legal a {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.fv2-legal a:hover {
+    color: var(--text-secondary);
+}
+
+.fv2-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: inline-block;
+}
+
+/* Light theme overrides */
+[data-theme="light"] .fv2-top {
+    border-bottom-color: rgba(176,131,39,0.2);
+}
+
+[data-theme="light"] .fv2-nav-strip {
+    background: rgba(0,0,0,0.02);
+    border-bottom-color: rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .fv2-social a {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.08);
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fv2-top-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 32px;
+    }
+
+    .fv2-contact-block {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .fv2-nav-inner {
+        flex-direction: column;
+        gap: 28px;
+    }
+
+    .fv2-nav-sep { display: none; }
+
+    .fv2-nav-group {
+        padding: 0;
+    }
+
+    .fv2-bottom-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* =========================================
    ANIMATIONS & RESPONSIVE
 ========================================= */
 @keyframes fadeInUp {
