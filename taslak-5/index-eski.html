@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MrML Lab | Pioneering the Frontiers of Computation and Biology</title>
+    <!-- CSS -->
+    <script>if(localStorage.getItem("mrml-theme")==="light")document.documentElement.setAttribute("data-theme","light");</script>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#team" class="nav-link">Team</a>
+            </div>
+            <a href="#join" class="btn btn-outline nav-cta">Apply Now</a>
+            <button id="theme-toggle" class="theme-toggle" aria-label="Temayı Degistir"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <header id="hero" class="section hero-section">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 class="hero-title">
+                Pioneering the Frontiers <br>
+                of <span class="accent-text">Computation</span> and <span class="accent-text">Biology</span>
+            </h1>
+            <p class="hero-subtitle">
+                MrML Lab integrates AI, computational biology, and neuroscience <br>to understand complex life systems.
+            </p>
+            <div class="hero-ctas">
+                <a href="#research" class="btn btn-primary">Explore Research</a>
+                <a href="#team" class="btn btn-secondary">Meet Our Team</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll</span>
+        </div>
+    </header>
+
+    <!-- 10. NEWS & UPDATES TICKER -->
+    <div class="news-ticker-section">
+        <div class="ticker-label">LATEST NEWS</div>
+        <div class="ticker-wrapper">
+            <div class="ticker-content" id="news-ticker">
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> New grant awarded for AI in healthcare research.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Lab publication accepted at NeurIPS 2026.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Welcome to our new postdoctoral researcher, Dr. Elena Rostova.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Open-source neural decoding toolkit released on GitHub.</span>
+                <!-- Cloned items for seamless scroll -->
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> New grant awarded for AI in healthcare research.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Lab publication accepted at NeurIPS 2026.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Welcome to our new postdoctoral researcher, Dr. Elena Rostova.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Open-source neural decoding toolkit released on GitHub.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. LAB INTRODUCTION -->
+    <section id="about" class="section about-section">
+        <div class="container about-grid">
+            <div class="about-text scroll-reveal slide-up">
+                <h2>About MrML Lab</h2>
+                <div class="section-divider"></div>
+                <p>
+                    Nestled at the intersection of machines, mechanics, and biological intelligence, MrML Lab is dedicated to unraveling the fundamental codes of the brain and translating them into next-generation mechatronic and software systems.
+                </p>
+                <p>
+                    From high-dimensional neural data analysis to the deployment of foundation models for medicine, our mission is to build the intelligent interfaces that will bridge the gap between artificial cognition and biological reality.
+                </p>
+            </div>
+            <div class="about-visual scroll-reveal fade-in">
+                <div class="abstract-illustration">
+                    <div class="circle circle-1"></div>
+                    <div class="circle circle-2"></div>
+                    <div class="circle circle-3"></div>
+                    <div class="connection-lines"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. RESEARCH AREAS -->
+    <section id="research" class="section research-section">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <h2>Research Areas</h2>
+                <p>Core pillars of our scientific inquiry</p>
+            </div>
+            
+            <div class="research-grid">
+                <div class="research-card scroll-reveal slide-up" data-delay="0">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="research-icon"><i class="fa-solid fa-dna"></i></div>
+                        <h3>Computational Biology</h3>
+                        <p>Simulating complex biological networks, protein folding, and cellular dynamics using deep geometric learning.</p>
+                    </div>
+                </div>
+                
+                <div class="research-card scroll-reveal slide-up" data-delay="100">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="research-icon"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Neural Data Analysis</h3>
+                        <p>Decoding high-dimensional neural signals to understand cognition, perception, and memory encoding.</p>
+                    </div>
+                </div>
+                
+                <div class="research-card scroll-reveal slide-up" data-delay="200">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="research-icon"><i class="fa-solid fa-code-branch"></i></div>
+                        <h3>Bioinformatics</h3>
+                        <p>Developing scalable pipelines for genomic sequence analysis and multimodal biomedical data integration.</p>
+                    </div>
+                </div>
+                
+                <div class="research-card scroll-reveal slide-up" data-delay="300">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="research-icon"><i class="fa-solid fa-staff-snake"></i></div>
+                        <h3>AI for Medicine</h3>
+                        <p>Predictive modeling for personalized diagnostics, treatment optimization, and mechatronic prosthesis control.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. EQUIPMENT SECTION -->
+    <section id="equipment" class="section equipment-section">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <h2>Lab Equipment</h2>
+                <p>State-of-the-art facilities powering our research</p>
+            </div>
+            
+            <div class="equipment-list">
+                <div class="equipment-item scroll-reveal slide-right">
+                    <div class="equip-icon-wrapper">
+                        <i class="fa-solid fa-microscope text-accent"></i>
+                    </div>
+                    <div class="equip-info">
+                        <h4>High-Resolution Neural Imaging Setup</h4>
+                        <p>Captures in-vivo neural signals with microsecond precision for real-time decoding.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-item scroll-reveal slide-right" data-delay="100">
+                    <div class="equip-icon-wrapper">
+                        <i class="fa-solid fa-microchip text-accent"></i>
+                    </div>
+                    <div class="equip-info">
+                        <h4>HPC GPU Cluster</h4>
+                        <p>Dedicated compute nodes for training massive biological foundation and transformer models.</p>
+                    </div>
+                </div>
+                
+                <div class="equipment-item scroll-reveal slide-right" data-delay="200">
+                    <div class="equip-icon-wrapper">
+                        <i class="fa-solid fa-robot text-accent"></i>
+                    </div>
+                    <div class="equip-info">
+                        <h4>Mechatronic Prosthesis Testbed</h4>
+                        <p>Advanced robotic limbs interfaced directly with closed-loop neural decoders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. VIDEO HIGHLIGHT SECTION -->
+    <section id="video-highlight" class="section video-section">
+        <div class="video-container scroll-reveal fade-in">
+            <div class="video-backdrop">
+                <!-- Using an image placeholder with an overlay for the 'video' feel -->
+                <div class="video-overlay-gradient"></div>
+            </div>
+            <div class="video-content">
+                <h2>Inside MrML Lab</h2>
+                <button class="play-button" aria-label="Play Video">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <h3 class="highlight-callout">Breakthroughs in Mechatronics & AI</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FEATURED PROJECTS -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <h2>Featured Projects</h2>
+                <div class="slider-controls">
+                    <button id="proj-prev" class="control-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button id="proj-next" class="control-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+            
+            <div class="projects-slider scroll-reveal fade-in">
+                <div class="slider-track" id="projects-track">
+                    <div class="project-card-horizontal">
+                        <div class="project-img bg-pattern-1"></div>
+                        <div class="project-details">
+                            <span class="project-tag">Neural Eng.</span>
+                            <h4>Neural Signal Decoding Using AI Models</h4>
+                            <p>Translating motor cortex activity into actionable commands for mechatronic interfaces in real-time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card-horizontal">
+                        <div class="project-img bg-pattern-2"></div>
+                        <div class="project-details">
+                            <span class="project-tag">Comp. Bio</span>
+                            <h4>Generative Proteins</h4>
+                            <p>Using diffusion models to design novel protein structures that bind to specific neurological receptors.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card-horizontal">
+                        <div class="project-img bg-pattern-3"></div>
+                        <div class="project-details">
+                            <span class="project-tag">Robotics</span>
+                            <h4>Adaptive Neuro-Prosthetics</h4>
+                            <p>Developing AI-driven control paradigms for robotic limbs that learn alongside the user's nervous system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. MINI PHOTO GALLERY -->
+    <section id="gallery" class="section gallery-section">
+        <div class="container">
+            <div class="gallery-grid scroll-reveal slide-up">
+                <div class="gallery-item large bg-pattern-1">
+                    <div class="gallery-overlay"><span>Lab Symposium 2025</span></div>
+                </div>
+                <div class="gallery-item bg-pattern-2">
+                    <div class="gallery-overlay"><span>GPU Setup</span></div>
+                </div>
+                <div class="gallery-item bg-pattern-3">
+                    <div class="gallery-overlay"><span>Mechatronics Test</span></div>
+                </div>
+                <div class="gallery-item wide bg-pattern-1">
+                    <div class="gallery-overlay"><span>Team Hackathon</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FEATURED PUBLICATIONS -->
+    <section id="publications" class="section publications-section">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <h2>Featured Publications</h2>
+            </div>
+            
+            <div class="publications-list">
+                <a href="#" class="pub-card scroll-reveal slide-up">
+                    <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="pub-info">
+                        <h4>Transformers for Spatiotemporal Brain Dynamics Decoding</h4>
+                        <span class="pub-meta">Nature Computational Science • 2025</span>
+                    </div>
+                    <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
+                
+                <a href="#" class="pub-card scroll-reveal slide-up" data-delay="100">
+                    <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="pub-info">
+                        <h4>A Closed-Loop Mechatronic Interface Utilizing Deep Reinforcement Learning</h4>
+                        <span class="pub-meta">IEEE Transactions on Robotics • 2025</span>
+                    </div>
+                    <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
+                
+                <a href="#" class="pub-card scroll-reveal slide-up" data-delay="200">
+                    <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="pub-info">
+                        <h4>Multimodal Integration of Genomic and Functional MRI Data</h4>
+                        <span class="pub-meta">Bioinformatics • 2024</span>
+                    </div>
+                    <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. TEAM MEMBERS -->
+    <section id="team" class="section team-section">
+        <div class="container">
+            <div class="section-header text-center scroll-reveal slide-up">
+                <h2>Our Team</h2>
+                <p>The minds building the bridge between brains and machines.</p>
+            </div>
+            
+            <div class="team-network scroll-reveal fade-in">
+                <!-- Abstract visual representation of a team network -->
+                <canvas id="team-network-canvas"></canvas>
+                
+                <div class="team-member-nodes">
+                    <div class="team-node node-pi">
+                        <div class="node-avatar bg-pattern-1"></div>
+                        <div class="node-info">
+                            <h4>Dr. Alan Walker</h4>
+                            <span>Principal Investigator</span>
+                            <small>Neuro-AI & Mechatronics</small>
+                        </div>
+                    </div>
+                    
+                    <div class="team-node node-1">
+                        <div class="node-avatar bg-pattern-2"></div>
+                        <div class="node-info">
+                            <h4>Sarah Chen</h4>
+                            <span>Postdoc Reseacher</span>
+                            <small>Comp. Biology</small>
+                        </div>
+                    </div>
+                    
+                    <div class="team-node node-2">
+                        <div class="node-avatar bg-pattern-3"></div>
+                        <div class="node-info">
+                            <h4>Miguel Santos</h4>
+                            <span>PhD Candidate</span>
+                            <small>Robotics Control</small>
+                        </div>
+                    </div>
+                    
+                    <div class="team-node node-3">
+                        <div class="node-avatar bg-pattern-1"></div>
+                        <div class="node-info">
+                            <h4>Aisha Bello</h4>
+                            <span>PhD Candidate</span>
+                            <small>Deep Learning</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. JOIN THE LAB -->
+    <section id="join" class="section join-section">
+        <div class="container scroll-reveal slide-up">
+            <div class="join-organic-block">
+                <div class="join-content">
+                    <h2>Become part of our pioneering research team.</h2>
+                    <p>We are always looking for passionate PhD students, postdocs, and engineers driven by curiosity.</p>
+                    <a href="#" class="btn btn-primary btn-large">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="join-shapes">
+                    <div class="shape-blob shape-1"></div>
+                    <div class="shape-blob shape-2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </div>
+                <p>Institute for Computational Medicine & Mechatronics<br>Global University of Science</p>
+                <p class="address">1200 Neural Pathway,<br>Tech District, TD 10001</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. All rights reserved.</p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <!-- JS -->
+    <script src="script.js"></script>
+</body>
+</html>

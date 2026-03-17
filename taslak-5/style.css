@@ -408,7 +408,19 @@ a:hover {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards;
-    auto: inherit;
+}
+
+.hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-primary);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.05s forwards;
 }
 
 .hero-ctas {
@@ -418,6 +430,39 @@ a:hover {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.4s forwards;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    animation: fadeInUp 1s cubic-bezier(0.25, 1, 0.5, 1) 0.7s forwards;
+}
+
+.hero-stat {
+    text-align: center;
+}
+
+.hero-stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    color: var(--accent-primary);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.hero-stat-label {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .scroll-indicator {
@@ -1231,8 +1276,8 @@ a:hover {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 52px;
     margin-bottom: 60px;
 }
 

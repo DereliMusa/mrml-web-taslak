@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MrML Lab | Pioneering the Frontiers of Computation and Biology</title>
-    <!-- CSS -->
+    <title>MrML Lab | Mekatronik, Robotik ve Makine Ogrenimi Laboratuvari</title>
+    <meta name="description" content="MrML Lab -- hesaplamali tip, mekatronik ve termoelektrik alanlarda sınır ötesi arastirma laboratuvari. Global Muhendislik Universitesi.">
     <script>if(localStorage.getItem("mrml-theme")==="light")document.documentElement.setAttribute("data-theme","light");</script>
     <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -15,16 +14,18 @@
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo">
                 <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
-            </div>
+            </a>
             <div class="nav-links">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#research" class="nav-link">Research</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#team" class="nav-link">Team</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="projeler.html" class="nav-link">Projeler</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
             </div>
-            <a href="#join" class="btn btn-outline nav-cta">Apply Now</a>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
             <button id="theme-toggle" class="theme-toggle" aria-label="Temayı Degistir"><i class="fa-solid fa-sun icon-sun"></i><i class="fa-solid fa-moon icon-moon"></i></button>
             <button class="mobile-menu-btn" id="mobile-menu-btn">
                 <i class="fa-solid fa-bars"></i>
@@ -32,61 +33,81 @@
         </div>
     </nav>
 
-    <!-- 1. HERO SECTION -->
+    <!-- 1. HERO -->
     <header id="hero" class="section hero-section">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
+            <span class="hero-eyebrow">Global Muhendislik Universitesi</span>
             <h1 class="hero-title">
-                Pioneering the Frontiers <br>
-                of <span class="accent-text">Computation</span> and <span class="accent-text">Biology</span>
+                Mekatronik, Robotik ve<br>
+                <span class="accent-text">Makine Ogrenimi</span> Laboratuvari
             </h1>
             <p class="hero-subtitle">
-                MrML Lab integrates AI, computational biology, and neuroscience <br>to understand complex life systems.
+                Termoelektrik enerji donusumu, mikro robotik ve biyomekanik alanlarda sınır ötesi arastırmalar yurutuyor; gelecege yonelik teknolojiler gelistiriyoruz.
             </p>
             <div class="hero-ctas">
-                <a href="#research" class="btn btn-primary">Explore Research</a>
-                <a href="#team" class="btn btn-secondary">Meet Our Team</a>
+                <a href="arastirmalar.html" class="btn btn-primary">Arastirmalarimiz <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="ekip.html" class="btn btn-secondary">Ekibimiz</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-number">47+</span>
+                    <span class="hero-stat-label">Uluslararasi Yayin</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">12</span>
+                    <span class="hero-stat-label">Aktif Proje</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">24</span>
+                    <span class="hero-stat-label">Arastirmaci</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-number">8</span>
+                    <span class="hero-stat-label">Yil Deneyim</span>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <span>Scroll</span>
+            <div class="mouse"><div class="wheel"></div></div>
+            <span>Asagi Kaydir</span>
         </div>
     </header>
 
-    <!-- 10. NEWS & UPDATES TICKER -->
+    <!-- NEWS TICKER -->
     <div class="news-ticker-section">
-        <div class="ticker-label">LATEST NEWS</div>
+        <div class="ticker-label">SON HABERLER</div>
         <div class="ticker-wrapper">
             <div class="ticker-content" id="news-ticker">
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> New grant awarded for AI in healthcare research.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Lab publication accepted at NeurIPS 2026.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Welcome to our new postdoctoral researcher, Dr. Elena Rostova.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Open-source neural decoding toolkit released on GitHub.</span>
-                <!-- Cloned items for seamless scroll -->
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> New grant awarded for AI in healthcare research.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Lab publication accepted at NeurIPS 2026.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Welcome to our new postdoctoral researcher, Dr. Elena Rostova.</span>
-                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Open-source neural decoding toolkit released on GitHub.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Mikro Robot projemiz AB Horizon Europe programindan 2.4 Milyon Euro fon aldi.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Science Robotics'teki makalemiz en cok atif alan calisma secildi.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Prof. Dr. Ahmet Yilmaz TUBITAK Bilim Odulu'ne layik goruldu.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> TU Delft ile ortak arastirma protokolu imzalandi.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Mikro Robot projemiz AB Horizon Europe programindan 2.4 Milyon Euro fon aldi.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Science Robotics'teki makalemiz en cok atif alan calisma secildi.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Prof. Dr. Ahmet Yilmaz TUBITAK Bilim Odulu'ne layik goruldu.</span>
+                <span class="ticker-item"><i class="fa-solid fa-bolt"></i> TU Delft ile ortak arastirma protokolu imzalandi.</span>
             </div>
         </div>
     </div>
 
-    <!-- 2. LAB INTRODUCTION -->
-    <section id="about" class="section about-section">
+    <!-- 2. LAB INTRO -->
+    <section id="hakkinda" class="section about-section">
         <div class="container about-grid">
             <div class="about-text scroll-reveal slide-up">
-                <h2>About MrML Lab</h2>
+                <h2>MrML Lab Hakkinda</h2>
                 <div class="section-divider"></div>
                 <p>
-                    Nestled at the intersection of machines, mechanics, and biological intelligence, MrML Lab is dedicated to unraveling the fundamental codes of the brain and translating them into next-generation mechatronic and software systems.
+                    Makine, mekanik ve biyolojik zeka kesisiminde konumlanan MrML Lab, termoelektrik enerji donusumu, mikro robotik ve hesaplamali biyomekanigin sinirlarini genisletmeye adanmis bir arastirma laboratuvaridir.
                 </p>
                 <p>
-                    From high-dimensional neural data analysis to the deployment of foundation models for medicine, our mission is to build the intelligent interfaces that will bridge the gap between artificial cognition and biological reality.
+                    2016 yilinda kurulan laboratuvarımız, TUBITAK, Avrupa Birligi ve sanayi isbirligi projeleriyle desteklenmekte; uluslararasi ortaklarla yuruttugu calismalar sayesinde kureselde taninan bir araştırma merkezi haline gelmektedir.
                 </p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px;">
+                    <a href="hakkinda.html" class="btn btn-primary">Daha Fazla <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="iletisim.html" class="btn btn-secondary">Iletisim</a>
+                </div>
             </div>
             <div class="about-visual scroll-reveal fade-in">
                 <div class="abstract-illustration">
@@ -100,275 +121,275 @@
     </section>
 
     <!-- 3. RESEARCH AREAS -->
-    <section id="research" class="section research-section">
+    <section id="arastirmalar" class="section research-section">
         <div class="container">
             <div class="section-header scroll-reveal slide-up">
-                <h2>Research Areas</h2>
-                <p>Core pillars of our scientific inquiry</p>
+                <h2>Arastirma Alanlari</h2>
+                <p>Bilimsel calismalarimizin temel eksenlerini kesfet</p>
             </div>
-            
             <div class="research-grid">
-                <div class="research-card scroll-reveal slide-up" data-delay="0">
+                <a href="arastirma-alani.html" class="research-card scroll-reveal slide-up" data-delay="0" style="text-decoration: none;">
                     <div class="card-glow"></div>
                     <div class="card-content">
-                        <div class="research-icon"><i class="fa-solid fa-dna"></i></div>
-                        <h3>Computational Biology</h3>
-                        <p>Simulating complex biological networks, protein folding, and cellular dynamics using deep geometric learning.</p>
+                        <div class="research-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Termoelektrik Arastirma</h3>
+                        <p>BiSbTe ve PbTe esasli malzemelerde nanoyapilanma ile ZT degerinin iyilestirilmesi ve enerji geri kazanim sistemleri.</p>
                     </div>
-                </div>
-                
-                <div class="research-card scroll-reveal slide-up" data-delay="100">
+                </a>
+                <a href="arastirma-alani.html" class="research-card scroll-reveal slide-up" data-delay="100" style="text-decoration: none;">
                     <div class="card-glow"></div>
                     <div class="card-content">
-                        <div class="research-icon"><i class="fa-solid fa-brain"></i></div>
-                        <h3>Neural Data Analysis</h3>
-                        <p>Decoding high-dimensional neural signals to understand cognition, perception, and memory encoding.</p>
+                        <div class="research-icon"><i class="fa-solid fa-robot"></i></div>
+                        <h3>Mikro Robotik</h3>
+                        <p>Manyetik yumusak mikro robotlar araciligiyla hedefe yonelik ilac tasimi ve biyolojik ortamlarda navigasyon.</p>
                     </div>
-                </div>
-                
-                <div class="research-card scroll-reveal slide-up" data-delay="200">
+                </a>
+                <a href="arastirma-alani.html" class="research-card scroll-reveal slide-up" data-delay="200" style="text-decoration: none;">
                     <div class="card-glow"></div>
                     <div class="card-content">
-                        <div class="research-icon"><i class="fa-solid fa-code-branch"></i></div>
-                        <h3>Bioinformatics</h3>
-                        <p>Developing scalable pipelines for genomic sequence analysis and multimodal biomedical data integration.</p>
+                        <div class="research-icon"><i class="fa-solid fa-bone"></i></div>
+                        <h3>Biyomekanik</h3>
+                        <p>Biyomedikal implantlarin sonlu elemanlar analiziyle kemigin biomekanik davranisinin modellenmesi.</p>
                     </div>
-                </div>
-                
-                <div class="research-card scroll-reveal slide-up" data-delay="300">
+                </a>
+                <a href="arastirma-alani.html" class="research-card scroll-reveal slide-up" data-delay="300" style="text-decoration: none;">
                     <div class="card-glow"></div>
                     <div class="card-content">
-                        <div class="research-icon"><i class="fa-solid fa-staff-snake"></i></div>
-                        <h3>AI for Medicine</h3>
-                        <p>Predictive modeling for personalized diagnostics, treatment optimization, and mechatronic prosthesis control.</p>
+                        <div class="research-icon"><i class="fa-solid fa-microchip"></i></div>
+                        <h3>Mekatronik Tasarim</h3>
+                        <p>Giyilebilir rehabilitasyon cihazlari, ekzoskeleton sistemleri ve adaptif kontrol algoritmalari gelistirilmesi.</p>
                     </div>
-                </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="arastirmalar.html" class="btn btn-secondary">Tum Arastirma Alanlari <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- 4. EQUIPMENT SECTION -->
-    <section id="equipment" class="section equipment-section">
+    <!-- 4. EQUIPMENT -->
+    <section id="donanim" class="section equipment-section">
         <div class="container">
             <div class="section-header scroll-reveal slide-up">
-                <h2>Lab Equipment</h2>
-                <p>State-of-the-art facilities powering our research</p>
+                <h2>Laboratuvar Donanimlari</h2>
+                <p>Arastirmalarimizi destekleyen ileri teknoloji altyapi</p>
             </div>
-            
             <div class="equipment-list">
-                <div class="equipment-item scroll-reveal slide-right">
+                <a href="donanim-detay.html" class="equipment-item scroll-reveal slide-right" style="text-decoration: none; color: inherit;">
                     <div class="equip-icon-wrapper">
                         <i class="fa-solid fa-microscope text-accent"></i>
                     </div>
                     <div class="equip-info">
-                        <h4>High-Resolution Neural Imaging Setup</h4>
-                        <p>Captures in-vivo neural signals with microsecond precision for real-time decoding.</p>
+                        <h4>Taramali Elektron Mikroskobu (SEM)</h4>
+                        <p>Zeiss Sigma 300, 1 nm cozunurlukle nano boyutlu yuzey morfolojisi ve EDS analizi.</p>
                     </div>
-                </div>
-                
-                <div class="equipment-item scroll-reveal slide-right" data-delay="100">
+                    <i class="fa-solid fa-arrow-right" style="color: var(--accent-primary); opacity: 0; transition: opacity 0.2s;"></i>
+                </a>
+                <a href="donanim-detay.html" class="equipment-item scroll-reveal slide-right" data-delay="100" style="text-decoration: none; color: inherit;">
                     <div class="equip-icon-wrapper">
-                        <i class="fa-solid fa-microchip text-accent"></i>
+                        <i class="fa-solid fa-fire text-accent"></i>
                     </div>
                     <div class="equip-info">
-                        <h4>HPC GPU Cluster</h4>
-                        <p>Dedicated compute nodes for training massive biological foundation and transformer models.</p>
+                        <h4>Spark Plasma Sinterleme (SPS) Sistemi</h4>
+                        <p>Nano boyutlu sinterlemede 2000 °C'ye ulasan hassas sicaklik kontrolu ve cift eksenli basınc uygulama.</p>
                     </div>
-                </div>
-                
-                <div class="equipment-item scroll-reveal slide-right" data-delay="200">
+                    <i class="fa-solid fa-arrow-right" style="color: var(--accent-primary); opacity: 0; transition: opacity 0.2s;"></i>
+                </a>
+                <a href="donanim-detay.html" class="equipment-item scroll-reveal slide-right" data-delay="200" style="text-decoration: none; color: inherit;">
                     <div class="equip-icon-wrapper">
                         <i class="fa-solid fa-robot text-accent"></i>
                     </div>
                     <div class="equip-info">
-                        <h4>Mechatronic Prosthesis Testbed</h4>
-                        <p>Advanced robotic limbs interfaced directly with closed-loop neural decoders.</p>
+                        <h4>6 DOF Robotik Kol Test Duzenegi</h4>
+                        <p>Ekzoskeleton ve rehabilitasyon sistemleri gelistirme icin ayarlanabilir 6 serbestlik dereceli platform.</p>
                     </div>
-                </div>
+                    <i class="fa-solid fa-arrow-right" style="color: var(--accent-primary); opacity: 0; transition: opacity 0.2s;"></i>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="donanim.html" class="btn btn-secondary">Tum Donanimlari Gor <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- 5. VIDEO HIGHLIGHT SECTION -->
-    <section id="video-highlight" class="section video-section">
-        <div class="video-container scroll-reveal fade-in">
-            <div class="video-backdrop">
-                <!-- Using an image placeholder with an overlay for the 'video' feel -->
-                <div class="video-overlay-gradient"></div>
-            </div>
-            <div class="video-content">
-                <h2>Inside MrML Lab</h2>
-                <button class="play-button" aria-label="Play Video">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-                <h3 class="highlight-callout">Breakthroughs in Mechatronics & AI</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. FEATURED PROJECTS -->
-    <section id="projects" class="section projects-section">
+    <!-- 5. FEATURED PROJECTS -->
+    <section id="projeler" class="section projects-section">
         <div class="container">
             <div class="section-header scroll-reveal slide-up">
-                <h2>Featured Projects</h2>
+                <h2>One Cikan Projeler</h2>
                 <div class="slider-controls">
                     <button id="proj-prev" class="control-btn"><i class="fa-solid fa-arrow-left"></i></button>
                     <button id="proj-next" class="control-btn"><i class="fa-solid fa-arrow-right"></i></button>
                 </div>
             </div>
-            
             <div class="projects-slider scroll-reveal fade-in">
                 <div class="slider-track" id="projects-track">
-                    <div class="project-card-horizontal">
+                    <a href="proje-detay.html" class="project-card-horizontal" style="text-decoration: none; color: inherit;">
                         <div class="project-img bg-pattern-1"></div>
                         <div class="project-details">
-                            <span class="project-tag">Neural Eng.</span>
-                            <h4>Neural Signal Decoding Using AI Models</h4>
-                            <p>Translating motor cortex activity into actionable commands for mechatronic interfaces in real-time.</p>
+                            <span class="project-tag">Termoelektrik</span>
+                            <h4>BiSbTe Generatorlerin Performans Optimizasyonu</h4>
+                            <p>Nanoyapilanma ve katkilama ile ZT degerinin arttirilmasi -- TUBITAK 1001, 2024-2027.</p>
                         </div>
-                    </div>
-                    
-                    <div class="project-card-horizontal">
+                    </a>
+                    <a href="proje-detay.html" class="project-card-horizontal" style="text-decoration: none; color: inherit;">
                         <div class="project-img bg-pattern-2"></div>
                         <div class="project-details">
-                            <span class="project-tag">Comp. Bio</span>
-                            <h4>Generative Proteins</h4>
-                            <p>Using diffusion models to design novel protein structures that bind to specific neurological receptors.</p>
+                            <span class="project-tag">Mikro Robotik</span>
+                            <h4>Manyetik Mikro Robot ile Hedefe Yonelik Ilac Tasimi</h4>
+                            <p>AB Horizon Europe destekli; TU Delft ortakligi ile yumusak aktüatörler ve navigasyon sistemleri.</p>
                         </div>
-                    </div>
-                    
-                    <div class="project-card-horizontal">
+                    </a>
+                    <a href="proje-detay.html" class="project-card-horizontal" style="text-decoration: none; color: inherit;">
                         <div class="project-img bg-pattern-3"></div>
                         <div class="project-details">
-                            <span class="project-tag">Robotics</span>
-                            <h4>Adaptive Neuro-Prosthetics</h4>
-                            <p>Developing AI-driven control paradigms for robotic limbs that learn alongside the user's nervous system.</p>
+                            <span class="project-tag">Biyomekanik</span>
+                            <h4>Kafatasi Implantlarinin Biyomekanik Analizi</h4>
+                            <p>FEA tabanli kafatasi implantı tasarimi; fizyolojik stres dagilimlari, materyal optimizasyonu.</p>
                         </div>
-                    </div>
+                    </a>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="projeler.html" class="btn btn-secondary">Tum Projeleri Gor <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- 7. MINI PHOTO GALLERY -->
-    <section id="gallery" class="section gallery-section">
-        <div class="container">
-            <div class="gallery-grid scroll-reveal slide-up">
-                <div class="gallery-item large bg-pattern-1">
-                    <div class="gallery-overlay"><span>Lab Symposium 2025</span></div>
-                </div>
-                <div class="gallery-item bg-pattern-2">
-                    <div class="gallery-overlay"><span>GPU Setup</span></div>
-                </div>
-                <div class="gallery-item bg-pattern-3">
-                    <div class="gallery-overlay"><span>Mechatronics Test</span></div>
-                </div>
-                <div class="gallery-item wide bg-pattern-1">
-                    <div class="gallery-overlay"><span>Team Hackathon</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 8. FEATURED PUBLICATIONS -->
-    <section id="publications" class="section publications-section">
+    <!-- 6. FEATURED PUBLICATIONS -->
+    <section id="yayinlar" class="section publications-section">
         <div class="container">
             <div class="section-header scroll-reveal slide-up">
-                <h2>Featured Publications</h2>
+                <h2>Secili Yayinlar</h2>
             </div>
-            
             <div class="publications-list">
-                <a href="#" class="pub-card scroll-reveal slide-up">
+                <a href="yayin-detay.html" class="pub-card scroll-reveal slide-up">
                     <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
                     <div class="pub-info">
-                        <h4>Transformers for Spatiotemporal Brain Dynamics Decoding</h4>
-                        <span class="pub-meta">Nature Computational Science • 2025</span>
+                        <h4>Thermoelectric Performance Enhancement via Nanostructuring in BiSbTe Alloys</h4>
+                        <span class="pub-meta">A. Yilmaz, Z. Arslan, A. Koc &bull; Advanced Energy Materials &bull; 2025</span>
                     </div>
                     <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                 </a>
-                
-                <a href="#" class="pub-card scroll-reveal slide-up" data-delay="100">
+                <a href="yayin-detay.html" class="pub-card scroll-reveal slide-up" data-delay="100">
                     <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
                     <div class="pub-info">
-                        <h4>A Closed-Loop Mechatronic Interface Utilizing Deep Reinforcement Learning</h4>
-                        <span class="pub-meta">IEEE Transactions on Robotics • 2025</span>
+                        <h4>Magnetically Actuated Soft Microrobot for Targeted Drug Delivery</h4>
+                        <span class="pub-meta">S. Celik, M. Kaya, A. Yilmaz &bull; Science Robotics &bull; 2024</span>
                     </div>
                     <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                 </a>
-                
-                <a href="#" class="pub-card scroll-reveal slide-up" data-delay="200">
+                <a href="yayin-detay.html" class="pub-card scroll-reveal slide-up" data-delay="200">
                     <div class="pub-icon"><i class="fa-regular fa-file-lines"></i></div>
                     <div class="pub-info">
-                        <h4>Multimodal Integration of Genomic and Functional MRI Data</h4>
-                        <span class="pub-meta">Bioinformatics • 2024</span>
+                        <h4>Finite Element Analysis of Cranial Implant Stress Distribution Under Physiological Loading</h4>
+                        <span class="pub-meta">A. Yilmaz, B. Demir, E. Sahin &bull; Journal of Biomechanics &bull; 2025</span>
                     </div>
                     <div class="pub-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                 </a>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="yayinlar.html" class="btn btn-secondary">Tum Yayinlar <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </div>
     </section>
 
-    <!-- 9. TEAM MEMBERS -->
-    <section id="team" class="section team-section">
+    <!-- 7. TEAM -->
+    <section id="ekip" class="section team-section">
         <div class="container">
             <div class="section-header text-center scroll-reveal slide-up">
-                <h2>Our Team</h2>
-                <p>The minds building the bridge between brains and machines.</p>
+                <h2>Ekibimiz</h2>
+                <p>Misin Vizyon degerlerimizi paylasan, tutkulu arastirmacilar</p>
             </div>
-            
             <div class="team-network scroll-reveal fade-in">
-                <!-- Abstract visual representation of a team network -->
                 <canvas id="team-network-canvas"></canvas>
-                
                 <div class="team-member-nodes">
                     <div class="team-node node-pi">
                         <div class="node-avatar bg-pattern-1"></div>
                         <div class="node-info">
-                            <h4>Dr. Alan Walker</h4>
-                            <span>Principal Investigator</span>
-                            <small>Neuro-AI & Mechatronics</small>
+                            <h4>Prof. Dr. Ahmet Yilmaz</h4>
+                            <span>Lab Yoneticisi / PI</span>
+                            <small>Termoelektrik &amp; Mekatronik</small>
                         </div>
                     </div>
-                    
                     <div class="team-node node-1">
                         <div class="node-avatar bg-pattern-2"></div>
                         <div class="node-info">
-                            <h4>Sarah Chen</h4>
-                            <span>Postdoc Reseacher</span>
-                            <small>Comp. Biology</small>
+                            <h4>Dr. Zeynep Arslan</h4>
+                            <span>Postdok Arastirmaci</span>
+                            <small>Termoelektrik Malzeme</small>
                         </div>
                     </div>
-                    
                     <div class="team-node node-2">
                         <div class="node-avatar bg-pattern-3"></div>
                         <div class="node-info">
-                            <h4>Miguel Santos</h4>
-                            <span>PhD Candidate</span>
-                            <small>Robotics Control</small>
+                            <h4>Selin Celik</h4>
+                            <span>Doktora Ogrencisi</span>
+                            <small>Mikro Robotik</small>
                         </div>
                     </div>
-                    
                     <div class="team-node node-3">
                         <div class="node-avatar bg-pattern-1"></div>
                         <div class="node-info">
-                            <h4>Aisha Bello</h4>
-                            <span>PhD Candidate</span>
-                            <small>Deep Learning</small>
+                            <h4>Burak Demir</h4>
+                            <span>Doktora Ogrencisi</span>
+                            <small>Biyomekanik FEA</small>
                         </div>
                     </div>
                 </div>
             </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="ekip.html" class="btn btn-secondary">Tum Ekip <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
         </div>
     </section>
 
-    <!-- 11. JOIN THE LAB -->
-    <section id="join" class="section join-section">
+    <!-- 8. HABERLER -->
+    <section id="haberler" class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <h2>Son Haberler</h2>
+            </div>
+            <div class="research-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
+                <a href="haber-detay.html" class="research-card scroll-reveal slide-up" data-delay="0" style="text-decoration: none; display: flex; flex-direction: column;">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 12px;">15 Mart 2026 &bull; Proje</span>
+                        <h3 style="font-size: 18px; line-height: 1.4; margin-bottom: 12px;">AB Horizon Europe'tan 2.4 Milyon Euro Fon</h3>
+                        <p style="font-size: 14px; margin-bottom: 0;">Mikro Robot projemiz rekabetci degerlendirme surecinde ust %8'e girerek buyuk fon aldi.</p>
+                    </div>
+                </a>
+                <a href="haber-detay.html" class="research-card scroll-reveal slide-up" data-delay="100" style="text-decoration: none; display: flex; flex-direction: column;">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 12px;">10 Ocak 2026 &bull; Yayin</span>
+                        <h3 style="font-size: 18px; line-height: 1.4; margin-bottom: 12px;">Science Robotics Makalemiz En Cok Atif Alan Calisma Secildi</h3>
+                        <p style="font-size: 14px; margin-bottom: 0;">Manyetik Mikro Robot calismasina uluslararasi topluluktan 200'un uzzerinde atif geldi.</p>
+                    </div>
+                </a>
+                <a href="haber-detay.html" class="research-card scroll-reveal slide-up" data-delay="200" style="text-decoration: none; display: flex; flex-direction: column;">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-heading); letter-spacing: 1px; text-transform: uppercase; display: block; margin-bottom: 12px;">5 Ocak 2026 &bull; Isbirligi</span>
+                        <h3 style="font-size: 18px; line-height: 1.4; margin-bottom: 12px;">TU Delft ile Ortaklasma Protokolu Imzalandi</h3>
+                        <p style="font-size: 14px; margin-bottom: 0;">Yumusak aktüatörler arastirmasinda iki yil boyunca surecek ortak calisma basliyor.</p>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 48px;">
+                <a href="haberler.html" class="btn btn-secondary">Tum Haberler <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. JOIN CTA -->
+    <section id="basvur" class="section join-section">
         <div class="container scroll-reveal slide-up">
             <div class="join-organic-block">
                 <div class="join-content">
-                    <h2>Become part of our pioneering research team.</h2>
-                    <p>We are always looking for passionate PhD students, postdocs, and engineers driven by curiosity.</p>
-                    <a href="#" class="btn btn-primary btn-large">Apply Now <i class="fa-solid fa-arrow-right"></i></a>
+                    <h2>One cikan arastirma ekibimizin parcasi olun.</h2>
+                    <p>Merak ve tutkuyla hareket eden doktora ogrencileri, postdok arastirmacilar ve muhendisleri ariyoruz.</p>
+                    <a href="basvur.html" class="btn btn-primary btn-large">Basvur <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
                 <div class="join-shapes">
                     <div class="shape-blob shape-1"></div>
@@ -378,32 +399,16 @@
         </div>
     </section>
 
-    <!-- 12. FOOTER -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer-content">
             <div class="footer-brand">
-                <div class="logo">
+                <a href="index.html" class="logo" style="display: inline-flex; margin-bottom: 20px;">
                     <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
-                </div>
-                <p>Institute for Computational Medicine & Mechatronics<br>Global University of Science</p>
-                <p class="address">1200 Neural Pathway,<br>Tech District, TD 10001</p>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Explore</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-contact">
-                <h4>Contact</h4>
-                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
-                
-                <div class="social-links">
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+                <div class="social-links" style="margin-top: 20px;">
                     <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
                     <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
                     <a href="#" aria-label="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
@@ -411,14 +416,53 @@
                     <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
+
+            <div class="footer-links">
+                <h4>Laboratuvar</h4>
+                <ul>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="donanim.html">Donanim</a></li>
+                    <li><a href="dersler.html">Dersler</a></li>
+                    <li><a href="basvur.html">Basvur</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Arastirma</h4>
+                <ul>
+                    <li><a href="arastirmalar.html">Arastirma Alanlari</a></li>
+                    <li><a href="projeler.html">Projeler</a></li>
+                    <li><a href="yayinlar.html">Yayinlar</a></li>
+                </ul>
+                <h4 style="margin-top: 28px;">Medya</h4>
+                <ul>
+                    <li><a href="haberler.html">Haberler</a></li>
+                    <li><a href="etkinlikler.html">Etkinlikler</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <p style="font-size: 14px; margin-top: 8px; color: var(--text-muted);">+90 (312) 123 45 67</p>
+                <p style="font-size: 14px; margin-top: 4px; color: var(--text-muted);">Pzt-Cum, 09:00-18:00</p>
+                <a href="iletisim.html" class="btn btn-secondary" style="margin-top: 20px; font-size: 14px; padding: 10px 20px;">Iletisim Formu <i class="fa-solid fa-arrow-right"></i></a>
+                <h4 style="margin-top: 32px;">Yasal</h4>
+                <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="gizlilik.html" style="font-size: 14px; color: var(--text-muted);">Gizlilik Politikasi</a></li>
+                    <li><a href="kvkk.html" style="font-size: 14px; color: var(--text-muted);">KVKK</a></li>
+                    <li><a href="aydinlatma-metni.html" style="font-size: 14px; color: var(--text-muted);">Aydinlatma Metni</a></li>
+                </ul>
+            </div>
         </div>
         <div class="footer-bottom container">
-            <p>&copy; 2026 MrML Lab. All rights reserved.</p>
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir.</p>
         </div>
         <div class="footer-glow"></div>
     </footer>
 
-    <!-- JS -->
     <script src="script.js"></script>
 </body>
 </html>
