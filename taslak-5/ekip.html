@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ekip | MrML Lab</title>
+    <meta name="description" content="MrML Lab ekip uyeleri -- PI, arastirmacilar, doktora ogrencileri ve mezunlar.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link active">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <span class="current">Ekip</span>
+            </nav>
+            <span class="eyebrow">Arastirmacilar</span>
+            <h1>Ekibimiz</h1>
+            <p class="lead">Beyin ile makine arasindaki kopruyu insaa eden, tutkulu ve multidisipliner ekibimizle tanisin.</p>
+        </div>
+    </section>
+
+    <!-- TEAM LISTING -->
+    <section class="content-section">
+        <div class="container">
+
+            <!-- Filter -->
+            <div class="filter-bar scroll-reveal fade-in">
+                <span class="filter-label">Rol:</span>
+                <button class="filter-btn active" data-filter="all">Tumu</button>
+                <button class="filter-btn" data-filter="pi">PI</button>
+                <button class="filter-btn" data-filter="arastirmaci">Arastirmaci</button>
+                <button class="filter-btn" data-filter="doktora">Doktora Ogrencisi</button>
+                <button class="filter-btn" data-filter="yuksek-lisans">Yuksek Lisans</button>
+                <button class="filter-btn" data-filter="mezun">Mezun</button>
+            </div>
+
+            <!-- PI -->
+            <div class="section-header scroll-reveal slide-up" style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Principal Investigator</h3>
+            </div>
+            <div class="team-grid scroll-reveal fade-in" style="margin-bottom: 64px;">
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-1">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Prof. Dr. Ahmet Yilmaz</h3>
+                        <p class="profile-title">Profesor / Lab Yoneticisi</p>
+                        <p class="profile-area">Termoelektrik, Mekatronik, Makine Ogrenimi</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Researchers -->
+            <div class="section-header scroll-reveal slide-up" style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Arastirmaci &amp; Postdok</h3>
+            </div>
+            <div class="team-grid scroll-reveal fade-in" style="margin-bottom: 64px;">
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-2">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Dr. Zeynep Arslan</h3>
+                        <p class="profile-title">Postdok Arastirmaci</p>
+                        <p class="profile-area">Termoelektrik Malzemeler, Nanoyapi</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                        <a href="#" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    </div>
+                </a>
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-3">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Dr. Mert Kaya</h3>
+                        <p class="profile-title">Arastirma Gorevlisi</p>
+                        <p class="profile-area">Mikro Robotik, Hassas Kontrol</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="ResearchGate"><i class="fa-brands fa-researchgate"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </a>
+            </div>
+
+            <!-- PhD Students -->
+            <div class="section-header scroll-reveal slide-up" style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Doktora Ogrencileri</h3>
+            </div>
+            <div class="team-grid scroll-reveal fade-in" style="margin-bottom: 64px;">
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-1">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Burak Demir</h3>
+                        <p class="profile-title">Doktora Ogrencisi</p>
+                        <p class="profile-area">Sonlu Elemanlar, Kraniofasiyal Muhendislik</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </a>
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-2">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Selin Celik</h3>
+                        <p class="profile-title">Doktora Ogrencisi</p>
+                        <p class="profile-area">Manyetik Yumusak Robotlar, Mikrofabrikasyon</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                </a>
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-3">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Can Ozturk</h3>
+                        <p class="profile-title">Doktora Ogrencisi</p>
+                        <p class="profile-area">Makine Ogrenimi, Tahminleme Modelleri</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </a>
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-1">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Elif Sahin</h3>
+                        <p class="profile-title">Doktora Ogrencisi</p>
+                        <p class="profile-area">Biyomekanik Modelleme, 3D Baski</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    </div>
+                </a>
+            </div>
+
+            <!-- MSc Students -->
+            <div class="section-header scroll-reveal slide-up" style="margin-bottom: 32px;">
+                <h3 style="font-size: 20px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Yuksek Lisans Ogrencileri</h3>
+            </div>
+            <div class="team-grid scroll-reveal fade-in">
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-2">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Arda Koc</h3>
+                        <p class="profile-title">Yuksek Lisans Ogrencisi</p>
+                        <p class="profile-area">Termoelektrik Uretec Tasarimi</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </a>
+                <a href="kisi-sayfasi.html" class="profile-card" style="text-decoration: none; color: inherit;">
+                    <div class="profile-avatar-placeholder bg-pattern-3">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="profile-body">
+                        <h3>Naz Yildiz</h3>
+                        <p class="profile-title">Yuksek Lisans Ogrencisi</p>
+                        <p class="profile-area">Norocerrahi Robotik Yardim Sistemleri</p>
+                    </div>
+                    <div class="profile-social">
+                        <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="content-section content-section--alt">
+        <div class="container">
+            <div class="cta-section scroll-reveal slide-up">
+                <span class="eyebrow">Ekibimize Katil</span>
+                <h2>Sen de Arastirma Ekibinin Parcasi Ol</h2>
+                <p>Doktora ve yuksek lisans pozisyonlarimiz hakkinda bilgi almak icin basvur sayfamizi ziyaret et.</p>
+                <div class="cta-buttons">
+                    <a href="basvur.html" class="btn btn-primary btn-large">Basvur <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="iletisim.html" class="btn btn-secondary btn-large">Iletisim</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
