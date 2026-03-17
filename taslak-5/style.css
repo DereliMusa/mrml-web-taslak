@@ -31,6 +31,76 @@
     --transition-slow: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* =========================================
+   LIGHT THEME VARIABLES
+========================================= */
+[data-theme="light"] {
+    --bg-primary: #F4F1EB;
+    --bg-secondary: #E8E3D8;
+    --bg-tertiary: #DEDAD0;
+
+    --accent-primary: #B08327;
+    --accent-secondary: #8A6520;
+
+    --text-primary: #1A1A1A;
+    --text-secondary: #4A4A5A;
+    --text-muted: #8A8A9A;
+}
+
+[data-theme="light"] .navbar.scrolled {
+    background: rgba(244, 241, 235, 0.88);
+    border-bottom-color: rgba(0,0,0,0.08);
+}
+
+[data-theme="light"] .footer {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .footer-glow {
+    opacity: 0.15;
+}
+
+/* =========================================
+   THEME TOGGLE BUTTON
+========================================= */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    transition: var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(198,151,73,0.08);
+}
+
+[data-theme="light"] .theme-toggle {
+    border-color: rgba(0,0,0,0.12);
+    color: var(--text-secondary);
+}
+
+[data-theme="light"] .theme-toggle:hover {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Sun icon visible in dark, Moon in light */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+[data-theme="light"] .theme-toggle .icon-sun { display: block; }
+[data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
 * {
     margin: 0;
     padding: 0;
@@ -49,6 +119,7 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 /* =========================================

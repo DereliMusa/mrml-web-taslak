@@ -4,6 +4,12 @@ Bu dokuman, MRML Lab arastirma laboratuvari web sitesinin tum sayfa, yazi, tag, 
 
 ---
 
+## Genel Ayarlar
+
+### Aydınlık ve Karanlık Tema Seçimi
+
+### TR ve ENG dil desteği
+
 ## Sayfalar
 
 ### Anasayfa

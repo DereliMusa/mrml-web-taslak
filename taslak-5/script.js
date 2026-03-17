@@ -248,4 +248,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* =========================================
+       7. LIGHT / DARK THEME TOGGLE
+    ========================================= */
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    // Apply saved theme on page load
+    const savedTheme = localStorage.getItem('mrml-theme');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'light') {
+                document.documentElement.removeAttribute('data-theme');
+                localStorage.setItem('mrml-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('mrml-theme', 'light');
+            }
+        });
+    }
 });
