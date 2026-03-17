@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayin Detay | MrML Lab</title>
+    <meta name="description" content="MrML Lab bilimsel yayin detay sayfasi -- ozet, yazarlar, DOI ve atif bilgisi.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .bibtex-block {
+            background: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 24px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-break: break-all;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 6px 14px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        .copy-btn:hover { background: var(--accent-primary); color: var(--bg-primary); border-color: var(--accent-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link active">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" style="padding-bottom: 60px;">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a><span class="sep">/</span>
+                <a href="yayinlar.html">Yayinlar</a><span class="sep">/</span>
+                <span class="current">Yayin</span>
+            </nav>
+            <span class="card-tag" style="margin-bottom: 16px;">Dergi Makalesi</span>
+            <h1>Thermoelectric Performance Enhancement via Nanostructuring in BiSbTe Alloys</h1>
+            <p class="lead">Advanced Energy Materials &bull; Aralik 2025 &bull; DOI: 10.1002/aenm.202401234</p>
+        </div>
+    </section>
+
+    <!-- PUBLICATION CONTENT -->
+    <section class="content-section">
+        <div class="container">
+            <div class="two-col-grid--wide two-col-grid scroll-reveal slide-up">
+                <div>
+                    <!-- Authors -->
+                    <span class="eyebrow">Yazarlar</span>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; margin-top: 12px;">
+                        <a href="kisi-sayfasi.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-tertiary); border-radius: 40px; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.06); font-size: 14px; transition: var(--transition-fast);" onmouseover="this.style.borderColor='rgba(198,151,73,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+                            <i class="fa-solid fa-user" style="color: var(--accent-primary); font-size: 12px;"></i>
+                            Ahmet Yilmaz
+                        </a>
+                        <a href="kisi-sayfasi.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-tertiary); border-radius: 40px; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.06); font-size: 14px; transition: var(--transition-fast);" onmouseover="this.style.borderColor='rgba(198,151,73,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+                            <i class="fa-solid fa-user" style="color: var(--accent-primary); font-size: 12px;"></i>
+                            Zeynep Arslan
+                        </a>
+                        <a href="kisi-sayfasi.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; background: var(--bg-tertiary); border-radius: 40px; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.06); font-size: 14px; transition: var(--transition-fast);" onmouseover="this.style.borderColor='rgba(198,151,73,0.3)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">
+                            <i class="fa-solid fa-user" style="color: var(--accent-primary); font-size: 12px;"></i>
+                            Arda Koc
+                        </a>
+                    </div>
+
+                    <!-- Abstract -->
+                    <span class="eyebrow">Ozet</span>
+                    <h2 style="font-size: 26px; margin-bottom: 16px; margin-top: 8px;">Abstract</h2>
+                    <p>Thermoelectric materials capable of directly converting waste heat to electricity have attracted significant attention for sustainable energy applications. In this study, we report the synthesis and characterization of nanostructured BiSbTe alloys with enhanced thermoelectric performance. By employing a combination of ball milling and spark plasma sintering, we achieved grain sizes in the range of 50-200 nm, which significantly suppressed lattice thermal conductivity.</p>
+                    <p>The optimal composition Bi0.4Sb1.6Te3 with 0.5 wt% Se doping demonstrated a peak ZT value of 1.85 at 323 K, representing a 35% improvement over the bulk counterpart. The enhancement is attributed to the synergistic effect of nanostructuring-induced phonon scattering and optimized carrier concentration through chemical doping. These results suggest that the proposed approach holds considerable promise for near-room-temperature waste heat recovery applications.</p>
+
+                    <!-- Keywords -->
+                    <div style="margin-top: 32px;">
+                        <span class="eyebrow">Anahtar Kelimeler</span>
+                        <div class="tag-list" style="margin-top: 12px;">
+                            <span class="tag-pill">Termoelektrik</span>
+                            <span class="tag-pill">BiSbTe</span>
+                            <span class="tag-pill">Nanoyapilanma</span>
+                            <span class="tag-pill">ZT Degeri</span>
+                            <span class="tag-pill">Atik Isi Geri Kazanimi</span>
+                            <span class="tag-pill">Fonon Sacilmasi</span>
+                        </div>
+                    </div>
+
+                    <!-- BibTeX -->
+                    <div style="margin-top: 48px;">
+                        <span class="eyebrow">Atif</span>
+                        <h3 style="font-size: 20px; margin: 12px 0 16px;">BibTeX</h3>
+                        <div class="bibtex-block">
+                            <button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.textContent.replace('Kopyala','').trim())">Kopyala</button>@article{yilmaz2025bisb,
+  title={Thermoelectric Performance Enhancement via
+         Nanostructuring in BiSbTe Alloys},
+  author={Yilmaz, Ahmet and Arslan, Zeynep and Koc, Arda},
+  journal={Advanced Energy Materials},
+  volume={15},
+  number={12},
+  pages={2401234},
+  year={2025},
+  publisher={Wiley-VCH},
+  doi={10.1002/aenm.202401234}
+}</div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div style="background: var(--bg-tertiary); border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 24px; color: var(--text-muted); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Yayin Bilgileri</h4>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 10px 0; color: var(--text-muted); font-size: 13px;">Tip</td>
+                                <td style="padding: 10px 0; color: var(--text-primary); font-size: 14px;">Dergi Makalesi</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 10px 0; color: var(--text-muted); font-size: 13px;">Dergi</td>
+                                <td style="padding: 10px 0; color: var(--text-primary); font-size: 14px;">Advanced Energy Materials</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 10px 0; color: var(--text-muted); font-size: 13px;">Cilt / Sayi</td>
+                                <td style="padding: 10px 0; color: var(--text-primary); font-size: 14px;">15 / 12</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                <td style="padding: 10px 0; color: var(--text-muted); font-size: 13px;">Yil</td>
+                                <td style="padding: 10px 0; color: var(--text-primary); font-size: 14px;">2025</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px 0; color: var(--text-muted); font-size: 13px;">DOI</td>
+                                <td style="padding: 10px 0; font-size: 14px;"><a href="#" style="color: var(--accent-primary); word-break: break-all;">10.1002/aenm.202401234</a></td>
+                            </tr>
+                        </table>
+                        <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 12px;">
+                            <a href="#" class="btn btn-primary" style="justify-content: center;"><i class="fa-solid fa-file-pdf" style="margin-right: 8px;"></i>Tam Metin (PDF)</a>
+                            <a href="#" class="btn btn-secondary" style="justify-content: center;"><i class="fa-solid fa-arrow-up-right-from-square" style="margin-right: 8px;"></i>Yayinci Sayfasi</a>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); border-radius: 16px; padding: 32px; border: 1px solid rgba(255,255,255,0.06);">
+                        <h4 style="margin-bottom: 16px; color: var(--text-muted); text-transform: uppercase; font-size: 13px; letter-spacing: 1px;">Ilgili Proje</h4>
+                        <a href="proje-detay.html" style="display: block; padding: 16px; background: var(--bg-secondary); border-radius: 10px; color: var(--text-primary); border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-size: 13px; font-weight: 600; margin-bottom: 6px;">BiSbTe Termoelektrik Optimizasyon</div>
+                            <div style="font-size: 12px; color: var(--text-muted);">TUBITAK 1001, 2024-2027</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

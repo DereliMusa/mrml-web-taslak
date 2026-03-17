@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Yazisi | MrML Lab</title>
+    <meta name="description" content="MrML Lab blog yazisi -- arastirma notlari ve teknik inceleme.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .article-content p { font-size: 17px; line-height: 1.85; margin-bottom: 20px; }
+        .article-content h2 { font-size: 26px; margin: 40px 0 16px; }
+        .article-content h3 { font-size: 21px; margin: 32px 0 12px; }
+        .article-content ul { color: var(--text-secondary); padding-left: 24px; margin-bottom: 20px; }
+        .article-content ul li { margin-bottom: 8px; line-height: 1.7; font-size: 16px; }
+        .article-content blockquote {
+            border-left: 3px solid var(--accent-primary);
+            padding: 16px 24px;
+            background: rgba(198,151,73,0.05);
+            border-radius: 0 8px 8px 0;
+            margin: 28px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        .toc { background: var(--bg-tertiary); border-radius: 12px; padding: 24px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 32px; }
+        .toc h5 { font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 16px; }
+        .toc ol { padding-left: 20px; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: var(--text-secondary); font-size: 14px; transition: var(--transition-fast); }
+        .toc a:hover { color: var(--accent-primary); }
+        .share-bar { display: flex; align-items: center; gap: 12px; padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); margin: 40px 0; }
+        .share-bar span { font-size: 14px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .share-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--bg-tertiary); border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-size: 16px; transition: var(--transition-fast); }
+        .share-btn:hover { background: var(--accent-primary); color: var(--bg-primary); border-color: var(--accent-primary); }
+    </style>
+</head>
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+        </div>
+    </nav>
+    <section class="page-hero" style="padding-bottom: 60px;">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a><span class="sep">/</span>
+                <a href="blog.html">Blog</a><span class="sep">/</span>
+                <span class="current">Yazı</span>
+            </nav>
+            <span class="card-tag" style="margin-bottom: 16px;">Arastirma Notlari</span>
+            <h1>Nanoyapilanma ile ZT Degerini Nasil Arttiriyoruz?</h1>
+            <div style="display: flex; gap: 20px; align-items: center; margin-top: 20px; flex-wrap: wrap;">
+                <a href="kisi-sayfasi.html" style="font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--bg-tertiary); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-user" style="color: var(--text-muted); font-size: 12px;"></i>
+                    </div>
+                    Dr. Zeynep Arslan
+                </a>
+                <span style="font-size: 14px; color: var(--text-muted);"><i class="fa-regular fa-calendar" style="margin-right: 6px;"></i>12 Mart 2026</span>
+                <span style="font-size: 14px; color: var(--text-muted);"><i class="fa-regular fa-clock" style="margin-right: 6px;"></i>8 dakika okuma</span>
+            </div>
+        </div>
+    </section>
+    <section class="content-section">
+        <div class="container">
+            <div class="two-col-grid--wide two-col-grid scroll-reveal slide-up">
+                <div>
+                    <!-- Featured image -->
+                    <div class="card-img-placeholder bg-pattern-1" style="height: 360px; border-radius: 16px; margin-bottom: 40px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-atom" style="font-size: 80px; color: var(--accent-primary); opacity: 0.3;"></i>
+                    </div>
+
+                    <div class="article-content">
+                        <p>BiSbTe malzemeleri uzerinde gerek deneysel gerekse sayisal calismalar yurutturken fark ettigimiz en kritik etken, malzeme yapisinin nano olcege indirgendikce termoelektrik verimliligin nasil kademeli artis gosterdiydi. Bu yazida, bu surecon pratik boyutlarini paylasiyorum.</p>
+
+                        <h2>ZT Degeri Nedir?</h2>
+                        <p>Termoelektrik verimliligi tanimlamak icin kullanilan ZT (boyutsuz deger) asagidaki gibi hesaplanir:</p>
+                        <blockquote>ZT = (S^2 . sigma . T) / kappa<br>S: Seebeck katsayisi, sigma: elektrik iletkenlik, T: mutlak sicaklik, kappa: termal iletkenlik</blockquote>
+                        <p>Yani yuksek bir ZT elde etmek icin Seebeck katsayisini ve elektrik iletkenligini yuksek tutarken ayni anda termal iletkenligni dusurmeniz gerekmektedir. Bu 3 parametrenin birbiriyle karmasik sekilde etkilesimi nedeniyle optimizasyon son derece guctir.</p>
+
+                        <h2>Nanoyapilanmanın Rolu</h2>
+                        <p>Nano boyutlu yapilar, tane sinirlarinin sayisini artirarak fonon sacilmasini guclendirir. Bu da termal iletkenligi dusurur. Eger malzeme sistemi dikkatli secilirse, elektrik iletkenlik bu surecten nispeten az etkilenir.</p>
+                        <ul>
+                            <li>Spark Plasma Sintering (SPS) ile sinterleme sureleri kisa tutularak nano boyutlu tane yapisi elde edilebilir.</li>
+                            <li>Tane buyuklugu 50-200 nm araliginda tutulmasi en iyi fonon sacilma performansini saglar.</li>
+                            <li>EDS analizi ile katkilama profili dogrulanmali, homojen dagilim saglanmalidir.</li>
+                        </ul>
+
+                        <h2>Bizim Deneyimlerimiz</h2>
+                        <p>Son calismalarda Bi0.4Sb1.6Te3 bileşimi ile 0.5 wt% Se katkisini birlestirerek oda sicaklik altindaki uygulamalar icin ZT = 1.85 degerine ulastik. Bu, referans numunelere gore %35 artisi ifade etmektedir.</p>
+                        <p>Karsilastigimiz en buyuk zorluk, SPS islemi sirasinda sicaklik dagiliminini kontrol altinda tutmakti. Firin igindeki sicaklik gradyeni, tane buyukluk dagiliminni dogrudan etkiliyor. Bu nedenle her sentez partisi icin firin kalibrasyon surecini atlamamanizi tavsiye ederim.</p>
+
+                        <div class="share-bar">
+                            <span>Paylas</span>
+                            <a href="#" class="share-btn"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" class="share-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="share-btn"><i class="fa-solid fa-link"></i></a>
+                        </div>
+
+                        <div>
+                            <span class="eyebrow">Etiketler</span>
+                            <div class="tag-list" style="margin-top: 12px;">
+                                <a href="#" class="tag-pill">Termoelektrik</a>
+                                <a href="#" class="tag-pill">Nanoyapilanma</a>
+                                <a href="#" class="tag-pill">BiSbTe</a>
+                                <a href="#" class="tag-pill">ZT</a>
+                                <a href="#" class="tag-pill">Malzeme Bilimi</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="toc">
+                        <h5>Icerik</h5>
+                        <ol>
+                            <li><a href="#">ZT Degeri Nedir?</a></li>
+                            <li><a href="#">Nanoyapilanmanin Rolu</a></li>
+                            <li><a href="#">Bizim Deneyimlerimiz</a></li>
+                        </ol>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,0.06); margin-bottom: 24px;">
+                        <h4 style="margin-bottom: 16px; font-size: 16px;">Yazar</h4>
+                        <a href="kisi-sayfasi.html" style="display: flex; align-items: center; gap: 12px; color: var(--text-primary);">
+                            <div style="width: 52px; height: 52px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center;">
+                                <i class="fa-solid fa-user" style="color: var(--text-muted);"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: 700; font-size: 15px;">Dr. Zeynep Arslan</div>
+                                <div style="font-size: 13px; color: var(--text-muted);">Postdok Arastirmaci</div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,0.06);">
+                        <h4 style="margin-bottom: 16px; font-size: 16px;">Ilgili Yazilar</h4>
+                        <div style="display: flex; flex-direction: column; gap: 16px;">
+                            <a href="blog-yazisi.html" style="color: var(--text-primary);">
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4;">ANSYS ile Biyomekanik FEA: Adim Adim Rehber</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">3 Mart 2026</div>
+                            </a>
+                            <a href="blog-yazisi.html" style="color: var(--text-primary);">
+                                <div style="font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.4;">Uluslararasi Konferanslardan Verim Alma</div>
+                                <div style="font-size: 12px; color: var(--text-muted);">5 Subat 2026</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;"><span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span></a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
