@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler | MrML Lab</title>
+    <meta name="description" content="MrML Lab arastirma projeleri -- devam eden, tamamlanan ve fonlanan projeler.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link active">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <a href="arastirmalar.html">Arastirmalar</a>
+                <span class="sep">/</span>
+                <span class="current">Projeler</span>
+            </nav>
+            <span class="eyebrow">Arastirma Faaliyetleri</span>
+            <h1>Projeler</h1>
+            <p class="lead">TUBITAK, AB/Horizon ve universite BAP programlariyla desteklenen devam eden ve tamamlanan projelerimiz.</p>
+        </div>
+    </section>
+
+    <!-- PROJECTS LISTING -->
+    <section class="content-section">
+        <div class="container">
+
+            <!-- Filters -->
+            <div class="filter-bar scroll-reveal fade-in">
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                    <span class="filter-label">Durum:</span>
+                    <button class="filter-btn active">Tumu</button>
+                    <button class="filter-btn">Devam Eden</button>
+                    <button class="filter-btn">Tamamlanan</button>
+                    <button class="filter-btn">Iptal Edilen</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-left: 24px;">
+                    <span class="filter-label">Fon:</span>
+                    <button class="filter-btn">TUBITAK</button>
+                    <button class="filter-btn">AB/Horizon</button>
+                    <button class="filter-btn">BAP</button>
+                </div>
+            </div>
+
+            <!-- Cards -->
+            <div class="card-grid scroll-reveal fade-in">
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-1" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-bolt" style="font-size: 48px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--green">Devam Eden</span>
+                        <h3>BiSbTe Esasli Termoelektrik Generatorlerin Performans Optimizasyonu</h3>
+                        <p>Nanoyapilanma ve malzeme katkilamayla termoelektrik donusum verimliligi arttirilmasi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>TUBITAK 1001</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-2" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-brain" style="font-size: 48px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--green">Devam Eden</span>
+                        <h3>Kraniofasiyal Implantlarin Biyomekanik Analizi ve Optimizasyonu</h3>
+                        <p>Fizyolojik yukler altinda kafatasi implantlarinin sonlu elemanlar analizi ile tasarimi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>TUBITAK 1002</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-3" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-robot" style="font-size: 48px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--green">Devam Eden</span>
+                        <h3>Mikro Robotlarin Manyetik Kumanda ile Hassas Konumlama Kontrolu</h3>
+                        <p>Kapali ortamlarda hedefe yonelik ilac tasimi icin manyetik olarak tahrik edilen yumusak mikro robotlar.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>AB / Horizon</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-1" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-microchip" style="font-size: 48px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--green">Devam Eden</span>
+                        <h3>Atolye TEG Entegreli Atik Isi Geri Kazanim Sistemi Gelistirilmesi</h3>
+                        <p>Endustri firin sistemlerinde termoelektrik jenerator teknolojisi ile atik isi elektrige donusturme.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>Sanayi Isbirligi</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-2" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-chart-line" style="font-size: 48px; color: var(--text-muted); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--gray">Tamamlanan</span>
+                        <h3>Zurna Mekanizmasina Sahip Adaptif Kontrol Sistemleri (2022-2024)</h3>
+                        <p>Yumusak robotik manipulatorlerin adaptif kontrol algoritmalarinin gelistirilmesi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>BAP</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="proje-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-3" style="display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-flask" style="font-size: 48px; color: var(--text-muted); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-tag card-tag--gray">Tamamlanan</span>
+                        <h3>Biyouyumlu Termal Ara Malzemelerin Kraniyal Uygulamalar icin Karakterizasyonu (2021-2023)</h3>
+                        <p>Ameliyat oncesi planlama icin hasta ozel biyomekanik modelleme.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta"><i class="fa-solid fa-coins" style="margin-right: 6px;"></i>TUBITAK 3001</span>
+                        <span class="card-link">Incele <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

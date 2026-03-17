@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Etkinlikler | MrML Lab</title>
+    <meta name="description" content="MrML Lab etkinlikleri -- seminerler, workshoplar, konferanslar ve tez savunmalari.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .event-item {
+            display: flex;
+            gap: 32px;
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            align-items: flex-start;
+        }
+        .event-item:last-child { border-bottom: none; }
+        .event-date-badge {
+            flex-shrink: 0;
+            width: 72px;
+            text-align: center;
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(198,151,73,0.2);
+            border-radius: 10px;
+            padding: 12px 8px;
+        }
+        .event-date-badge .day {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--accent-primary);
+            line-height: 1;
+        }
+        .event-date-badge .month {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+        .event-info { flex: 1; }
+        .event-info h3 { font-size: 20px; margin-bottom: 8px; }
+        .event-info p { font-size: 14px; margin-bottom: 12px; }
+        .event-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .event-meta span {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .event-meta i { color: var(--accent-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <span class="current">Etkinlikler</span>
+            </nav>
+            <span class="eyebrow">Takvim</span>
+            <h1>Etkinlikler</h1>
+            <p class="lead">Seminerler, workshoplar, konferanslar, tez savunmalari ve diger laboratuvar etkinlikleri.</p>
+        </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="content-section">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <span class="eyebrow">Yaklaşan</span>
+                <h2>Yaklasan Etkinlikler</h2>
+            </div>
+
+            <div class="info-box scroll-reveal fade-in" style="border-left-color: #32C864; margin-bottom: 40px;">
+                <h4 style="display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-calendar-check" style="color: #32C864;"></i> 3 etkinlik planlandi</h4>
+                <p>Asagidaki etkinliklere katilmak istiyorsaniz etkinlik sayfalarindan kayit olabilirsiniz.</p>
+            </div>
+
+            <div class="scroll-reveal slide-up">
+                <div class="event-item">
+                    <div class="event-date-badge">
+                        <div class="day">24</div>
+                        <div class="month">Mar</div>
+                    </div>
+                    <div class="event-info">
+                        <span class="card-tag card-tag--green">Seminer</span>
+                        <h3>Termoelektrik Malzemelerde Nanoyapilanma: Guncel Gelismeler</h3>
+                        <p>Dr. Zeynep Arslan tarafindan verilecek bu seminerde nano olcekli yapilanmanin termoelektrik performans uzerindeki etkileri ele alinacak.</p>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 14:00 - 15:30</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Muhendislik Binasi B-312, Konferans Salonu</span>
+                            <span><i class="fa-solid fa-users"></i> Herkese Acik</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="btn btn-outline" style="flex-shrink: 0; align-self: center;">Kayit Ol</a>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date-badge">
+                        <div class="day">2</div>
+                        <div class="month">Nis</div>
+                    </div>
+                    <div class="event-info">
+                        <span class="card-tag" style="background: rgba(80,130,200,0.1); color: #5082C8;">Workshop</span>
+                        <h3>ANSYS ile Biyomekanik Sonlu Elemanlar Analizi Uygulamasi</h3>
+                        <p>Kraniofasiyal implant tasarimi uzerine odaklanan bu workshopta ANSYS ortaminda adim adim analiz yapilacak.</p>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 10:00 - 17:00</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Bilgisayar Laboratuvari, B-210</span>
+                            <span><i class="fa-solid fa-users"></i> Ogrencilere Acik (Kayit Gerekli)</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="btn btn-outline" style="flex-shrink: 0; align-self: center;">Kayit Ol</a>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-date-badge">
+                        <div class="day">10</div>
+                        <div class="month">Nis</div>
+                    </div>
+                    <div class="event-info">
+                        <span class="card-tag" style="background: rgba(150,80,150,0.1); color: #A055A0;">Tez Savunmasi</span>
+                        <h3>Can Ozturk Doktora Tez Savunmasi</h3>
+                        <p>"Makine Ogrenimi Tabanli Hata Tahmin Algoritmalari ile Mikro Robotik Sistemlerin Adaptatif Kontrolu" baslikli doktora calismasi.</p>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 13:30 - 16:00</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Senat Salonu</span>
+                            <span><i class="fa-solid fa-users"></i> Herkese Acik</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="btn btn-outline" style="flex-shrink: 0; align-self: center;">Detaylar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PAST EVENTS -->
+    <section class="content-section content-section--alt">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <span class="eyebrow">Arsiv</span>
+                <h2>Gecmis Etkinlikler</h2>
+            </div>
+
+            <div class="scroll-reveal slide-up">
+                <div class="event-item">
+                    <div class="event-date-badge" style="opacity: 0.5;">
+                        <div class="day">15</div>
+                        <div class="month">Mar</div>
+                    </div>
+                    <div class="event-info" style="opacity: 0.7;">
+                        <span class="card-tag card-tag--gray">Misafir Konusmaci</span>
+                        <h3>Prof. Klaus Weber (TU Delft) -- Termoelektrik Hucre Tasarimi</h3>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 15:00</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Konferans Salonu</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="card-link" style="flex-shrink: 0; align-self: center;">Arsiv <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="event-item">
+                    <div class="event-date-badge" style="opacity: 0.5;">
+                        <div class="day">5</div>
+                        <div class="month">Mar</div>
+                    </div>
+                    <div class="event-info" style="opacity: 0.7;">
+                        <span class="card-tag card-tag--gray">Lab Acik Gunu</span>
+                        <h3>MrML Lab Acik Kapi Gunleri 2026</h3>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 10:00 - 16:00</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Laboratuvar B-312</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="card-link" style="flex-shrink: 0; align-self: center;">Arsiv <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="event-item">
+                    <div class="event-date-badge" style="opacity: 0.5;">
+                        <div class="day">14</div>
+                        <div class="month">Sub</div>
+                    </div>
+                    <div class="event-info" style="opacity: 0.7;">
+                        <span class="card-tag card-tag--gray">Seminer</span>
+                        <h3>Manyetik Yumusak Robot Sistemlerinde Kontrol Stratejileri</h3>
+                        <div class="event-meta">
+                            <span><i class="fa-solid fa-clock"></i> 14:00</span>
+                            <span><i class="fa-solid fa-location-dot"></i> Online (Zoom)</span>
+                        </div>
+                    </div>
+                    <a href="etkinlik-detay.html" class="card-link" style="flex-shrink: 0; align-self: center;">Arsiv <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basvur | MrML Lab</title>
+    <meta name="description" content="MrML Lab'a katilmak icin basvurun -- doktora, yuksek lisans ve isbirligi pozisyonlari.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .position-card {
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+            transition: var(--transition-normal);
+            margin-bottom: 16px;
+        }
+        .position-card:hover {
+            border-color: rgba(198,151,73,0.3);
+            background: var(--bg-secondary);
+        }
+        .position-info h3 { font-size: 18px; margin-bottom: 8px; }
+        .position-meta { display: flex; gap: 16px; flex-wrap: wrap; }
+        .position-meta span {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .position-meta i { color: var(--accent-primary); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-primary nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <span class="current">Bize Katil</span>
+            </nav>
+            <span class="eyebrow">Kariyer</span>
+            <h1>Lab'a Katil</h1>
+            <p class="lead">Bilimin sinirlarina birlikte uzaniyoruz. Tutkulu arastirmacilar, muhendisler ve ogrenciler ariyoruz.</p>
+        </div>
+    </section>
+
+    <!-- WHY JOIN -->
+    <section class="content-section">
+        <div class="container">
+            <div class="two-col-grid scroll-reveal slide-up">
+                <div>
+                    <span class="eyebrow">Neden MrML Lab?</span>
+                    <h2>Katilmanin Avantajlari</h2>
+                    <div class="section-divider"></div>
+                    <div style="display: flex; flex-direction: column; gap: 20px;">
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 44px; height: 44px; background: rgba(198,151,73,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fa-solid fa-flask" style="color: var(--accent-primary);"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">World-Class Altyapi</h4>
+                                <p style="margin: 0; font-size: 14px;">Tarama elektron mikroskobu, manyetik kumanda sistemi, HPC kumesi ve daha fazlasi.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 44px; height: 44px; background: rgba(198,151,73,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fa-solid fa-globe" style="color: var(--accent-primary);"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">Uluslararasi Isbirlikler</h4>
+                                <p style="margin: 0; font-size: 14px;">TU Delft, ETH Zurich ve diger Avrupanin onde gelen universiteleriyle devam eden projeler.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 44px; height: 44px; background: rgba(198,151,73,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fa-solid fa-graduation-cap" style="color: var(--accent-primary);"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">Akademik Gelisim</h4>
+                                <p style="margin: 0; font-size: 14px;">Konferans katilimi, yurt ici ve yurt disi arastirma ziyaretleri, cok yazarli yayinlar.</p>
+                            </div>
+                        </div>
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <div style="width: 44px; height: 44px; background: rgba(198,151,73,0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="fa-solid fa-coins" style="color: var(--accent-primary);"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 4px;">Burs &amp; Maddi Destek</h4>
+                                <p style="margin: 0; font-size: 14px;">TUBITAK ve universite burs programlari, proje odulu ve konferans destekleri.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div style="background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary)); border-radius: 20px; padding: 48px 40px; border: 1px solid rgba(198,151,73,0.15); text-align: center;">
+                        <i class="fa-solid fa-microscope" style="font-size: 64px; color: var(--accent-primary); opacity: 0.5; margin-bottom: 24px; display: block;"></i>
+                        <h3>Multidisipliner Ortam</h3>
+                        <p>Mekatronik, malzeme bilimi, makine ogrenimi ve biyomuhendislik alanlarinda farkli disiplinlerden arastirmacilarla calışma firsati.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPEN POSITIONS -->
+    <section class="content-section content-section--alt">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <span class="eyebrow">Ilanlar</span>
+                <h2>Acik Pozisyonlar</h2>
+            </div>
+
+            <div class="scroll-reveal slide-up">
+                <div class="position-card">
+                    <div class="position-info">
+                        <h3>Doktora Arastirmacisi -- Mikro Robotik</h3>
+                        <div class="position-meta">
+                            <span><i class="fa-solid fa-briefcase"></i> Doktora Pozisyonu</span>
+                            <span><i class="fa-solid fa-calendar"></i> Son Basvuru: 30 Nisan 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> Tam Zamanli</span>
+                        </div>
+                    </div>
+                    <a href="#basvuru-formu" class="btn btn-primary" style="flex-shrink: 0;">Basvur</a>
+                </div>
+
+                <div class="position-card">
+                    <div class="position-info">
+                        <h3>Yuksek Lisans Arastirmacisi -- Termoelektrik Malzemeler</h3>
+                        <div class="position-meta">
+                            <span><i class="fa-solid fa-briefcase"></i> Yuksek Lisans Pozisyonu</span>
+                            <span><i class="fa-solid fa-calendar"></i> Son Basvuru: 15 Mayis 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> Tam Zamanli</span>
+                        </div>
+                    </div>
+                    <a href="#basvuru-formu" class="btn btn-primary" style="flex-shrink: 0;">Basvur</a>
+                </div>
+
+                <div class="position-card">
+                    <div class="position-info">
+                        <h3>Stajyer -- Biyomekanik Simulasyon</h3>
+                        <div class="position-meta">
+                            <span><i class="fa-solid fa-briefcase"></i> Staj (Yaz 2026)</span>
+                            <span><i class="fa-solid fa-calendar"></i> Son Basvuru: 1 Mayis 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> 8 Hafta</span>
+                        </div>
+                    </div>
+                    <a href="#basvuru-formu" class="btn btn-outline" style="flex-shrink: 0;">Basvur</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION INFO BLOCKS -->
+    <section class="content-section">
+        <div class="container">
+            <div class="two-col-grid scroll-reveal slide-up">
+                <div class="info-box" style="border-radius: 12px; padding: 36px;">
+                    <h4><i class="fa-solid fa-graduation-cap" style="color: var(--accent-primary); margin-right: 10px;"></i>Yuksek Lisans / Doktora</h4>
+                    <p>Lisansustu basvurular universitemizin Fen Bilimleri Enstitusu uzerinden yapilmaktadir. Kabul sonrasinda lab'a katilmak icin dogrudan bizimle iletisime gecebilirsiniz.</p>
+                    <ul style="color: var(--text-secondary); padding-left: 24px; margin-top: 12px; font-size: 14px;">
+                        <li>Gonderilecek belgeler: CV, niyat mektubu, transkript, 2 referans mektubu</li>
+                        <li>Dil yeterligi: TOEFL/IELTS (yabanci dil programlari icin)</li>
+                    </ul>
+                </div>
+                <div class="info-box" style="border-radius: 12px; padding: 36px; border-left-color: var(--accent-secondary);">
+                    <h4><i class="fa-solid fa-handshake" style="color: var(--accent-secondary); margin-right: 10px;"></i>Isbirligi Teklifleri</h4>
+                    <p>Endustriyel veya akademik isbirligi teklifleri icin dogrudan bizimle iletisime gecebilirsiniz. Tum teklifler deerlendirmeye alinmaktadir.</p>
+                    <a href="iletisim.html" class="btn btn-secondary" style="margin-top: 20px;">Iletisim Kur</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION FORM -->
+    <section class="content-section content-section--alt" id="basvuru-formu">
+        <div class="container">
+            <div class="section-header scroll-reveal slide-up">
+                <span class="eyebrow">Basvur</span>
+                <h2>Basvuru Formu</h2>
+                <p>Asagidaki formu doldurarak dogrudan bizimle iletisime gecin.</p>
+            </div>
+
+            <div style="max-width: 720px;" class="scroll-reveal slide-up">
+                <div class="two-col-grid" style="gap: 24px; margin-bottom: 0;">
+                    <div class="form-group">
+                        <label class="form-label">Ad Soyad</label>
+                        <input type="text" class="form-control" placeholder="Adinizi girin">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">E-posta</label>
+                        <input type="email" class="form-control" placeholder="E-posta adresiniz">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Basvurdugunuz Pozisyon</label>
+                    <select class="form-control">
+                        <option value="">Secin...</option>
+                        <option>Doktora -- Mikro Robotik</option>
+                        <option>Yuksek Lisans -- Termoelektrik Malzemeler</option>
+                        <option>Staj -- Biyomekanik Simulasyon</option>
+                        <option>Diger / Genel Basvuru</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">CV / Ozgecmis Linki (Google Drive / LinkedIn)</label>
+                    <input type="url" class="form-control" placeholder="https://">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Motivasyon Mektubunuz</label>
+                    <textarea class="form-control" rows="6" placeholder="Neden bu laboratuvarda arastirma yapmak istiyorsunuz? Araştirma deneyimlerinizden bahsedin..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-check">
+                        <input type="checkbox">
+                        <span class="form-check-label">Kisisel verilerimin <a href="kvkk.html">KVKK kapsaminda</a> islenmesini onayliyorum.</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">Basvuruyu Gonder <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haberler | MrML Lab</title>
+    <meta name="description" content="MrML Lab son haberleri, duyurulari ve gelismeleri.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link active">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <span class="current">Haberler</span>
+            </nav>
+            <span class="eyebrow">Duyurular</span>
+            <h1>Haberler</h1>
+            <p class="lead">Laboratuvar gelismeleri, akademik basarilar, proje duyurulari ve medya yansimalari.</p>
+        </div>
+    </section>
+
+    <!-- NEWS LISTING -->
+    <section class="content-section">
+        <div class="container">
+
+            <!-- Filters -->
+            <div class="filter-bar scroll-reveal fade-in">
+                <span class="filter-label">Kategori:</span>
+                <button class="filter-btn active">Tumu</button>
+                <button class="filter-btn">Proje Haberleri</button>
+                <button class="filter-btn">Akademik Basarilar</button>
+                <button class="filter-btn">Etkinlik Duyurulari</button>
+                <button class="filter-btn">Lab Gelismeleri</button>
+                <button class="filter-btn">Medya Yansimalari</button>
+            </div>
+
+            <!-- Featured news -->
+            <div class="scroll-reveal slide-up" style="margin-bottom: 48px;">
+                <a href="haber-detay.html" style="text-decoration: none; color: inherit; display: block;">
+                    <div class="card" style="flex-direction: row; border-radius: 16px; overflow: hidden;">
+                        <div class="card-img-placeholder bg-pattern-1" style="width: 420px; min-width: 420px; height: auto; flex-shrink: 0; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-newspaper" style="font-size: 72px; color: var(--accent-primary); opacity: 0.4;"></i>
+                        </div>
+                        <div class="card-body" style="padding: 40px;">
+                            <span class="card-tag">Proje Haberleri</span>
+                            <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">15 Mart 2026</div>
+                            <h2 style="font-size: clamp(20px, 2.5vw, 28px); margin-bottom: 16px; line-height: 1.3;">Mikro Robot Projemiz AB Horizon Europe Programindan 2.4 Milyon Euro Fon Aldi</h2>
+                            <p>Manyetik yumusak mikro robotlarin gelismesi icin yurutulen projemiz, Horizon Europe CRF programi kapsamindaki rekabetci degerlendirme sureci sonucunda fonlanmaya hak kazandi.</p>
+                            <span class="card-link" style="margin-top: 8px; display: inline-flex;">Devami <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- News grid -->
+            <div class="card-grid scroll-reveal fade-in">
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-2" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-award" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Akademik Basarilar</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">8 Mar 2026</span>
+                        </div>
+                        <h3>Selin Celik Doktora Tezini Basariyla Savundu</h3>
+                        <p>Manyetik yumusak mikro robotlar uzerine yaptigi doktora calismasi uluslararasi juri tarafindan tam not aldı.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Akademik Basarilar</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-3" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-microscope" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Lab Gelismeleri</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">22 Sub 2026</span>
+                        </div>
+                        <h3>Yeni Taramali Elektron Mikroskobu Laboratuvara Kuruldu</h3>
+                        <p>TUBITAK BILIM projesi kapsaminda satinaldigimiz yuksek cozunurluklu SEM cihazi hizmete girdi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Lab Gelismeleri</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-1" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-book-open" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Akademik Basarilar</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">10 Oca 2026</span>
+                        </div>
+                        <h3>Science Robotics Makalemiz En Cok Atif Alan Calisma Secildi</h3>
+                        <p>2024 yilinda yayinlanan mikro robot makalemiz, derginin yillik en cok atif alan makaleleri arasinda 3. siraya girdi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Akademik Basarilar</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-2" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-handshake" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Proje Haberleri</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">5 Oca 2026</span>
+                        </div>
+                        <h3>TU Delft ile Ortaklasma Protokolu Imzalandi</h3>
+                        <p>Termoelektrik malzeme arastirmalerinde TU Delft Aerodinamik Muhendisligi bolumu ile isbirligi anlasmasi imzalandi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Proje Haberleri</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-3" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-tv" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Medya Yansimalari</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">18 Ara 2025</span>
+                        </div>
+                        <h3>Lab'imiz TRT Haber'de Mikro Robot Arastirmalarimizla Yer Aldi</h3>
+                        <p>Manyetik yumusak mikro robot calismalarimiz TRT Haber ana haber bulteni Bilim ve Teknoloji bolumunde yayinlandi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Medya Yansimalari</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="haber-detay.html" class="card" style="text-decoration: none; color: inherit;">
+                    <div class="card-img-placeholder bg-pattern-1" style="display: flex; align-items: center; justify-content: center; height: 180px;">
+                        <i class="fa-solid fa-user-plus" style="font-size: 44px; color: var(--accent-primary); opacity: 0.5;"></i>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <span class="card-tag">Lab Gelismeleri</span>
+                            <span style="font-size: 12px; color: var(--text-muted);">2 Ara 2025</span>
+                        </div>
+                        <h3>Ekibimize Yeni Postdok Arastirmaci Katildi</h3>
+                        <p>Imperial College London'dan Dr. Zeynep Arslan, termoelektrik malzeme karakterizasyonu uzerine takimimize katildi.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-meta">Lab Gelismeleri</span>
+                        <span class="card-link">Oku <i class="fa-solid fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+            </div>
+
+            <!-- Pagination -->
+            <nav class="pagination scroll-reveal fade-in">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn"><i class="fa-solid fa-arrow-right"></i></button>
+            </nav>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

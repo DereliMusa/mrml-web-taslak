@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iletisim | MrML Lab</title>
+    <meta name="description" content="MrML Lab iletisim bilgileri, formu ve konum.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inner-pages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .contact-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+        .contact-card {
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition-normal);
+        }
+        .contact-card:hover {
+            border-color: rgba(198,151,73,0.3);
+            transform: translateY(-4px);
+        }
+        .contact-card-icon {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: rgba(198,151,73,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 22px;
+            color: var(--accent-primary);
+        }
+        .contact-card h4 { font-size: 16px; margin-bottom: 8px; }
+        .contact-card p { font-size: 14px; margin-bottom: 0; }
+        .contact-card a { color: var(--accent-primary); font-size: 15px; }
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: var(--bg-tertiary);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.06);
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Anasayfa</a>
+                <a href="hakkinda.html" class="nav-link">Hakkinda</a>
+                <a href="arastirmalar.html" class="nav-link">Arastirmalar</a>
+                <a href="ekip.html" class="nav-link">Ekip</a>
+                <a href="yayinlar.html" class="nav-link">Yayinlar</a>
+                <a href="haberler.html" class="nav-link">Haberler</a>
+            </div>
+            <a href="basvur.html" class="btn btn-outline nav-cta">Basvur</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container page-hero-content">
+            <nav class="breadcrumb">
+                <a href="index.html">Anasayfa</a>
+                <span class="sep">/</span>
+                <span class="current">Iletisim</span>
+            </nav>
+            <span class="eyebrow">Bize Ulasin</span>
+            <h1>Iletisim</h1>
+            <p class="lead">Sorulariniz, isbirligi teklifleriniz veya ziyaret talebiniz icin bize ulasin.</p>
+        </div>
+    </section>
+
+    <!-- CONTACT INFO CARDS -->
+    <section class="content-section">
+        <div class="container">
+            <div class="contact-info-grid scroll-reveal fade-in">
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <h4>Adres</h4>
+                    <p>Muhendislik Binasi, B-Blok, Kat 3, Oda 312<br>Global Muhendislik Universitesi<br>Kampus, 06800</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-envelope"></i></div>
+                    <h4>E-posta</h4>
+                    <a href="mailto:contact@mrml-lab.edu">contact@mrml-lab.edu</a>
+                    <p style="margin-top: 8px; font-size: 13px;">Akademik isbirligi: <a href="mailto:collab@mrml-lab.edu">collab@mrml-lab.edu</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-solid fa-phone"></i></div>
+                    <h4>Telefon</h4>
+                    <a href="tel:+903121234567">+90 (312) 123 45 67</a>
+                    <p style="margin-top: 8px; font-size: 13px;">Pzt-Cum, 09:00 - 17:00</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-card-icon"><i class="fa-regular fa-clock"></i></div>
+                    <h4>Calisma Saatleri</h4>
+                    <p>Pazartesi - Cuma<br>09:00 - 18:00</p>
+                    <p style="font-size: 13px;">Laboratuvar ziyaretleri onceden randevu ile</p>
+                </div>
+            </div>
+
+            <!-- Contact form & map side by side -->
+            <div class="two-col-grid scroll-reveal slide-up">
+                <div>
+                    <h2 style="margin-bottom: 32px;">Mesaj Gonder</h2>
+                    <div class="two-col-grid" style="gap: 20px;">
+                        <div class="form-group">
+                            <label class="form-label">Ad Soyad</label>
+                            <input type="text" class="form-control" placeholder="Adiniz">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">E-posta</label>
+                            <input type="email" class="form-control" placeholder="E-postaniz">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Konu</label>
+                        <select class="form-control">
+                            <option value="">Konu secin...</option>
+                            <option>Genel Bilgi</option>
+                            <option>Basvuru / Is Birligi</option>
+                            <option>Akademik Isbirligi</option>
+                            <option>Medya Talebi</option>
+                            <option>Diger</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Mesajiniz</label>
+                        <textarea class="form-control" rows="5" placeholder="Mesajinizi buraya yazin..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-check">
+                            <input type="checkbox">
+                            <span class="form-check-label">Kisisel verilerimin <a href="kvkk.html">KVKK kapsaminda</a> islenmesini onayliyorum.</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gonder <i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+
+                <div>
+                    <h2 style="margin-bottom: 32px;">Konum</h2>
+                    <div class="map-placeholder">
+                        <i class="fa-solid fa-map-location-dot" style="font-size: 48px; color: var(--accent-primary); opacity: 0.5;"></i>
+                        <p style="color: var(--text-muted); margin: 0; font-size: 14px; text-align: center;">Global Muhendislik Universitesi<br>Muhendislik Binasi B-Blok</p>
+                        <a href="https://maps.google.com" target="_blank" class="btn btn-secondary">Haritada Goster <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social media -->
+            <div style="margin-top: 80px; text-align: center;" class="scroll-reveal fade-in">
+                <span class="eyebrow">Sosyal Medya</span>
+                <h2 style="margin-bottom: 32px;">Bizi Takip Edin</h2>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="#" class="btn btn-secondary" style="gap: 10px;"><i class="fa-brands fa-twitter"></i> Twitter / X</a>
+                    <a href="#" class="btn btn-secondary" style="gap: 10px;"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+                    <a href="#" class="btn btn-secondary" style="gap: 10px;"><i class="fa-brands fa-youtube"></i> YouTube</a>
+                    <a href="#" class="btn btn-secondary" style="gap: 10px;"><i class="fa-brands fa-google"></i> Google Scholar</a>
+                    <a href="#" class="btn btn-secondary" style="gap: 10px;"><i class="fa-brands fa-github"></i> GitHub</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo" style="margin-bottom: 24px; display: inline-flex;">
+                    <span class="logo-mr">Mr</span><span class="logo-ml">ML</span> <span class="logo-lab">Lab</span>
+                </a>
+                <p>Hesaplamali Tip &amp; Mekatronik Enstitusu<br>Global Muhendislik Universitesi</p>
+                <p class="address">Muhendislik Binasi B-Blok Kat 3<br>Kampus, 06800</p>
+            </div>
+            <div class="footer-links">
+                <h4>Hizli Linkler</h4>
+                <ul>
+                    <li><a href="index.html">Anasayfa</a></li>
+                    <li><a href="hakkinda.html">Hakkinda</a></li>
+                    <li><a href="arastirmalar.html">Arastirmalar</a></li>
+                    <li><a href="ekip.html">Ekip</a></li>
+                    <li><a href="iletisim.html">Iletisim</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Iletisim</h4>
+                <a href="mailto:contact@mrml-lab.edu" class="contact-email">contact@mrml-lab.edu</a>
+                <div class="social-links">
+                    <a href="#" aria-label="Google Scholar"><i class="fa-brands fa-google"></i></a>
+                    <a href="#" aria-label="ORCID"><i class="fa-brands fa-orcid"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2026 MrML Lab. Tum haklari saklidir. | <a href="gizlilik.html">Gizlilik</a> | <a href="kvkk.html">KVKK</a></p>
+        </div>
+        <div class="footer-glow"></div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
