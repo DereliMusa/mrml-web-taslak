@@ -16,3 +16,6 @@ __pycache__/
 
 # Custom temporary files
 dom_output.txt
+
+# macOS
+.DS_Store
