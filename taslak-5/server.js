@@ -131,20 +131,82 @@ async function sendOTPEmail(email, token, scope) {
       auth: { user, pass },
     });
 
+    const scopeLabels = { blog: 'Blog', news: 'Haber', publications: 'Yayin', full: 'Tam Erisim' };
+    const scopeLabel = scopeLabels[scope] || scope;
+
     await transporter.sendMail({
-      from: `"MrML Lab Admin" <${fromEmail}>`,
+      from: `"MrML Lab" <${user}>`,
       to: email,
-      subject: 'MrML Lab Admin Paneli -- Gecici Erisim Linki',
+      subject: `MrML Lab -- Gecici Giris Linkiniz (${scopeLabel})`,
       html: `
-        <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto;">
-          <h2 style="color: #6366f1;">MrML Lab Admin Paneli</h2>
-          <p>Asagidaki link ile admin paneline giris yapabilirsiniz.</p>
-          <p><strong>Kapsam:</strong> ${scope}</p>
-          <p><strong>Gecerlilik:</strong> ${expireHours} saat</p>
-          <a href="${link}" style="display:inline-block;background:#6366f1;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;font-weight:bold;">Giris Yap</a>
-          <p style="margin-top:24px;color:#888;font-size:12px;">Bu link tek kullanimlik ve ${expireHours} saat gecerlidir. Eger bu istegi siz yapmadiysa dikkate almayin.</p>
-        </div>
-      `,
+<!DOCTYPE html>
+<html lang="tr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0a0f;font-family:'Helvetica Neue',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0f;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="520" cellpadding="0" cellspacing="0" style="background:#111118;border:1px solid rgba(255,255,255,0.07);border-radius:12px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr><td style="background:#18181f;padding:24px 32px;border-bottom:1px solid rgba(255,255,255,0.07);">
+          <span style="font-size:22px;font-weight:800;letter-spacing:-0.5px;">
+            <span style="color:#f0f0f0;">Mr</span><span style="color:#C69749;">ML</span>
+            <span style="color:#5a5d70;font-weight:400;font-size:17px;"> Lab</span>
+          </span>
+        </td></tr>
+
+        <!-- Body -->
+        <tr><td style="padding:32px 32px 28px;">
+          <p style="color:#b0b3c6;font-size:14px;margin:0 0 8px;">Merhaba,</p>
+          <h1 style="color:#f0f0f0;font-size:20px;font-weight:700;margin:0 0 20px;line-height:1.3;">Admin paneline giris icin gecici linkiniz hazir.</h1>
+
+          <table width="100%" cellpadding="0" cellspacing="0" style="background:#18181f;border:1px solid rgba(255,255,255,0.07);border-radius:8px;margin-bottom:28px;">
+            <tr>
+              <td style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.07);">
+                <span style="color:#5a5d70;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Erisim Kapsamı</span>
+                <div style="color:#C69749;font-size:14px;font-weight:600;margin-top:4px;">${scopeLabel}</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:14px 18px;">
+                <span style="color:#5a5d70;font-size:11px;text-transform:uppercase;letter-spacing:1px;">Gecerlilik Suresi</span>
+                <div style="color:#f0f0f0;font-size:14px;font-weight:600;margin-top:4px;">${expireHours} saat &bull; Tek kullanimlik</div>
+              </td>
+            </tr>
+          </table>
+
+          <!-- CTA Button -->
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr><td align="center" style="padding-bottom:28px;">
+              <a href="${link}"
+                 style="display:inline-block;background:#C69749;color:#0a0a0f;padding:14px 36px;border-radius:6px;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:0.3px;">
+                Admin Paneline Giris Yap
+              </a>
+            </td></tr>
+          </table>
+
+          <!-- Token (backup) -->
+          <div style="background:#0a0a0f;border:1px solid rgba(255,255,255,0.05);border-radius:6px;padding:12px 16px;margin-bottom:24px;">
+            <p style="color:#5a5d70;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin:0 0 6px;">Buton calismiyorsa token kodunu girin</p>
+            <code style="color:#C69749;font-size:13px;letter-spacing:1px;word-break:break-all;">${token}</code>
+            <p style="color:#5a5d70;font-size:11px;margin:6px 0 0;">veya su linki tarayiciniza kopyalayin:</p>
+            <p style="color:#6366f1;font-size:11px;word-break:break-all;margin:4px 0 0;"><a href="${link}" style="color:#6366f1;">${link}</a></p>
+          </div>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="background:#0d0d14;padding:20px 32px;border-top:1px solid rgba(255,255,255,0.05);">
+          <p style="color:#3a3d50;font-size:12px;margin:0;line-height:1.6;">
+            Bu e-posta MrML Lab admin paneli tarafindan otomatik gonderilmistir.
+            Bu istegi siz yapmadiysa dikkate almayin &mdash; link suresi dolunca gecersiz olacaktir.
+          </p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`,
     });
     console.log(`E-posta ${email} adresine gonderildi.`);
   }
@@ -248,9 +310,10 @@ route('POST', '/api/auth/send-token', async (req, res) => {
   const token = generateToken(16);
 
   database.prepare('INSERT INTO temp_tokens (token, email, scope, expires_at) VALUES (?, ?, ?, ?)').run(token, email, scope || 'blog', expiresAt);
-  sendOTPEmail(email, token, scope || 'blog');
+  await sendOTPEmail(email, token, scope || 'blog');
 
-  sendJSON(res, 200, { success: true, message: `Token olusturuldu ve ${email} adresine gonderildi (log modu aktif).` });
+  const mode = database.prepare("SELECT value FROM site_settings WHERE key = 'smtp_mode'").get()?.value || 'log';
+  sendJSON(res, 200, { success: true, message: `Token olusturuldu ve ${email} adresine ${mode === 'smtp' ? 'e-posta ile gonderildi' : 'gonderildi (log modu -- konsola yazildi)'}.` });
 });
 
 route('POST', '/api/auth/token-login', async (req, res) => {
