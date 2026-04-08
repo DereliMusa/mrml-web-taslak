@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeler | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+
+<template id="page-template">
+<div class="page-header">
+    <div>
+        <h1>Projeler</h1>
+        <p>Arastirma projelerini yonetin.</p>
+    </div>
+    <div class="page-actions">
+        <button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Proje Ekle</button>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-title">Proje Listesi</span>
+        <div class="toolbar" style="margin:0;gap:8px;">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="form-control" id="search-input" placeholder="Ara...">
+            </div>
+            <select class="form-control" id="status-filter" style="width:auto;">
+                <option value="">Tum Durumlar</option>
+                <option value="active">Devam Eden</option>
+                <option value="completed">Tamamlandi</option>
+                <option value="cancelled">Iptal</option>
+            </select>
+        </div>
+    </div>
+    <div id="table-wrap"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="proj-modal">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 id="modal-title">Proje Ekle</h3>
+            <button class="modal-close" data-close-modal="proj-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label class="form-label">Proje Basligi *</label>
+                <input type="text" id="f-title" class="form-control" placeholder="BiSbTe Generatorlerin Performans Optimizasyonu">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Kisa Ozet</label>
+                <input type="text" id="f-summary" class="form-control" placeholder="Tek cumlelik ozet...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Detayli Aciklama</label>
+                <textarea id="f-description" class="form-control" rows="4"></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Durum</label>
+                    <select id="f-status" class="form-control">
+                        <option value="active">Devam Eden</option>
+                        <option value="completed">Tamamlandi</option>
+                        <option value="cancelled">Iptal Edildi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fon Kaynagi</label>
+                    <select id="f-funding" class="form-control">
+                        <option value="">Seciniz</option>
+                        <option value="tubitak">TUBITAK</option>
+                        <option value="ab">AB / Horizon</option>
+                        <option value="bap">Universite BAP</option>
+                        <option value="industry">Sanayi Isbirligi</option>
+                        <option value="other">Diger</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Fon Tutari</label>
+                    <input type="text" id="f-amount" class="form-control" placeholder="2.4 Milyon Euro">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Baslangic Tarihi</label>
+                    <input type="date" id="f-start" class="form-control">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Bitis Tarihi</label>
+                    <input type="date" id="f-end" class="form-control">
+                </div>
+                <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:4px;">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="f-featured">
+                        <span class="toggle-track"></span>
+                        <span class="toggle-label">One Cikan Proje</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="proj-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+const STATUS_LABELS = { active: 'Devam Eden', completed: 'Tamamlandi', cancelled: 'Iptal' };
+const STATUS_BADGE  = { active: 'badge-green', completed: 'badge-blue', cancelled: 'badge-red' };
+const FUND_LABELS   = { tubitak: 'TUBITAK', ab: 'AB / Horizon', bap: 'BAP', industry: 'Sanayi', other: 'Diger' };
+let allItems = [];
+
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML =
+        getAdminSidebar('projeler') +
+        `<main class="admin-main">${getTopbar('Projeler')}<div class="admin-content" id="content"></div></main>` +
+        getConfirmDialog();
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    await loadItems();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('status-filter').addEventListener('change', renderTable);
+}
+
+async function loadItems() {
+    try { allItems = await apiJSON('/projects'); renderTable(); }
+    catch(e) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${e.message}</p></div>`; }
+}
+
+function renderTable() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const s = document.getElementById('status-filter').value;
+    const filtered = allItems.filter(m => (!q || m.title.toLowerCase().includes(q)) && (!s || m.status === s));
+    if (!filtered.length) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-diagram-project"></i><p>Proje bulunamadi.</p></div>`; return; }
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr><th>Proje</th><th>Durum</th><th>Fon</th><th>Tarih</th><th>Islemler</th></tr></thead>
+            <tbody>${filtered.map(m => `<tr>
+                <td><strong>${m.title}</strong>${m.is_featured?'<span class="badge badge-gold" style="margin-left:8px;">One Cikan</span>':''}</td>
+                <td><span class="badge ${STATUS_BADGE[m.status]||'badge-gray'}">${STATUS_LABELS[m.status]||m.status}</span></td>
+                <td><span class="badge badge-gray">${FUND_LABELS[m.funding_source]||m.funding_source||'-'}</span></td>
+                <td style="color:var(--text-muted);font-size:12px;">${m.start_date||''} ${m.end_date?'→ '+m.end_date:''}</td>
+                <td><div class="table-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteItem(${m.id})"><i class="fa-solid fa-trash"></i></button>
+                </div></td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+}
+
+function openForm(id=null) {
+    const item = id ? allItems.find(m=>m.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Proje Duzenle' : 'Yeni Proje';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-title').value = item?.title||'';
+    document.getElementById('f-summary').value = item?.summary||'';
+    document.getElementById('f-description').value = item?.description||'';
+    document.getElementById('f-status').value = item?.status||'active';
+    document.getElementById('f-funding').value = item?.funding_source||'';
+    document.getElementById('f-amount').value = item?.funding_amount||'';
+    document.getElementById('f-start').value = item?.start_date||'';
+    document.getElementById('f-end').value = item?.end_date||'';
+    document.getElementById('f-featured').checked = !!item?.is_featured;
+    openModal('proj-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const title = document.getElementById('f-title').value.trim();
+    if (!title) { showToast('Proje basligi zorunludur.','error'); return; }
+    const body = { title, summary: document.getElementById('f-summary').value.trim(),
+        description: document.getElementById('f-description').value.trim(),
+        status: document.getElementById('f-status').value,
+        funding_source: document.getElementById('f-funding').value,
+        funding_amount: document.getElementById('f-amount').value.trim(),
+        start_date: document.getElementById('f-start').value,
+        end_date: document.getElementById('f-end').value,
+        is_featured: document.getElementById('f-featured').checked };
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/projects/${id}`,{method:'PUT',body}); showToast('Guncellendi.','success'); }
+        else { await apiJSON('/projects',{method:'POST',body}); showToast('Eklendi.','success'); }
+        closeModal('proj-modal'); await loadItems();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteItem(id) {
+    confirmAction('Bu projeyi silmek istediginizden emin misiniz?', async () => {
+        try { await apiJSON(`/projects/${id}`,{method:'DELETE'}); showToast('Silindi.','success'); await loadItems(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Veritabani (hassas veri icerdigindan repoya ekleme)
+db/mrml.db
+db/mrml.db-shm
+db/mrml.db-wal
+
+# Yuklenen dosyalar (repoda tutulmaz, sunucuda kalir)
+uploads/
+
+# macOS
+.DS_Store

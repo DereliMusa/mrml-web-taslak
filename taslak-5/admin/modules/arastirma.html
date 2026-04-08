@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arastirma Alanlari | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+<template id="page-template">
+<div class="page-header">
+    <div><h1>Arastirma Alanlari</h1><p>Lab arastirma gruplarini yonetin.</p></div>
+    <div class="page-actions"><button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Alan Ekle</button></div>
+</div>
+<div class="panel">
+    <div class="panel-header"><span class="panel-title">Arastirma Gruplari</span></div>
+    <div id="table-wrap"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+</div>
+<div class="modal-overlay" id="area-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-title">Alan Ekle</h3>
+            <button class="modal-close" data-close-modal="area-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group"><label class="form-label">Alan Adi *</label><input type="text" id="f-name" class="form-control" placeholder="Termoelektrik Arastirma"></div>
+            <div class="form-group"><label class="form-label">Aciklama</label><textarea id="f-description" class="form-control" rows="3"></textarea></div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Ikon (Font Awesome sinifi)</label>
+                    <input type="text" id="f-icon" class="form-control" placeholder="fa-solid fa-bolt">
+                    <p class="form-hint">Ornek: fa-solid fa-robot, fa-solid fa-bone</p>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Renk</label>
+                    <div class="color-row">
+                        <input type="color" id="f-color" value="#6366f1">
+                        <input type="text" id="f-color-text" class="form-control" placeholder="#6366f1" style="flex:1;">
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Sira No</label><input type="number" id="f-order" class="form-control" value="0" min="0"></div>
+                <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:4px;">
+                    <label class="toggle-switch"><input type="checkbox" id="f-active" checked><span class="toggle-track"></span><span class="toggle-label">Aktif</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="area-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+let allItems = [];
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML = getAdminSidebar('arastirma') +
+        `<main class="admin-main">${getTopbar('Arastirma Alanlari')}<div class="admin-content" id="content"></div></main>` + getConfirmDialog();
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+
+    // Renk inputlari senkronize
+    document.getElementById('f-color').addEventListener('input', e => document.getElementById('f-color-text').value = e.target.value);
+    document.getElementById('f-color-text').addEventListener('input', e => { if(/^#[0-9a-f]{6}$/i.test(e.target.value)) document.getElementById('f-color').value = e.target.value; });
+
+    await loadItems();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+}
+
+async function loadItems() {
+    try { allItems = await apiJSON('/research-areas'); renderTable(); }
+    catch(e) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${e.message}</p></div>`; }
+}
+
+function renderTable() {
+    if (!allItems.length) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-flask"></i><p>Arastirma alani bulunamadi.</p></div>`; return; }
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr><th>Alan</th><th>Aciklama</th><th>Sira</th><th>Durum</th><th>Islemler</th></tr></thead>
+            <tbody>${allItems.map(m => `<tr>
+                <td><div style="display:flex;align-items:center;gap:10px;">
+                    <div style="width:32px;height:32px;background:${m.color}22;border-radius:6px;display:flex;align-items:center;justify-content:center;color:${m.color};font-size:14px;">
+                        <i class="${m.icon}"></i>
+                    </div>
+                    <strong>${m.name}</strong>
+                </div></td>
+                <td style="color:var(--text-muted);max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m.description||'-'}</td>
+                <td>${m.order_index}</td>
+                <td><span class="badge ${m.is_active?'badge-green':'badge-gray'}">${m.is_active?'Aktif':'Pasif'}</span></td>
+                <td><div class="table-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteItem(${m.id},'${m.name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-trash"></i></button>
+                </div></td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+}
+
+function openForm(id=null) {
+    const item = id ? allItems.find(m=>m.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Alan Duzenle' : 'Yeni Alan';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-name').value = item?.name||'';
+    document.getElementById('f-description').value = item?.description||'';
+    document.getElementById('f-icon').value = item?.icon||'fa-solid fa-flask';
+    const color = item?.color||'#6366f1';
+    document.getElementById('f-color').value = color;
+    document.getElementById('f-color-text').value = color;
+    document.getElementById('f-order').value = item?.order_index??allItems.length;
+    document.getElementById('f-active').checked = item ? !!item.is_active : true;
+    openModal('area-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const name = document.getElementById('f-name').value.trim();
+    if (!name) { showToast('Alan adi zorunludur.','error'); return; }
+    const body = { name, description: document.getElementById('f-description').value.trim(),
+        icon: document.getElementById('f-icon').value.trim()||'fa-solid fa-flask',
+        color: document.getElementById('f-color').value,
+        order_index: parseInt(document.getElementById('f-order').value)||0,
+        is_active: document.getElementById('f-active').checked ? 1 : 0 };
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/research-areas/${id}`,{method:'PUT',body}); showToast('Guncellendi.','success'); }
+        else { await apiJSON('/research-areas',{method:'POST',body}); showToast('Eklendi.','success'); }
+        closeModal('area-modal'); await loadItems();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteItem(id, name) {
+    confirmAction(`"${name}" arastirma alanini silmek istediginizden emin misiniz?`, async () => {
+        try { await apiJSON(`/research-areas/${id}`,{method:'DELETE'}); showToast('Silindi.','success'); await loadItems(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+init();
+</script>
+</body>
+</html>

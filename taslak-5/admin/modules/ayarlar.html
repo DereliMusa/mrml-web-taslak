@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Ayarlar | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+<template id="page-template">
+<div class="page-header">
+    <div><h1>Genel Ayarlar</h1><p>Site geneli yapilandirma ve e-posta ayarlarini yonetin.</p></div>
+    <div class="page-actions"><button class="btn btn-gold" id="save-all-btn"><i class="fa-solid fa-check"></i> Tamamini Kaydet</button></div>
+</div>
+<div id="settings-wrap"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+</template>
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+let allSettings = [];
+
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML = getAdminSidebar('ayarlar') +
+        `<main class="admin-main">${getTopbar('Genel Ayarlar')}<div class="admin-content" id="content"></div></main>`;
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    await loadSettings();
+    document.getElementById('save-all-btn').addEventListener('click', saveAll);
+}
+
+async function loadSettings() {
+    try {
+        allSettings = await apiJSON('/settings');
+        renderSettings();
+    } catch(e) { document.getElementById('settings-wrap').innerHTML = `<div class="empty-state"><p>${e.message}</p></div>`; }
+}
+
+function renderSettings() {
+    const groups = {};
+    allSettings.forEach(s => { (groups[s.group_name] = groups[s.group_name]||[]).push(s); });
+
+    const groupTitles = { general: 'Genel Bilgiler', contact: 'Iletisim Bilgileri', email: 'E-posta / SMTP Ayarlari' };
+    const groupIcons  = { general: 'fa-solid fa-building', contact: 'fa-solid fa-address-card', email: 'fa-solid fa-envelope' };
+
+    document.getElementById('settings-wrap').innerHTML = Object.entries(groups).map(([g, settings]) => `
+        <div class="panel" style="margin-bottom:20px;">
+            <div class="panel-header">
+                <span class="panel-title"><i class="${groupIcons[g]||'fa-solid fa-gear'}" style="margin-right:8px;color:var(--gold);"></i>${groupTitles[g]||g}</span>
+            </div>
+            <div class="panel-body">
+                ${g === 'email' ? `
+                <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:16px;">
+                    <p style="font-size:13px;color:var(--text-muted);margin:0;">
+                        <i class="fa-brands fa-google" style="color:var(--gold);margin-right:6px;"></i>
+                        Gmail App Password icin: Google Hesabi → Guvenlik → 2 Adimli Dogrulama → Uygulama Sifreleri
+                        <br>SMTP Sunucu: <code>smtp.gmail.com</code> | Port: <code>587</code> | Modu <strong>smtp</strong> yapın ve Gmail adresinizi girin.
+                    </p>
+                </div>` : ''}
+                <div class="form-row" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                    ${settings.map(s => `
+                    <div class="form-group">
+                        <label class="form-label" for="setting-${s.key}">${s.label}</label>
+                        ${s.key === 'smtp_mode' ? `
+                            <select id="setting-${s.key}" class="form-control" data-key="${s.key}">
+                                <option value="log" ${s.value==='log'?'selected':''}>Log Modu (test)</option>
+                                <option value="smtp" ${s.value==='smtp'?'selected':''}>Gmail SMTP</option>
+                            </select>
+                        ` : s.key === 'smtp_pass' ? `
+                            <input type="password" id="setting-${s.key}" class="form-control" data-key="${s.key}" value="${s.value||''}" placeholder="Google App Password" autocomplete="new-password">
+                        ` : `
+                            <input type="text" id="setting-${s.key}" class="form-control" data-key="${s.key}" value="${s.value||''}" placeholder="${s.label}">
+                        `}
+                    </div>`).join('')}
+                </div>
+            </div>
+        </div>`).join('');
+}
+
+async function saveAll() {
+    const btn = document.getElementById('save-all-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        for (const s of allSettings) {
+            const el = document.getElementById(`setting-${s.key}`);
+            if (!el) continue;
+            await apiJSON(`/settings/${s.key}`, { method:'PUT', body: { value: el.value } });
+        }
+        showToast('Ayarlar kaydedildi.', 'success');
+        await loadSettings();
+    } catch(e) { showToast(e.message, 'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Tamamini Kaydet'; }
+}
+init();
+</script>
+</body>
+</html>

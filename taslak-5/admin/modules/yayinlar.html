@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayinlar | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+
+<template id="page-template">
+<div class="page-header">
+    <div>
+        <h1>Yayinlar</h1>
+        <p>Dergi makaleleri, konferans bildirileri ve tezleri yonetin.</p>
+    </div>
+    <div class="page-actions">
+        <button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Yayin Ekle</button>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-title">Yayin Listesi</span>
+        <div class="toolbar" style="margin:0;gap:8px;">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="form-control" id="search-input" placeholder="Baslik veya yazar ara...">
+            </div>
+            <select class="form-control" id="type-filter" style="width:auto;">
+                <option value="">Tum Turler</option>
+                <option value="article">Dergi Makalesi</option>
+                <option value="conference">Konferans Bildirisi</option>
+                <option value="thesis_msc">YL Tezi</option>
+                <option value="thesis_phd">Doktora Tezi</option>
+            </select>
+        </div>
+    </div>
+    <div id="table-wrap">
+        <div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="pub-modal">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 id="modal-title">Yayin Ekle</h3>
+            <button class="modal-close" data-close-modal="pub-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group">
+                <label class="form-label">Yayin Basligi *</label>
+                <input type="text" id="f-title" class="form-control" placeholder="Thermoelectric Performance Enhancement...">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Yazarlar *</label>
+                    <input type="text" id="f-authors" class="form-control" placeholder="A. Yilmaz, Z. Arslan, A. Koc">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Yil</label>
+                    <input type="number" id="f-year" class="form-control" placeholder="2025" min="1990" max="2099">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Dergi / Konferans</label>
+                    <input type="text" id="f-journal" class="form-control" placeholder="Advanced Energy Materials">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tur</label>
+                    <select id="f-type" class="form-control">
+                        <option value="article">Dergi Makalesi</option>
+                        <option value="conference">Konferans Bildirisi</option>
+                        <option value="thesis_msc">Yuksek Lisans Tezi</option>
+                        <option value="thesis_phd">Doktora Tezi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">DOI Linki</label>
+                <input type="text" id="f-doi" class="form-control" placeholder="https://doi.org/10.1002/...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Ozet (Abstract)</label>
+                <textarea id="f-abstract" class="form-control" rows="4" placeholder="Bu calismanin amaci..."></textarea>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Anahtar Kelimeler</label>
+                    <input type="text" id="f-keywords" class="form-control" placeholder="termoelektrik, nanoyapi, ZT">
+                </div>
+                <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:4px;">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="f-featured">
+                        <span class="toggle-track"></span>
+                        <span class="toggle-label">One Cikar</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="pub-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+const TYPE_LABELS = { article: 'Dergi Makalesi', conference: 'Konferans', thesis_msc: 'YL Tezi', thesis_phd: 'Dr. Tezi' };
+const TYPE_BADGE  = { article: 'badge-blue', conference: 'badge-gold', thesis_msc: 'badge-green', thesis_phd: 'badge-orange' };
+let allItems = [];
+
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML =
+        getAdminSidebar('yayinlar') +
+        `<main class="admin-main">${getTopbar('Yayinlar')}<div class="admin-content" id="content"></div></main>` +
+        getConfirmDialog();
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    await loadItems();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('type-filter').addEventListener('change', renderTable);
+}
+
+async function loadItems() {
+    try { allItems = await apiJSON('/publications'); renderTable(); }
+    catch(e) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${e.message}</p></div>`; }
+}
+
+function renderTable() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const t = document.getElementById('type-filter').value;
+    const filtered = allItems.filter(m => (!q || m.title.toLowerCase().includes(q) || m.authors.toLowerCase().includes(q)) && (!t || m.pub_type === t));
+    if (!filtered.length) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-regular fa-file-lines"></i><p>Yayin bulunamadi.</p></div>`; return; }
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr><th>Baslik</th><th>Yazarlar</th><th>Dergi</th><th>Yil</th><th>Tur</th><th>Islemler</th></tr></thead>
+            <tbody>${filtered.map(m => `<tr>
+                <td style="max-width:260px;">
+                    <strong style="display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m.title}</strong>
+                    ${m.is_featured ? '<span class="badge badge-gold" style="margin-top:4px;">One Cikan</span>' : ''}
+                </td>
+                <td style="color:var(--text-muted);max-width:200px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m.authors}</td>
+                <td style="color:var(--text-muted);">${m.journal||'-'}</td>
+                <td>${m.year||'-'}</td>
+                <td><span class="badge ${TYPE_BADGE[m.pub_type]||'badge-gray'}">${TYPE_LABELS[m.pub_type]||m.pub_type}</span></td>
+                <td><div class="table-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteItem(${m.id})"><i class="fa-solid fa-trash"></i></button>
+                </div></td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+}
+
+function openForm(id=null) {
+    const item = id ? allItems.find(m=>m.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Yayin Duzenle' : 'Yeni Yayin';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-title').value = item?.title||'';
+    document.getElementById('f-authors').value = item?.authors||'';
+    document.getElementById('f-year').value = item?.year||new Date().getFullYear();
+    document.getElementById('f-journal').value = item?.journal||'';
+    document.getElementById('f-type').value = item?.pub_type||'article';
+    document.getElementById('f-doi').value = item?.doi||'';
+    document.getElementById('f-abstract').value = item?.abstract||'';
+    document.getElementById('f-keywords').value = item?.keywords||'';
+    document.getElementById('f-featured').checked = !!item?.is_featured;
+    openModal('pub-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const title = document.getElementById('f-title').value.trim();
+    const authors = document.getElementById('f-authors').value.trim();
+    if (!title || !authors) { showToast('Baslik ve yazarlar zorunludur.','error'); return; }
+    const body = { title, authors, year: parseInt(document.getElementById('f-year').value)||new Date().getFullYear(),
+        journal: document.getElementById('f-journal').value.trim(), pub_type: document.getElementById('f-type').value,
+        doi: document.getElementById('f-doi').value.trim(), abstract: document.getElementById('f-abstract').value.trim(),
+        keywords: document.getElementById('f-keywords').value.trim(), is_featured: document.getElementById('f-featured').checked };
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/publications/${id}`,{method:'PUT',body}); showToast('Guncellendi.','success'); }
+        else { await apiJSON('/publications',{method:'POST',body}); showToast('Eklendi.','success'); }
+        closeModal('pub-modal'); await loadItems();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteItem(id) {
+    confirmAction('Bu yayini silmek istediginizden emin misiniz?', async () => {
+        try { await apiJSON(`/publications/${id}`,{method:'DELETE'}); showToast('Silindi.','success'); await loadItems(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+init();
+</script>
+</body>
+</html>

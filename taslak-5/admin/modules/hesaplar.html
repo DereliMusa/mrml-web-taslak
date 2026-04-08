@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesaplar | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+<template id="page-template">
+<div class="page-header">
+    <div><h1>Kullanici Hesaplari</h1><p>Admin ve uye hesaplarini yonetin. Gecici erisim linki gonderin.</p></div>
+    <div class="page-actions"><button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Hesap Ekle</button></div>
+</div>
+
+<!-- OTP Panel -->
+<div class="panel" style="margin-bottom:20px;">
+    <div class="panel-header"><span class="panel-title"><i class="fa-solid fa-paper-plane" style="margin-right:8px;color:var(--gold);"></i>Gecici Erisim Linki Gonder</span></div>
+    <div class="panel-body">
+        <div class="otp-row">
+            <div class="form-group" style="flex:2;"><label class="form-label">Alici E-posta</label><input type="email" id="otp-email" class="form-control" placeholder="arastirmaci@mrml-lab.edu"></div>
+            <div class="form-group" style="flex:1;"><label class="form-label">Kapsam</label>
+                <select id="otp-scope" class="form-control">
+                    <option value="blog">Blog</option>
+                    <option value="news">Haber</option>
+                    <option value="publications">Yayin</option>
+                    <option value="full">Tam Erisim</option>
+                </select>
+            </div>
+            <div class="form-group"><label class="form-label">&nbsp;</label><button id="otp-btn" class="btn btn-gold"><i class="fa-solid fa-paper-plane"></i> Gonder</button></div>
+        </div>
+        <p class="form-hint">Link 24 saat gecerli ve tek kullanimlik. Log modunda konsolda goruntulenir.</p>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header"><span class="panel-title">Hesap Listesi</span></div>
+    <div id="table-wrap"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="user-modal">
+    <div class="modal">
+        <div class="modal-header">
+            <h3 id="modal-title">Hesap Ekle</h3>
+            <button class="modal-close" data-close-modal="user-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group"><label class="form-label">Kullanici Adi *</label><input type="text" id="f-username" class="form-control" placeholder="ahmet.yilmaz" autocomplete="off"></div>
+            <div class="form-group"><label class="form-label">E-posta *</label><input type="email" id="f-email" class="form-control" placeholder="ahmet@mrml-lab.edu"></div>
+            <div class="form-group">
+                <label class="form-label">Sifre <span id="pw-hint" style="font-weight:400;color:var(--text-muted);">(Yeni sifre icin girin, bos birakirsaniz degismez)</span></label>
+                <input type="password" id="f-password" class="form-control" placeholder="••••••••" autocomplete="new-password">
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Rol</label>
+                    <select id="f-role" class="form-control"><option value="admin">Yonetici (Admin)</option><option value="member">Uye</option></select>
+                </div>
+                <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:4px;">
+                    <label class="toggle-switch"><input type="checkbox" id="f-active" checked><span class="toggle-track"></span><span class="toggle-label">Aktif</span></label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="user-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+let allUsers = [];
+let currentUser;
+
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    currentUser = user;
+    if (user.role !== 'admin') { location.href = '/admin/dashboard.html'; return; }
+    document.getElementById('app').innerHTML = getAdminSidebar('hesaplar') +
+        `<main class="admin-main">${getTopbar('Kullanici Hesaplari')}<div class="admin-content" id="content"></div></main>` + getConfirmDialog();
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    await loadUsers();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('otp-btn').addEventListener('click', sendOTP);
+}
+
+async function loadUsers() {
+    try { allUsers = await apiJSON('/users'); renderTable(); }
+    catch(e) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><p>${e.message}</p></div>`; }
+}
+
+function renderTable() {
+    if (!allUsers.length) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-users"></i><p>Hesap bulunamadi.</p></div>`; return; }
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table"><thead><tr><th>Kullanici</th><th>E-posta</th><th>Rol</th><th>Durum</th><th>Islemler</th></tr></thead>
+        <tbody>${allUsers.map(u=>`<tr>
+            <td><div style="display:flex;align-items:center;gap:10px;">
+                <div style="width:30px;height:30px;border-radius:50%;background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:700;font-size:12px;color:var(--gold);">${(u.username||'?')[0].toUpperCase()}</div>
+                <strong>${u.username}</strong>
+                ${u.id === currentUser.id ? '<span class="badge badge-gold" style="margin-left:4px;">Sen</span>' : ''}
+            </div></td>
+            <td style="color:var(--text-muted);">${u.email}</td>
+            <td><span class="badge ${u.role==='admin'?'badge-gold':'badge-blue'}">${u.role==='admin'?'Yonetici':'Uye'}</span></td>
+            <td><span class="badge ${u.is_active?'badge-green':'badge-gray'}">${u.is_active?'Aktif':'Pasif'}</span></td>
+            <td><div class="table-actions">
+                <button class="btn btn-ghost btn-sm" onclick="openForm(${u.id})"><i class="fa-solid fa-pen"></i></button>
+                ${u.id !== currentUser.id ? `<button class="btn btn-danger btn-sm" onclick="deleteUser(${u.id},'${u.username}')"><i class="fa-solid fa-trash"></i></button>` : ''}
+            </div></td>
+        </tr>`).join('')}</tbody></table>`;
+}
+
+function openForm(id=null) {
+    const user = id ? allUsers.find(u=>u.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Hesap Duzenle' : 'Yeni Hesap';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-username').value = user?.username||'';
+    document.getElementById('f-email').value = user?.email||'';
+    document.getElementById('f-password').value = '';
+    document.getElementById('f-role').value = user?.role||'member';
+    document.getElementById('f-active').checked = user ? !!user.is_active : true;
+    document.getElementById('pw-hint').style.display = id ? 'inline' : 'none';
+    openModal('user-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const username = document.getElementById('f-username').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const password = document.getElementById('f-password').value;
+    if (!username || !email) { showToast('Kullanici adi ve e-posta zorunludur.','error'); return; }
+    if (!id && !password) { showToast('Yeni hesap icin sifre zorunludur.','error'); return; }
+    const body = { username, email, role: document.getElementById('f-role').value, is_active: document.getElementById('f-active').checked ? 1 : 0 };
+    if (password) body.password = password;
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/users/${id}`,{method:'PUT',body}); showToast('Hesap guncellendi.','success'); }
+        else { await apiJSON('/users',{method:'POST',body}); showToast('Hesap olusturuldu.','success'); }
+        closeModal('user-modal'); await loadUsers();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteUser(id, name) {
+    confirmAction(`"${name}" hesabini silmek istediginizden emin misiniz?`, async () => {
+        try { await apiJSON(`/users/${id}`,{method:'DELETE'}); showToast('Hesap silindi.','success'); await loadUsers(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+
+async function sendOTP() {
+    const email = document.getElementById('otp-email').value.trim();
+    const scope = document.getElementById('otp-scope').value;
+    if (!email) { showToast('E-posta giriniz.','error'); return; }
+    const btn = document.getElementById('otp-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        await apiJSON('/auth/send-token', { method:'POST', body: { email, scope } });
+        showToast(`Gecici link ${email} adresine gonderildi.`,'success');
+        document.getElementById('otp-email').value = '';
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> Gonder'; }
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+<template id="page-template">
+<div class="page-header">
+    <div><h1>Blog Yazilari</h1><p>Blog yazilarini ekle, duzenle ve yayinla.</p></div>
+    <div class="page-actions"><button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Yeni Yazi</button></div>
+</div>
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-title">Yazi Listesi</span>
+        <div class="toolbar" style="margin:0;gap:8px;">
+            <select class="form-control" id="status-filter" style="width:auto;">
+                <option value="">Tum Durumlar</option>
+                <option value="published">Yayinda</option>
+                <option value="draft">Taslak</option>
+                <option value="archived">Arsiv</option>
+            </select>
+        </div>
+    </div>
+    <div id="table-wrap"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+</div>
+
+<!-- EDITOR MODAL -->
+<div class="modal-overlay" id="post-modal">
+    <div class="modal" style="max-width:860px;width:100%;">
+        <div class="modal-header">
+            <h3 id="modal-title">Yeni Blog Yazisi</h3>
+            <button class="modal-close" data-close-modal="post-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-group"><label class="form-label">Baslik *</label><input type="text" id="f-title" class="form-control" placeholder="Yazi basligini girin..."></div>
+            <div class="form-row">
+                <div class="form-group"><label class="form-label">Kategori</label><input type="text" id="f-category" class="form-control" placeholder="Arastirma Notlari"></div>
+                <div class="form-group"><label class="form-label">Etiketler (virgülle)</label><input type="text" id="f-tags" class="form-control" placeholder="termoelektrik, ml, robotik"></div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Kapak Gorsel URL</label>
+                <input type="text" id="f-cover-url" class="form-control" placeholder="https://... veya /uploads/...">
+            </div>
+            <p class="img-or">veya dosyadan yukle</p>
+            <div class="img-upload-area" id="cover-upload">
+                <input type="file" accept="image/*" id="cover-file">
+                <i class="fa-regular fa-image"></i>
+                <p>Kapak gorselini surukleyin veya tiklayin</p>
+            </div>
+            <div class="img-preview-wrap" id="cover-preview"></div>
+
+            <div class="form-group" style="margin-top:16px;">
+                <label class="form-label">Icerik</label>
+                <div class="editor-toolbar" id="editor-toolbar">
+                    <button class="editor-btn" data-cmd="bold" title="Kalin"><b>B</b></button>
+                    <button class="editor-btn" data-cmd="italic" title="Italik"><i>I</i></button>
+                    <button class="editor-btn" data-cmd="underline" title="Alti Cizili"><u>U</u></button>
+                    <div class="editor-sep"></div>
+                    <button class="editor-btn" data-cmd="formatBlock" data-val="h2" title="Baslik 2">H2</button>
+                    <button class="editor-btn" data-cmd="formatBlock" data-val="h3" title="Baslik 3">H3</button>
+                    <button class="editor-btn" data-cmd="formatBlock" data-val="p" title="Paragraf">P</button>
+                    <div class="editor-sep"></div>
+                    <button class="editor-btn" data-cmd="insertUnorderedList" title="Madde Listesi"><i class="fa-solid fa-list-ul"></i></button>
+                    <button class="editor-btn" data-cmd="insertOrderedList" title="Numarali Liste"><i class="fa-solid fa-list-ol"></i></button>
+                    <div class="editor-sep"></div>
+                    <button class="editor-btn" data-cmd="formatBlock" data-val="blockquote" title="Alinti"><i class="fa-solid fa-quote-left"></i></button>
+                    <button class="editor-btn" data-cmd="formatBlock" data-val="pre" title="Kod"><i class="fa-solid fa-code"></i></button>
+                </div>
+                <div class="editor-area" id="editor-area"></div>
+            </div>
+
+            <div class="form-group" style="margin-top:12px;">
+                <label class="form-label">Yayinlama Durumu</label>
+                <select id="f-status" class="form-control">
+                    <option value="draft">Taslak</option>
+                    <option value="published">Yayinla</option>
+                    <option value="archived">Arsivle</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="post-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+const ST_LABELS = { published:'Yayinda', draft:'Taslak', archived:'Arsiv' };
+const ST_BADGE  = { published:'badge-green', draft:'badge-orange', archived:'badge-gray' };
+let allItems = [];
+
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML = getAdminSidebar('blog') +
+        `<main class="admin-main">${getTopbar('Blog')}<div class="admin-content" id="content"></div></main>` + getConfirmDialog();
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    initEditor('editor-toolbar','editor-area');
+    initImageUpload('cover-upload','cover-preview','f-cover-url');
+    await loadItems();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('status-filter').addEventListener('change', renderTable);
+}
+
+async function loadItems() {
+    try { allItems = await apiJSON('/blog'); renderTable(); }
+    catch(e) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><p>${e.message}</p></div>`; }
+}
+
+function renderTable() {
+    const s = document.getElementById('status-filter').value;
+    const filtered = allItems.filter(m => !s || m.status === s);
+    if (!filtered.length) { document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-pen-nib"></i><p>Yazi bulunamadi.</p></div>`; return; }
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr><th>Baslik</th><th>Yazar</th><th>Kategori</th><th>Durum</th><th>Tarih</th><th>Islemler</th></tr></thead>
+            <tbody>${filtered.map(m => `<tr>
+                <td><strong>${m.title}</strong></td>
+                <td style="color:var(--text-muted);">${m.author_name||'-'}</td>
+                <td style="color:var(--text-muted);">${m.category||'-'}</td>
+                <td><span class="badge ${ST_BADGE[m.status]||'badge-gray'}">${ST_LABELS[m.status]||m.status}</span></td>
+                <td style="color:var(--text-muted);font-size:12px;">${fmtDate(m.published_at||m.created_at)}</td>
+                <td><div class="table-actions">
+                    <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button class="btn btn-danger btn-sm" onclick="deleteItem(${m.id})"><i class="fa-solid fa-trash"></i></button>
+                </div></td>
+            </tr>`).join('')}</tbody>
+        </table>`;
+}
+
+function openForm(id=null) {
+    const item = id ? allItems.find(m=>m.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Yazi Duzenle' : 'Yeni Blog Yazisi';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-title').value = item?.title||'';
+    document.getElementById('f-category').value = item?.category||'';
+    document.getElementById('f-tags').value = item?.tags||'';
+    document.getElementById('f-cover-url').value = item?.cover_image||'';
+    document.getElementById('f-status').value = item?.status||'draft';
+    setEditorHTML('editor-area', item?.content||'');
+    document.getElementById('cover-preview').innerHTML = item?.cover_image ? `<img src="${item.cover_image}" class="img-preview">` : '';
+    openModal('post-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const title = document.getElementById('f-title').value.trim();
+    if (!title) { showToast('Baslik zorunludur.','error'); return; }
+    const body = { title, category: document.getElementById('f-category').value.trim(),
+        tags: document.getElementById('f-tags').value.trim(),
+        cover_image: document.getElementById('f-cover-url').value.trim(),
+        content: getEditorHTML('editor-area'),
+        status: document.getElementById('f-status').value };
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/blog/${id}`,{method:'PUT',body}); showToast('Guncellendi.','success'); }
+        else { await apiJSON('/blog',{method:'POST',body}); showToast('Eklendi.','success'); }
+        closeModal('post-modal'); await loadItems();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteItem(id) {
+    confirmAction('Bu yazi silinecek. Emin misiniz?', async () => {
+        try { await apiJSON(`/blog/${id}`,{method:'DELETE'}); showToast('Silindi.','success'); await loadItems(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | MrML Lab Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-logo">
+            <div class="sidebar-logo-text">
+                <span class="logo-mr">Mr</span><span class="logo-ml">ML</span><span class="logo-lab"> Lab</span>
+            </div>
+            <div class="sidebar-badge">Admin Paneli</div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <span class="nav-section-label">Genel</span>
+                <a href="dashboard.html" class="nav-item" data-page="dashboard.html">
+                    <i class="fa-solid fa-chart-line"></i> Dashboard
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-label">Icerik</span>
+                <a href="modules/uyeler.html" class="nav-item" data-page="uyeler.html">
+                    <i class="fa-solid fa-users"></i> Uyeler
+                </a>
+                <a href="modules/arastirma.html" class="nav-item" data-page="arastirma.html">
+                    <i class="fa-solid fa-flask"></i> Arastirma Alanlari
+                </a>
+                <a href="modules/projeler.html" class="nav-item" data-page="projeler.html">
+                    <i class="fa-solid fa-diagram-project"></i> Projeler
+                </a>
+                <a href="modules/yayinlar.html" class="nav-item" data-page="yayinlar.html">
+                    <i class="fa-regular fa-file-lines"></i> Yayinlar
+                </a>
+                <a href="modules/donanim.html" class="nav-item" data-page="donanim.html">
+                    <i class="fa-solid fa-microscope"></i> Donanim
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-label">Medya</span>
+                <a href="modules/blog.html" class="nav-item" data-page="blog.html">
+                    <i class="fa-solid fa-pen-nib"></i> Blog
+                </a>
+                <a href="modules/haberler.html" class="nav-item" data-page="haberler.html">
+                    <i class="fa-solid fa-newspaper"></i> Haberler
+                </a>
+            </div>
+            <div class="nav-section">
+                <span class="nav-section-label">Ayarlar</span>
+                <a href="modules/sosyal.html" class="nav-item" data-page="sosyal.html">
+                    <i class="fa-solid fa-share-nodes"></i> Sosyal Medya
+                </a>
+                <a href="modules/ayarlar.html" class="nav-item" data-page="ayarlar.html">
+                    <i class="fa-solid fa-gear"></i> Genel Ayarlar
+                </a>
+                <a href="modules/hesaplar.html" class="nav-item" data-page="hesaplar.html">
+                    <i class="fa-solid fa-shield-halved"></i> Hesaplar
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="user-avatar" id="sidebar-avatar">A</div>
+            <div class="user-info">
+                <div class="user-name" id="sidebar-username">admin</div>
+                <div class="user-role" id="sidebar-role">Yonetici</div>
+            </div>
+            <button class="logout-btn" title="Cikis Yap" data-action="logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
+        </div>
+    </aside>
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+        <header class="admin-topbar">
+            <button class="mobile-menu-toggle" id="mobile-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="topbar-title">Dashboard</div>
+            <div class="topbar-actions">
+                <a href="/" target="_blank" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Siteyi Gor
+                </a>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            <div class="page-header">
+                <div>
+                    <h1>Hosgeldin</h1>
+                    <p>Sitenizin genel durumuna bakin ve hizlica islem yapin.</p>
+                </div>
+            </div>
+
+            <!-- İstatistikler -->
+            <div class="stats-grid" id="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon gold"><i class="fa-solid fa-users"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-members">-</div>
+                        <div class="stat-label">Aktif Uye</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-projects">-</div>
+                        <div class="stat-label">Aktif Proje</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa-regular fa-file-lines"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-publications">-</div>
+                        <div class="stat-label">Yayin</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa-solid fa-microscope"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-equipment">-</div>
+                        <div class="stat-label">Donanim</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon gold"><i class="fa-solid fa-newspaper"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-news">-</div>
+                        <div class="stat-label">Yayin. Haber</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fa-solid fa-pen-nib"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-blog">-</div>
+                        <div class="stat-label">Yayin. Blog</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fa-solid fa-file-pen"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-drafts">-</div>
+                        <div class="stat-label">Taslak</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fa-solid fa-flask"></i></div>
+                    <div class="stat-body">
+                        <div class="stat-value" id="stat-areas">-</div>
+                        <div class="stat-label">Arast. Alani</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hizli Erisim -->
+            <div class="panel" style="margin-bottom: 20px;">
+                <div class="panel-header">
+                    <span class="panel-title">Hizli Islemler</span>
+                </div>
+                <div class="panel-body" style="display: flex; gap: 10px; flex-wrap: wrap;">
+                    <a href="modules/uyeler.html" class="btn btn-outline"><i class="fa-solid fa-user-plus"></i> Uye Ekle</a>
+                    <a href="modules/yayinlar.html" class="btn btn-outline"><i class="fa-solid fa-plus"></i> Yayin Ekle</a>
+                    <a href="modules/projeler.html" class="btn btn-outline"><i class="fa-solid fa-plus"></i> Proje Ekle</a>
+                    <a href="modules/blog.html" class="btn btn-outline"><i class="fa-solid fa-pen-nib"></i> Blog Yazisi</a>
+                    <a href="modules/haberler.html" class="btn btn-outline"><i class="fa-solid fa-newspaper"></i> Haber Ekle</a>
+                    <a href="modules/donanim.html" class="btn btn-outline"><i class="fa-solid fa-microscope"></i> Donanim Ekle</a>
+                </div>
+            </div>
+
+            <!-- OTP Gonder Arac -->
+            <div class="panel" id="otp-panel" style="display: none;">
+                <div class="panel-header">
+                    <span class="panel-title">Gecici Erisim Linki Gonder</span>
+                </div>
+                <div class="panel-body">
+                    <div class="otp-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label class="form-label">E-posta Adresi</label>
+                            <input type="email" id="otp-email" class="form-control" placeholder="arastirmaci@mrml-lab.edu">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label class="form-label">Kapsam</label>
+                            <select id="otp-scope" class="form-control">
+                                <option value="blog">Blog</option>
+                                <option value="news">Haber</option>
+                                <option value="publications">Yayin</option>
+                                <option value="full">Tam Erisim</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">&nbsp;</label>
+                            <button id="otp-send-btn" class="btn btn-gold">
+                                <i class="fa-solid fa-paper-plane"></i> Gonder
+                            </button>
+                        </div>
+                    </div>
+                    <p class="form-hint">Gecici link 24 saat gecerlidir ve tek kullanimlik.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src="admin.js"></script>
+<script>
+(async () => {
+    const user = await checkAuth();
+    if (!user) return;
+
+    // Admin icin OTP paneli goster
+    if (user.role === 'admin') {
+        document.getElementById('otp-panel').style.display = 'block';
+    }
+
+    // Istatistikleri yukle
+    try {
+        const stats = await apiJSON('/stats');
+        document.getElementById('stat-members').textContent = stats.members;
+        document.getElementById('stat-projects').textContent = stats.projects;
+        document.getElementById('stat-publications').textContent = stats.publications;
+        document.getElementById('stat-equipment').textContent = stats.equipment;
+        document.getElementById('stat-news').textContent = stats.news_published;
+        document.getElementById('stat-blog').textContent = stats.blog_published;
+        document.getElementById('stat-drafts').textContent = stats.blog_draft;
+        document.getElementById('stat-areas').textContent = stats.research_areas;
+    } catch (e) {
+        console.error('Istatistik yuklenemedi:', e.message);
+    }
+
+    // OTP gonder
+    document.getElementById('otp-send-btn')?.addEventListener('click', async () => {
+        const email = document.getElementById('otp-email').value.trim();
+        const scope = document.getElementById('otp-scope').value;
+        if (!email) { showToast('E-posta adresi girin.', 'error'); return; }
+        const btn = document.getElementById('otp-send-btn');
+        btn.disabled = true; btn.innerHTML = '<span class="loading-spin"></span>';
+        try {
+            await apiJSON('/auth/send-token', { method: 'POST', body: { email, scope } });
+            showToast(`Gecici link ${email} adresine gonderildi.`, 'success');
+            document.getElementById('otp-email').value = '';
+        } catch (e) {
+            showToast(e.message, 'error');
+        } finally {
+            btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Gonder';
+        }
+    });
+})();
+</script>
+</body>
+</html>

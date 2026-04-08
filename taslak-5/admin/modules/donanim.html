@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donanim | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+
+<template id="page-template">
+<div class="page-header">
+    <div>
+        <h1>Laboratuvar Donanimlari</h1>
+        <p>Ekipman listesini yonetin.</p>
+    </div>
+    <div class="page-actions">
+        <button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Donanim Ekle</button>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-title">Donanim Listesi</span>
+        <div class="toolbar" style="margin:0; gap:8px;">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="form-control" id="search-input" placeholder="Ara...">
+            </div>
+            <select class="form-control" id="cat-filter" style="width:auto;">
+                <option value="">Tum Kategoriler</option>
+                <option value="lab">Laboratuvar</option>
+                <option value="test">Deney</option>
+                <option value="simulation">Simulasyon</option>
+                <option value="measurement">Olcum & Test</option>
+            </select>
+        </div>
+    </div>
+    <div id="table-wrap">
+        <div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="equip-modal">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 id="modal-title">Donanim Ekle</h3>
+            <button class="modal-close" data-close-modal="equip-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Donanim Adi *</label>
+                    <input type="text" id="f-name" class="form-control" placeholder="Taramali Elektron Mikroskobu (SEM)">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kategori</label>
+                    <select id="f-category" class="form-control">
+                        <option value="lab">Laboratuvar Donanimi</option>
+                        <option value="test">Deney Donanimi</option>
+                        <option value="simulation">Simulasyon Donanimi</option>
+                        <option value="measurement">Olcum & Test Donanimi</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Aciklama</label>
+                <textarea id="f-description" class="form-control" rows="3" placeholder="Kisaca aciklayin..."></textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Teknik Ozellikler</label>
+                <textarea id="f-specs" class="form-control" rows="3" placeholder="Model, cozunurluk, kapasite..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Gorsel URL</label>
+                <input type="text" id="f-photo-url" class="form-control" placeholder="https://... veya /uploads/...">
+            </div>
+            <p class="img-or">veya dosyadan yukle</p>
+            <div class="img-upload-area" id="photo-upload">
+                <input type="file" accept="image/*" id="photo-file">
+                <i class="fa-regular fa-image"></i>
+                <p>Tiklayin veya surukleme birakın</p>
+            </div>
+            <div class="img-preview-wrap" id="photo-preview"></div>
+
+            <div class="form-row" style="margin-top: 16px;">
+                <div class="form-group">
+                    <label class="form-label">Sira No</label>
+                    <input type="number" id="f-order" class="form-control" value="0" min="0">
+                </div>
+                <div class="form-group" style="display:flex; align-items:flex-end; padding-bottom: 4px;">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="f-active" checked>
+                        <span class="toggle-track"></span>
+                        <span class="toggle-label">Aktif</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="equip-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+const CAT_LABELS = { lab: 'Laboratuvar', test: 'Deney', simulation: 'Simulasyon', measurement: 'Olcum & Test' };
+const CAT_BADGE  = { lab: 'badge-blue', test: 'badge-orange', simulation: 'badge-gold', measurement: 'badge-green' };
+let allItems = [];
+
+async function init() {
+    const user = await checkAuth();
+    if (!user) return;
+
+    document.getElementById('app').innerHTML =
+        getAdminSidebar('donanim') +
+        `<main class="admin-main">
+            ${getTopbar('Laboratuvar Donanimlari')}
+            <div class="admin-content" id="content"></div>
+        </main>` +
+        getConfirmDialog();
+
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    initImageUpload('photo-upload', 'photo-preview', 'f-photo-url');
+
+    await loadItems();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('cat-filter').addEventListener('change', renderTable);
+}
+
+async function loadItems() {
+    try {
+        allItems = await apiJSON('/equipment');
+        renderTable();
+    } catch (e) {
+        document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${e.message}</p></div>`;
+    }
+}
+
+function renderTable() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const cat = document.getElementById('cat-filter').value;
+    const filtered = allItems.filter(m =>
+        (!q || m.name.toLowerCase().includes(q)) &&
+        (!cat || m.category === cat)
+    );
+
+    if (!filtered.length) {
+        document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-microscope"></i><p>Donanim bulunamadi.</p></div>`;
+        return;
+    }
+
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr><th>Donanim</th><th>Kategori</th><th>Aciklama</th><th>Durum</th><th>Islemler</th></tr></thead>
+            <tbody>${filtered.map(m => `
+                <tr>
+                    <td>
+                        <div style="display:flex;align-items:center;gap:10px;">
+                            ${m.photo_url ? `<img src="${m.photo_url}" style="width:36px;height:36px;border-radius:4px;object-fit:cover;" onerror="this.style.display='none'">` : ''}
+                            <strong>${m.name}</strong>
+                        </div>
+                    </td>
+                    <td><span class="badge ${CAT_BADGE[m.category]||'badge-gray'}">${CAT_LABELS[m.category]||m.category}</span></td>
+                    <td style="color:var(--text-muted);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${m.description||'-'}</td>
+                    <td><span class="badge ${m.is_active?'badge-green':'badge-gray'}">${m.is_active?'Aktif':'Pasif'}</span></td>
+                    <td><div class="table-actions">
+                        <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                        <button class="btn btn-danger btn-sm" onclick="deleteItem(${m.id},'${m.name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-trash"></i></button>
+                    </div></td>
+                </tr>`).join('')}
+            </tbody>
+        </table>`;
+}
+
+function openForm(id=null) {
+    const item = id ? allItems.find(m=>m.id===id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Donanim Duzenle' : 'Yeni Donanim';
+    document.getElementById('edit-id').value = id||'';
+    document.getElementById('f-name').value = item?.name||'';
+    document.getElementById('f-category').value = item?.category||'lab';
+    document.getElementById('f-description').value = item?.description||'';
+    document.getElementById('f-specs').value = item?.specs||'';
+    document.getElementById('f-photo-url').value = item?.photo_url||'';
+    document.getElementById('f-order').value = item?.order_index??0;
+    document.getElementById('f-active').checked = item ? !!item.is_active : true;
+    document.getElementById('photo-preview').innerHTML = item?.photo_url ? `<img src="${item.photo_url}" class="img-preview">` : '';
+    openModal('equip-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const name = document.getElementById('f-name').value.trim();
+    if (!name) { showToast('Donanim adi zorunludur.','error'); return; }
+    const body = {
+        name, category: document.getElementById('f-category').value,
+        description: document.getElementById('f-description').value.trim(),
+        specs: document.getElementById('f-specs').value.trim(),
+        photo_url: document.getElementById('f-photo-url').value.trim(),
+        order_index: parseInt(document.getElementById('f-order').value)||0,
+        is_active: document.getElementById('f-active').checked ? 1 : 0,
+    };
+    const btn = document.getElementById('save-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        if (id) { await apiJSON(`/equipment/${id}`, { method:'PUT', body }); showToast('Guncellendi.','success'); }
+        else { await apiJSON('/equipment', { method:'POST', body }); showToast('Eklendi.','success'); }
+        closeModal('equip-modal'); await loadItems();
+    } catch(e) { showToast(e.message,'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Kaydet'; }
+}
+
+function deleteItem(id, name) {
+    confirmAction(`"${name}" donanimi silmek istediginizden emin misiniz?`, async () => {
+        try { await apiJSON(`/equipment/${id}`,{method:'DELETE'}); showToast('Silindi.','success'); await loadItems(); }
+        catch(e) { showToast(e.message,'error'); }
+    });
+}
+
+init();
+</script>
+</body>
+</html>

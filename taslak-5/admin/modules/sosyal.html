@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sosyal Medya | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+<template id="page-template">
+<div class="page-header">
+    <div><h1>Sosyal Medya & Akademik Profiller</h1><p>Lab sosyal medya baglantilarini yonetin.</p></div>
+    <div class="page-actions"><button class="btn btn-gold" id="save-all-btn"><i class="fa-solid fa-check"></i> Tamamini Kaydet</button></div>
+</div>
+<div class="panel">
+    <div class="panel-body">
+        <p style="color:var(--text-muted);font-size:13px;margin-bottom:20px;">Her platform icin URL girin. Aktif olarak isaretlenmeyenler sitede goruntülenmez.</p>
+        <div id="links-list"><div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div></div>
+    </div>
+</div>
+</template>
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+let allLinks = [];
+async function init() {
+    const user = await checkAuth(); if (!user) return;
+    document.getElementById('app').innerHTML = getAdminSidebar('sosyal') +
+        `<main class="admin-main">${getTopbar('Sosyal Medya')}<div class="admin-content" id="content"></div></main>`;
+    renderUserInfo(); initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+    await loadLinks();
+    document.getElementById('save-all-btn').addEventListener('click', saveAll);
+}
+
+async function loadLinks() {
+    try {
+        allLinks = await apiJSON('/social');
+        renderLinks();
+    } catch(e) { document.getElementById('links-list').innerHTML = `<div class="empty-state"><p>${e.message}</p></div>`; }
+}
+
+function renderLinks() {
+    document.getElementById('links-list').innerHTML = allLinks.map((l, i) => `
+        <div style="display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);">
+            <div style="width:40px;height:40px;background:var(--bg-elevated);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">
+                <i class="${l.icon_class}"></i>
+            </div>
+            <div style="min-width:120px;font-family:var(--font-h);font-size:14px;font-weight:600;color:var(--text-h);">${l.label}</div>
+            <input type="text" class="form-control" id="url-${l.id}" value="${l.url||''}" placeholder="https://" style="flex:1;">
+            <label class="toggle-switch">
+                <input type="checkbox" id="active-${l.id}" ${l.is_active?'checked':''}>
+                <span class="toggle-track"></span>
+                <span class="toggle-label" style="font-size:12px;">Aktif</span>
+            </label>
+        </div>`).join('') + `<div style="padding-top:4px;"></div>`;
+}
+
+async function saveAll() {
+    const btn = document.getElementById('save-all-btn');
+    btn.disabled=true; btn.innerHTML='<span class="loading-spin"></span>';
+    try {
+        for (const l of allLinks) {
+            const url = document.getElementById(`url-${l.id}`).value.trim();
+            const is_active = document.getElementById(`active-${l.id}`).checked ? 1 : 0;
+            await apiJSON(`/social/${l.id}`, { method:'PUT', body: { url, is_active, order_index: l.order_index } });
+        }
+        showToast('Sosyal medya baglantilari kaydedildi.', 'success');
+        await loadLinks();
+    } catch(e) { showToast(e.message, 'error'); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fa-solid fa-check"></i> Tamamini Kaydet'; }
+}
+init();
+</script>
+</body>
+</html>

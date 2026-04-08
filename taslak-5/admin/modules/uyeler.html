@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uyeler | MrML Lab Admin</title>
+    <link rel="stylesheet" href="../admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout" id="app"></div>
+
+<template id="page-template">
+<div class="page-header">
+    <div>
+        <h1>Ekip Uyeleri</h1>
+        <p>Lab uyelerini ekle, duzenle veya kaldır.</p>
+    </div>
+    <div class="page-actions">
+        <button class="btn btn-gold" id="add-btn"><i class="fa-solid fa-plus"></i> Uye Ekle</button>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-header">
+        <span class="panel-title">Uye Listesi</span>
+        <div class="toolbar" style="margin:0; gap:8px;">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" class="form-control" id="search-input" placeholder="Ara...">
+            </div>
+            <select class="form-control" id="role-filter" style="width:auto;">
+                <option value="">Tum Roller</option>
+                <option value="pi">PI / Yonetici</option>
+                <option value="postdoc">Postdok</option>
+                <option value="phd">Doktora</option>
+                <option value="msc">Yüksek Lisans</option>
+                <option value="researcher">Arastirmaci</option>
+                <option value="alumni">Mezun</option>
+            </select>
+        </div>
+    </div>
+    <div id="table-wrap">
+        <div class="page-loading"><div class="loading-spin"></div> Yukleniyor...</div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="member-modal">
+    <div class="modal modal-lg">
+        <div class="modal-header">
+            <h3 id="modal-title">Uye Ekle</h3>
+            <button class="modal-close" data-close-modal="member-modal"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Ad Soyad *</label>
+                    <input type="text" id="f-name" class="form-control" placeholder="Prof. Dr. Ahmet Yilmaz">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Unvan</label>
+                    <input type="text" id="f-title" class="form-control" placeholder="Prof. Dr.">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Rol *</label>
+                    <select id="f-role" class="form-control">
+                        <option value="pi">PI / Lab Yoneticisi</option>
+                        <option value="postdoc">Postdok Arastirmaci</option>
+                        <option value="phd">Doktora Ogrencisi</option>
+                        <option value="msc">Yuksek Lisans Ogrencisi</option>
+                        <option value="researcher">Arastirmaci</option>
+                        <option value="alumni">Mezun (Alumni)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-posta</label>
+                    <input type="email" id="f-email" class="form-control" placeholder="isim@mrml-lab.edu">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Biyografi</label>
+                <textarea id="f-bio" class="form-control" rows="3" placeholder="Kisa biyografi..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Profil Gorsel URL'si</label>
+                <input type="text" id="f-photo-url" class="form-control" placeholder="https://... veya /uploads/...">
+            </div>
+            <p class="img-or">veya dosyadan yukle</p>
+            <div class="img-upload-area" id="photo-upload">
+                <input type="file" accept="image/*" id="photo-file">
+                <i class="fa-regular fa-image"></i>
+                <p>Tiklayin veya surukleme birakın</p>
+                <small>JPG, PNG, WEBP (max 5MB)</small>
+            </div>
+            <div class="img-preview-wrap" id="photo-preview"></div>
+
+            <div style="margin-top: 16px;">
+                <label class="form-label">Akademik & Sosyal Profiller</label>
+                <div class="form-row" style="grid-template-columns: 1fr 1fr;">
+                    <div class="form-group">
+                        <label class="form-label" style="font-weight:400; color:var(--text-muted);">Google Scholar</label>
+                        <input type="text" id="f-scholar" class="form-control" placeholder="https://scholar.google.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="font-weight:400; color:var(--text-muted);">ORCID</label>
+                        <input type="text" id="f-orcid" class="form-control" placeholder="https://orcid.org/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="font-weight:400; color:var(--text-muted);">LinkedIn</label>
+                        <input type="text" id="f-linkedin" class="form-control" placeholder="https://linkedin.com/in/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="font-weight:400; color:var(--text-muted);">GitHub</label>
+                        <input type="text" id="f-github" class="form-control" placeholder="https://github.com/...">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" style="font-weight:400; color:var(--text-muted);">ResearchGate</label>
+                        <input type="text" id="f-researchgate" class="form-control" placeholder="https://researchgate.net/...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row" style="grid-template-columns: 1fr 1fr; margin-top: 8px;">
+                <div class="form-group">
+                    <label class="form-label">Sıra No</label>
+                    <input type="number" id="f-order" class="form-control" value="0" min="0">
+                </div>
+                <div class="form-group" style="display:flex; align-items: flex-end; padding-bottom: 4px;">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="f-active" checked>
+                        <span class="toggle-track"></span>
+                        <span class="toggle-label">Aktif</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" data-close-modal="member-modal">Iptal</button>
+            <button class="btn btn-gold" id="save-btn"><i class="fa-solid fa-check"></i> Kaydet</button>
+        </div>
+    </div>
+</div>
+</template>
+
+<script src="../admin.js"></script>
+<script src="../layout.js"></script>
+<script>
+const ROLE_LABELS = {
+    pi: 'PI / Yonetici', postdoc: 'Postdok', phd: 'Doktora',
+    msc: 'Yuksek Lisans', researcher: 'Arastirmaci', alumni: 'Mezun', student: 'Ogrenci',
+};
+const ROLE_BADGE = {
+    pi: 'badge-gold', postdoc: 'badge-blue', phd: 'badge-blue',
+    msc: 'badge-gray', researcher: 'badge-green', alumni: 'badge-gray', student: 'badge-gray',
+};
+
+let allMembers = [];
+
+async function init() {
+    const user = await checkAuth();
+    if (!user) return;
+
+    document.getElementById('app').innerHTML =
+        getAdminSidebar('uyeler') +
+        `<main class="admin-main">
+            ${getTopbar('Ekip Uyeleri')}
+            <div class="admin-content" id="content"></div>
+        </main>` +
+        getConfirmDialog();
+
+    renderUserInfo();
+    initSidebar();
+    document.getElementById('content').innerHTML = document.getElementById('page-template').innerHTML;
+
+    initImageUpload('photo-upload', 'photo-preview', 'f-photo-url');
+
+    await loadMembers();
+    document.getElementById('add-btn').addEventListener('click', () => openForm());
+    document.getElementById('save-btn').addEventListener('click', saveForm);
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('role-filter').addEventListener('change', renderTable);
+}
+
+async function loadMembers() {
+    try {
+        allMembers = await apiJSON('/members');
+        renderTable();
+    } catch (e) {
+        document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-triangle-exclamation"></i><p>${e.message}</p></div>`;
+    }
+}
+
+function renderTable() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const role = document.getElementById('role-filter').value;
+    const filtered = allMembers.filter(m =>
+        (!q || m.name.toLowerCase().includes(q) || (m.email || '').toLowerCase().includes(q)) &&
+        (!role || m.role === role)
+    );
+
+    if (!filtered.length) {
+        document.getElementById('table-wrap').innerHTML = `<div class="empty-state"><i class="fa-solid fa-users-slash"></i><p>Uye bulunamadi.</p></div>`;
+        return;
+    }
+
+    document.getElementById('table-wrap').innerHTML = `
+        <table class="data-table">
+            <thead><tr>
+                <th>Uye</th><th>Rol</th><th>E-posta</th><th>Durum</th><th>Islemler</th>
+            </tr></thead>
+            <tbody>
+            ${filtered.map(m => `
+                <tr>
+                    <td>
+                        <div style="display:flex; align-items:center; gap:10px;">
+                            ${m.photo_url ? `<img src="${m.photo_url}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:50%;background:var(--gold-glow);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:700;font-size:13px;color:var(--gold);">${m.name[0]}</div>`}
+                            <strong>${m.name}</strong>
+                        </div>
+                    </td>
+                    <td><span class="badge ${ROLE_BADGE[m.role] || 'badge-gray'}">${ROLE_LABELS[m.role] || m.role}</span></td>
+                    <td style="color:var(--text-muted);">${m.email || '-'}</td>
+                    <td><span class="badge ${m.is_active ? 'badge-green' : 'badge-gray'}">${m.is_active ? 'Aktif' : 'Pasif'}</span></td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="btn btn-ghost btn-sm" onclick="openForm(${m.id})"><i class="fa-solid fa-pen"></i></button>
+                            <button class="btn btn-danger btn-sm" onclick="deleteMember(${m.id}, '${m.name.replace(/'/g,"\\'")}')"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+
+function openForm(id = null) {
+    const member = id ? allMembers.find(m => m.id === id) : null;
+    document.getElementById('modal-title').textContent = id ? 'Uye Duzenle' : 'Yeni Uye';
+    document.getElementById('edit-id').value = id || '';
+    document.getElementById('f-name').value = member?.name || '';
+    document.getElementById('f-title').value = member?.title || '';
+    document.getElementById('f-role').value = member?.role || 'phd';
+    document.getElementById('f-email').value = member?.email || '';
+    document.getElementById('f-bio').value = member?.bio || '';
+    document.getElementById('f-photo-url').value = member?.photo_url || '';
+    document.getElementById('f-scholar').value = member?.social_scholar || '';
+    document.getElementById('f-orcid').value = member?.social_orcid || '';
+    document.getElementById('f-linkedin').value = member?.social_linkedin || '';
+    document.getElementById('f-github').value = member?.social_github || '';
+    document.getElementById('f-researchgate').value = member?.social_researchgate || '';
+    document.getElementById('f-order').value = member?.order_index ?? 0;
+    document.getElementById('f-active').checked = member ? !!member.is_active : true;
+    document.getElementById('photo-preview').innerHTML = member?.photo_url ? `<img src="${member.photo_url}" class="img-preview">` : '';
+    openModal('member-modal');
+}
+
+async function saveForm() {
+    const id = document.getElementById('edit-id').value;
+    const name = document.getElementById('f-name').value.trim();
+    if (!name) { showToast('Ad Soyad zorunludur.', 'error'); return; }
+
+    const body = {
+        name,
+        title: document.getElementById('f-title').value.trim(),
+        role: document.getElementById('f-role').value,
+        email: document.getElementById('f-email').value.trim(),
+        bio: document.getElementById('f-bio').value.trim(),
+        photo_url: document.getElementById('f-photo-url').value.trim(),
+        social_scholar: document.getElementById('f-scholar').value.trim(),
+        social_orcid: document.getElementById('f-orcid').value.trim(),
+        social_linkedin: document.getElementById('f-linkedin').value.trim(),
+        social_github: document.getElementById('f-github').value.trim(),
+        social_researchgate: document.getElementById('f-researchgate').value.trim(),
+        order_index: parseInt(document.getElementById('f-order').value) || 0,
+        is_active: document.getElementById('f-active').checked ? 1 : 0,
+    };
+
+    const btn = document.getElementById('save-btn');
+    btn.disabled = true; btn.innerHTML = '<span class="loading-spin"></span>';
+
+    try {
+        if (id) {
+            await apiJSON(`/members/${id}`, { method: 'PUT', body });
+            showToast('Uye guncellendi.', 'success');
+        } else {
+            await apiJSON('/members', { method: 'POST', body });
+            showToast('Uye eklendi.', 'success');
+        }
+        closeModal('member-modal');
+        await loadMembers();
+    } catch (e) {
+        showToast(e.message, 'error');
+    } finally {
+        btn.disabled = false; btn.innerHTML = '<i class="fa-solid fa-check"></i> Kaydet';
+    }
+}
+
+function deleteMember(id, name) {
+    confirmAction(`"${name}" adli uyeyi silmek istediginizden emin misiniz?`, async () => {
+        try {
+            await apiJSON(`/members/${id}`, { method: 'DELETE' });
+            showToast('Uye silindi.', 'success');
+            await loadMembers();
+        } catch (e) {
+            showToast(e.message, 'error');
+        }
+    });
+}
+
+init();
+</script>
+</body>
+</html>
