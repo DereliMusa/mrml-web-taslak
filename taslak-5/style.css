@@ -507,78 +507,8 @@ a:hover {
 }
 
 /* =========================================
-   10. NEWS TICKER
+   10. NEWS TICKER (KALDIRILDI KOYULMAYACAK)
 ========================================= */
-.news-ticker-section {
-    background-color: var(--bg-tertiary);
-    border-top: 1px solid rgba(198, 151, 73, 0.2);
-    border-bottom: 1px solid rgba(198, 151, 73, 0.2);
-    display: flex;
-    align-items: center;
-    height: 50px;
-    overflow: hidden;
-    position: relative;
-    z-index: 10;
-}
-
-.ticker-label {
-    background-color: var(--accent-primary);
-    color: var(--bg-primary);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 14px;
-    padding: 0 20px;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    white-space: nowrap;
-}
-
-.ticker-label::after {
-    content: '';
-    position: absolute;
-    right: -10px;
-    top: 0;
-    width: 0;
-    height: 0;
-    border-top: 25px solid transparent;
-    border-bottom: 25px solid transparent;
-    border-left: 10px solid var(--accent-primary);
-}
-
-.ticker-wrapper {
-    flex-grow: 1;
-    overflow: hidden;
-    position: relative;
-}
-
-.ticker-content {
-    display: flex;
-    width: max-content;
-    animation: ticker 40s linear infinite;
-}
-
-.ticker-item {
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: var(--text-primary);
-    padding: 0 40px;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.ticker-item i {
-    color: var(--accent-primary);
-}
-
-@keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Scrolls precisely half its double-width */
-}
 
 /* =========================================
    2. LAB INTRODUCTION
@@ -1680,9 +1610,7 @@ a:hover {
     
     .nav-links, .nav-cta { display: none; }
     .mobile-menu-btn { display: block; }
-    
-    .news-ticker-section { display: none; /* Hide ticker on small mobile to save space */ }
-    
+        
     .hero-content { padding-top: 40px; }
     .hero-ctas { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
     
