@@ -1,20 +1,19 @@
 {
-  "name": "taslak-5",
+  "name": "mrml-lab",
   "version": "1.0.0",
-  "description": "Buradan sonra admin panelini yapmaya başlıyorum.",
-  "main": "script.js",
+  "description": "MrML Lab Arastirma Laboratuvari Web Sitesi",
   "scripts": {
-    "start": "node server.js",
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "node .output/server/index.mjs",
+    "generate": "nuxt generate",
     "seed": "node db/seed.js",
-    "fresh": "node db/seed.js --fresh",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fresh": "node db/seed.js --fresh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^3.0.3",
+    "nuxt": "^3.15.4",
     "better-sqlite3": "^12.8.0",
+    "bcryptjs": "^3.0.3",
     "nodemailer": "^8.0.5"
   }
 }

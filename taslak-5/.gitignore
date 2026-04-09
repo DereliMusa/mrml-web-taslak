@@ -1,14 +1,21 @@
 # Node
 node_modules/
-npm-debug.log*
 
-# Veritabani (hassas veri icerdigindan repoya ekleme)
+# Nuxt
+.nuxt/
+.output/
+dist/
+
+# Veritabani (hassas veri)
 db/mrml.db
 db/mrml.db-shm
 db/mrml.db-wal
 
-# Yuklenen dosyalar (repoda tutulmaz, sunucuda kalir)
-uploads/
+# Yuklenen dosyalar
+public/uploads/
 
 # macOS
 .DS_Store
+
+# Env
+.env
