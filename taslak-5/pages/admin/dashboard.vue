@@ -50,7 +50,6 @@ const statCards = computed(() => {
 
 <template>
   <div>
-    <template #title>Dashboard</template>
 
     <div class="page-header">
       <div>

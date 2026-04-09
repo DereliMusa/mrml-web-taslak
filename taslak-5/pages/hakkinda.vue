@@ -1,7 +1,22 @@
 <script setup>
 useHead({ title: 'Hakkinda | MrML Lab', meta: [{ name: 'description', content: 'MrML Lab hakkinda -- kurulis hikayesi, misyon, vizyon ve degerler.' }] })
 useScrollReveal()
+
+const degerler = [
+  { icon: 'fa-solid fa-flask', title: 'Bilimsel Titizlik', desc: 'Her bulgumuz rigorous metodoloji ve tekrarlanabilir deneylerle desteklenir.' },
+  { icon: 'fa-solid fa-globe', title: 'Kuresel Etki', desc: 'Arastirmalarimizin toplumsal ve endustriyel yansimalari odak noktamizdir.' },
+  { icon: 'fa-solid fa-users', title: 'Isbirlikci Yaklasim', desc: 'Disiplinlerarasi ekipler ve uluslararasi ortakliklar zenginligimizdir.' },
+  { icon: 'fa-solid fa-seedling', title: 'Surdurulebilirlik', desc: 'Enerji ve cevre duyarliligi arastirma agendamizin temelindedir.' },
+]
+const tarihce = [
+  { yil: '2016', baslik: 'Laboratuvarin Kurulusu', aciklama: 'Global Muhendislik Universitesi buyumesi kapsaminda MrML Lab resmi olarak kuruldu.' },
+  { yil: '2018', baslik: 'Ilk TUBITAK Projesi', aciklama: 'Termoelektrik malzeme arastirmasina yonelik ilk buyuk olcekli proje fonlandi.' },
+  { yil: '2020', baslik: 'Avrupa Isbirligi', aciklama: 'TU Delft ve ETH Zurich ile ilk ortak arastirma protokolleri imzalandi.' },
+  { yil: '2022', baslik: 'Science Robotics Yayini', aciklama: 'Mikro robot platformu calismasimiz Science Robotics dergisinde yayimlandi.' },
+  { yil: '2024', baslik: 'AB Horizon Europe Fonu', aciklama: '2.4 milyon Euro fonla desteklenen buyuk olcekli mikro robotik projesi basladi.' },
+]
 </script>
+
 
 <template>
   <div>
@@ -94,21 +109,8 @@ useScrollReveal()
   </div>
 </template>
 
-<script>
-const degerler = [
-  { icon: 'fa-solid fa-flask', title: 'Bilimsel Titizlik', desc: 'Her bulgumuz rigorous metodoloji ve tekrarlanabilir deneylerle desteklenir.' },
-  { icon: 'fa-solid fa-globe', title: 'Kuresel Etki', desc: 'Arastirmalarimizin toplumsal ve endustriyel yansimalari odak noktamizdir.' },
-  { icon: 'fa-solid fa-users', title: 'Isbirlikci Yaklasim', desc: 'Disiplinlerarasi ekipler ve uluslararasi ortakliklar zenginligimizdir.' },
-  { icon: 'fa-solid fa-seedling', title: 'Surdurulebilirlik', desc: 'Enerji ve cevre duyarliligi arastirma agendamizin temelindedir.' },
-]
-const tarihce = [
-  { yil: '2016', baslik: 'Laboratuvarin Kurulusu', aciklama: 'Global Muhendislik Universitesi buyumesi kapsaminda MrML Lab resmi olarak kuruldu.' },
-  { yil: '2018', baslik: 'Ilk TUBITAK Projesi', aciklama: 'Termoelektrik malzeme arastirmasina yonelik ilk buyuk olcekli proje fonlandi.' },
-  { yil: '2020', baslik: 'Avrupa Isbirligi', aciklama: 'TU Delft ve ETH Zurich ile ilk ortak arastirma protokolleri imzalandi.' },
-  { yil: '2022', baslik: 'Science Robotics Yayini', aciklama: 'Mikro robot platformu calismasimiz Science Robotics dergisinde yayimlandi.' },
-  { yil: '2024', baslik: 'AB Horizon Europe Fonu', aciklama: '2.4 milyon Euro fonla desteklenen buyuk olcekli mikro robotik projesi basladi.' },
-]
-</script>
+
+
 
 <style scoped>
 .page-hero { padding: 140px 0 80px; background: radial-gradient(ellipse at top, rgba(198,151,73,0.08) 0%, transparent 60%); border-bottom: 1px solid var(--border); }
