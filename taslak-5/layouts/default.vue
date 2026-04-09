@@ -1,9 +1,7 @@
-<script setup>
-// AppToast bilesenini her layout'ta gormek icin buraya eklenebilir
-</script>
-
 <template>
   <div>
+    <SiteNavbar />
     <slot />
+    <SiteFooter />
   </div>
 </template>
